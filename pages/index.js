@@ -29,10 +29,10 @@ const useStyles = makeStyles(theme => ({
   },
   
   headerLink: {
-    display: 'flex',
-    justifyContent: 'right',
+    // display: 'flex',
+    // justifyContent: 'right',
+    // flexGrow: 1,
     alignItems: 'center',
-    flexGrow: 1,
     '&:hover': {
       textDecoration: 'underline'
     },
@@ -48,10 +48,10 @@ const useStyles = makeStyles(theme => ({
   },
   
   footerLink: {
-    display: 'flex',
-    justifyContent: 'center',
+    // display: 'flex',
+    // justifyContent: 'center',
+    // flexGrow: 1,
     alignItems: 'center',
-    flexGrow: 1,
     '&:hover': {
       textDecoration: 'underline'
     },
