@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 import Link from 'next/link'
-// import styles from '../styles/Home.module.css'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,19 +24,25 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     padding: '2rem 0',
     borderTtop: '1px solid #ebd6d6',
-    justifyContent: 'right',
+    justifyContent: 'left',
     alignItems: 'center',
   },
-  
+
   headerLink: {
     // display: 'flex',
     // justifyContent: 'right',
     // flexGrow: 1,
+    margin: 0,
+    lineHeight: 1.15,
     fontSize: '1.5rem',
+    letterSpacing: '4px',
+    display: 'flex',
+    textAlign: 'center',
     alignItems: 'center',
-    '&:hover': {
-      textDecoration: 'underline'
-    },
+    fontWeight: 'bold'
+    // '&:hover': {
+    //   textDecoration: 'underline'
+    // },
   },
   
   footer: {
@@ -81,7 +86,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Home() {
+export default function About() {
   const classes = useStyles();
 
   return (
@@ -99,63 +104,30 @@ export default function Home() {
       </Head>
 
       <header className={classes.header}>
-        <Link href="/about">
+        <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36} className={classes.logo}/>
+        <Link href="/">
           <a
             className={classes.headerLink}
           >
-            About us
+            Sinagpala
           </a>
         </Link>
       </header>
 
       <main className={classes.main}>
         <h1 className={classes.title} >
-          <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
+          <Image style="vertical-align:middle" src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} />
           Sinagpala
         </h1>
 
-        {/* <p className={classes.description}>
-          Search Component {' '}
-          <code className={classes.code}>https://medium.com/@matswainson/building-a-search-component-for-your-next-js-markdown-blog-9e75e0e7d210</code>
-        </p> */}
-
         <p className={classes.description}>
-        Have your rooftops checked for its solar energy potential.
+        About us content here.
         </p>
 
         <a href="https://nextjs.org/docs" >
             <p>Explore Marikina Area</p>
         </a>
 
-        {/* <div className={classes.grid}>
-          <a href="https://nextjs.org/docs" className={classes.card}>
-            <h2>Documentation &rarr,</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={classes.card}>
-            <h2>Learn &rarr,</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={classes.card}
-          >
-            <h2>Examples &rarr,</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={classes.card}
-          >
-            <h2>Deploy &rarr,</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
       </main>
 
       <footer className={classes.footer}>
