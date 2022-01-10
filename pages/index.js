@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 import Link from 'next/link'
+import SummaryCard from '../components/summary-card'
 // import styles from '../styles/Home.module.css'
 
 const useStyles = makeStyles(theme => ({
@@ -83,6 +84,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();
+  const data = {
+    annual_potential: 4,
+    hourly_potential: 3,
+    daily_potential: 3,
+    avail_rooftop: 34,
+    num_panels: 4,
+  }
 
   return (
     <div className={classes.container}>
@@ -118,6 +126,8 @@ export default function Home() {
           Search Component {' '}
           <code className={classes.code}>https://medium.com/@matswainson/building-a-search-component-for-your-next-js-markdown-blog-9e75e0e7d210</code>
         </p> */}
+
+        <SummaryCard data={data}/>
 
         <p className={classes.description}>
         Have your rooftops checked for its solar energy potential.
