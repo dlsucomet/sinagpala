@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
-import Link from 'next/link'
+import Header from '../components/header'
+import Footer from '../components/footer'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -17,51 +18,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  
-  header: {
-    display: 'flex',
-    flex: 1,
-    padding: '2rem 0',
-    borderTtop: '1px solid #ebd6d6',
-    justifyContent: 'left',
-    alignItems: 'center',
-  },
-
-  headerLink: {
-    // display: 'flex',
-    // justifyContent: 'right',
-    // flexGrow: 1,
-    margin: 0,
-    lineHeight: 1.15,
-    fontSize: '1.5rem',
-    letterSpacing: '4px',
-    display: 'flex',
-    textAlign: 'center',
-    alignItems: 'center',
-    fontWeight: 'bold'
-    // '&:hover': {
-    //   textDecoration: 'underline'
-    // },
-  },
-  
-  footer: {
-    display: 'flex',
-    flex: 1,
-    padding: '2rem 0',
-    borderTop: '1px solid #eaeaea',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  
-  footerLink: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    // flexGrow: 1,
-    alignItems: 'center',
-    '&:hover': {
-      textDecoration: 'underline'
-    },
   },
   
   title: {
@@ -97,22 +53,13 @@ export default function About() {
         <link rel="icon" href="/favicon.ico" />
         <link
             rel="preload"
-            href="/fonts/RopaSans/RopaSans-Regular.ttf"
+            href="/fonts/Ropa_Sans/RopaSans-Regular.ttf"
             as="font"
             crossOrigin=""
           />
       </Head>
 
-      <header className={classes.header}>
-        <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36} className={classes.logo}/>
-        <Link href="/">
-          <a
-            className={classes.headerLink}
-          >
-            Sinagpala
-          </a>
-        </Link>
-      </header>
+      <Header />
 
       <main className={classes.main}>
         <h1 className={classes.title} >
@@ -130,19 +77,7 @@ export default function About() {
 
       </main>
 
-      <footer className={classes.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={classes.footerLink}
-        >
-          Powered by{' '}
-          <span className={classes.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }

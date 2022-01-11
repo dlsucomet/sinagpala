@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
-import Link from 'next/link'
 import SummaryCard from '../components/summary-card'
 import EnvironmentCard from '../components/environment-card'
+import Header from '../components/header'
 // import styles from '../styles/Home.module.css'
 
 const useStyles = makeStyles(theme => ({
@@ -20,45 +20,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  
-  header: {
-    display: 'flex',
-    flex: 1,
-    padding: '2rem 0',
-    borderTtop: '1px solid #ebd6d6',
-    justifyContent: 'right',
-    alignItems: 'center',
-  },
-  
-  headerLink: {
-    // display: 'flex',
-    // justifyContent: 'right',
-    // flexGrow: 1,
-    fontSize: '1.5rem',
-    alignItems: 'center',
-    '&:hover': {
-      textDecoration: 'underline'
-    },
-  },
-  
-  footer: {
-    display: 'flex',
-    flex: 1,
-    padding: '2rem 0',
-    borderTop: '1px solid #eaeaea',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  
-  footerLink: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    // flexGrow: 1,
-    alignItems: 'center',
-    '&:hover': {
-      textDecoration: 'underline'
-    },
   },
   
   title: {
@@ -101,22 +62,14 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link
             rel="preload"
-            href="/fonts/RopaSans/RopaSans-Regular.ttf"
+            href="/fonts/Ropa_Sans/RopaSans-Regular.ttf"
             as="font"
             crossOrigin=""
           />
       </Head>
-
-      <header className={classes.header}>
-        <Link href="/about">
-          <a
-            className={classes.headerLink}
-          >
-            About us
-          </a>
-        </Link>
-      </header>
-
+      
+      <Header />
+      
       <main className={classes.main}>
         <h1 className={classes.title} >
           <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
