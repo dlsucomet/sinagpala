@@ -1,7 +1,7 @@
 /**
  * ------------------------------------------------------------------------------------------
  * [COMPONENT]
- * @function SummaryCard   -   Summary card that shows the statistics of a building
+ * @function EnvironmentCard   -   Summary card that shows the statistics of a building
  *                                  
  *
  * #HOW TO CALL:
@@ -21,6 +21,7 @@ import Card from '@mui/material/Card'
 import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import Image from 'next/image'
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -46,10 +47,17 @@ const useStyles = makeStyles(theme => ({
         bgcolor: 'background.paper',
         flexWrap: 'wrap',
         flexGrow: 1,
-    }
+    },
+    logo: {
+        verticalAlign: 'middle',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
 }));
 
-export default function SummaryCard(props) {
+export default function EnvironmentCard(props) {
     const classes = useStyles();
     const {
         annual_potential,
@@ -69,16 +77,65 @@ export default function SummaryCard(props) {
                     }}
                     className={classes.dataRow}
                 >
-                    <div>
+                    <div className={classes.groupData}>
+                        <div className={classes.labelData}>
+                            <Image src="/CO2.svg" alt="CO2" width={30} height={30}/>
+                        </div>
+                        {/* <Typography variant="h6" component="div" className={classes.numData}>
+                            {annual_potential} kW/h
+                        </Typography> */}
+                        <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
+                        {annual_potential} Metric Tons / kWh
+                        </Typography>
+                    </div>
+                    <div className={classes.groupData}>
+                        <div className={classes.labelData}>
+                            <Image src="/Seedling.svg" alt="Seedling" width={30} height={30}/>
+                        </div>
+                        {/* <Typography variant="h6" component="div" className={classes.numData}>
+                            {annual_potential} kW/h
+                        </Typography> */}
+                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                        {annual_potential} Metric Tons / Urban trees planted
+                        </Typography>
+                    </div>
+                    <div className={classes.groupData}>
+                        <div className={classes.labelData}>
+                            <Image src="/Car.svg" alt="Car" width={30} height={30}/>
+                        </div>
+                        {/* <Typography variant="h6" component="div" className={classes.numData}>
+                            {annual_potential} kW/h
+                        </Typography> */}
+                        <Typography sx={{ fontSize: 12}} className={classes.labelData} gutterBottom>
+                        {annual_potential} Metric / Per Mile
+                        </Typography>
+                    </div>
+                </ Box>
+                {/* <Box
+                    sx={{
+                        p: 0.5,
+                        m: 0.5,
+                    }}
+                    className={classes.dataRow}
+                >
+                    <div className={classes.groupData}>
+                        <Typography variant="h6" component="div" className={classes.numData}>
+                            {annual_potential} kW/h
+                        </Typography>
+                        <Typography sx={{ fontSize: 12, textAlign: 'center'}} className={classes.labelData} gutterBottom>
+                        Metric Tons / Urban trees{<br />}planted
+                        </Typography>
+                    </div>
+                    <div className={classes.groupData}>
                         <Typography variant="h6" component="div" className={classes.numData}>
                             {annual_potential} kW/h
                         </Typography>
                         <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
-                        Annual potential solar energy generation
+                        Metric / Per Mile
                         </Typography>
                     </div>
-                </ Box>
-                <Box
+                </ Box> */}
+                {/* <Box
                     sx={{
                         p: 0.5,
                         m: 0.5,
@@ -127,7 +184,7 @@ export default function SummaryCard(props) {
                         Panels for Installation
                         </Typography>
                     </div>
-                </Box>
+                </Box> */}
             </CardContent>
         </React.Fragment>
     );

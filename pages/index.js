@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 import Link from 'next/link'
 import SummaryCard from '../components/summary-card'
-import EnvironmentCard from '../components/summary-card'
+import EnvironmentCard from '../components/environment-card'
 // import styles from '../styles/Home.module.css'
 
 const useStyles = makeStyles(theme => ({
@@ -128,9 +128,9 @@ export default function Home() {
           <code className={classes.code}>https://medium.com/@matswainson/building-a-search-component-for-your-next-js-markdown-blog-9e75e0e7d210</code>
         </p> */}
 
-        <SummaryCard data={data} style={{margin: '4rem 0'}}/>
-
-        <EnvironmentCard data={data} sx={{margin: '4rem 0'}}/>  
+        <SummaryCard data={data}/>
+        <br/>
+        <EnvironmentCard data={data}/>  
 
         <p className={classes.description}>
         Have your rooftops checked for its solar energy potential.
