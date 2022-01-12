@@ -1,7 +1,5 @@
-import { useState, useRef, useCallback } from "react"
-import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
+import { useState, useRef, useCallback} from "react"
 import ReactMapGL from "react-map-gl"
-import Geocoder from 'react-map-gl-geocoder'
 import axios from 'axios'
 
 // const customData = [{
@@ -14,11 +12,12 @@ import axios from 'axios'
 // }]
 
 function forwardGeocoder(query) {
-    axios.get(`/api/search/${query}`)
-    .then(response => {
-        console.log(response.data)
-        return response.data
-    })
+    // console.log(userInputRef.current)
+    // axios.get(`/api/search/${query}`)
+    // .then(response => {
+    //     console.log(response.data)
+    //     return response.data
+    // })
 }
 
 export default function Map() {
@@ -30,39 +29,22 @@ export default function Map() {
         zoom: 20
     });
     const mapRef = useRef();
-    const handleViewportChange = useCallback(
-        (newViewport) => setViewport(newViewport),
-        []
-      );
-    
-    const handleGeocoderViewportChange = useCallback(
-        (newViewport) => {
-            const geocoderDefaultOverrides = { transitionDuration: 200 };
 
-            return handleViewportChange({
-            ...newViewport,
-            ...geocoderDefaultOverrides
-            });
-        },
-        []
-    );
+    const onClick = useCallback(event => {
+        const {
+          features,
+          srcEvent: {offsetX, offsetY}
+        } = event;
+        console.log(features);
+    }, []);
     
     return <ReactMapGL
                 ref={mapRef}
                 mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
                 mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                 {...viewport}
-                onViewportChange={handleViewportChange}
+                onClick={onClick}
+                onViewportChange={(newViewport) => setViewport(newViewport)}
                 >
-                    <Geocoder
-                        mapRef={mapRef}
-                        zoom={20}
-                        countries={"PH"}
-                        localGeocoder={forwardGeocoder}
-                        localGeocoderOnly={true}
-                        onViewportChange={handleGeocoderViewportChange}
-                        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
-                        position="top-right"
-                    />
             </ReactMapGL>
 }
