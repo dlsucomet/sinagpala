@@ -32,29 +32,10 @@ export default function Map() {
 
     function forwardGeocoder(query) {
         const matchingFeatures = []
-        
-        console.log(query)
         axios.get(`/api/search/${query}`)
         .then(response => {
-            console.log(JSON.stringify(response.data))
+            return response.data
         })
-        // for (const feature of customData.features) {
-        //     // Handle queries with different capitalization
-        //     // than the source data by calling toLowerCase().
-        //     if (
-        //     feature.properties.title
-        //     .toLowerCase()
-        //     .includes(query.toLowerCase())
-        //     ) {
-        //         // Add a tree emoji as a prefix for custom
-        //         // data results using carmen geojson format:
-        //         // https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
-        //         feature['place_name'] = `🌲 ${feature.properties.title}`;
-        //         feature['center'] = feature.geometry.coordinates;
-        //         feature['place_type'] = ['park'];
-        //         matchingFeatures.push(feature);
-        //     }
-        // }
         return matchingFeatures;
     }
     
@@ -74,6 +55,7 @@ export default function Map() {
                             latitude: 14.6335708
                         }}
                         localGeocoder={forwardGeocoder}
+                        // localGeocoderOnly={true}
                         onViewportChange={handleGeocoderViewportChange}
                         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                         position="top-right"
