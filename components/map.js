@@ -4,6 +4,23 @@ import ReactMapGL from "react-map-gl"
 import Geocoder from 'react-map-gl-geocoder'
 import axios from 'axios'
 
+// const customData = [{
+//     place_name: 'Masangkay St, Manila, Metro Manila, Philippines',
+//     place_type: [ 'Building' ],
+//     properties: { title: 'Masangkay St, Manila, Metro Manila, Philippines' },
+//     center: [ 120.9773871, 14.6062277 ],
+//     geometry: { coordinates: [Array], type: 'Point' },
+//     type: 'Feature'
+// }]
+
+function forwardGeocoder(query) {
+    axios.get(`/api/search/${query}`)
+    .then(response => {
+        console.log(response.data)
+        return response.data
+    })
+}
+
 export default function Map() {
     const [viewport, setViewport] = useState({
         width: "100%",
@@ -20,7 +37,7 @@ export default function Map() {
     
     const handleGeocoderViewportChange = useCallback(
         (newViewport) => {
-            const geocoderDefaultOverrides = { transitionDuration: 100 };
+            const geocoderDefaultOverrides = { transitionDuration: 200 };
 
             return handleViewportChange({
             ...newViewport,
@@ -29,15 +46,6 @@ export default function Map() {
         },
         []
     );
-
-    function forwardGeocoder(query) {
-        const matchingFeatures = []
-        axios.get(`/api/search/${query}`)
-        .then(response => {
-            return response.data
-        })
-        return matchingFeatures;
-    }
     
     return <ReactMapGL
                 ref={mapRef}
@@ -50,12 +58,8 @@ export default function Map() {
                         mapRef={mapRef}
                         zoom={20}
                         countries={"PH"}
-                        proximity={{
-                            longitude: 121.0981465,
-                            latitude: 14.6335708
-                        }}
                         localGeocoder={forwardGeocoder}
-                        // localGeocoderOnly={true}
+                        localGeocoderOnly={true}
                         onViewportChange={handleGeocoderViewportChange}
                         mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                         position="top-right"
