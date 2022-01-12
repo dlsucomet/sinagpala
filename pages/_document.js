@@ -13,6 +13,7 @@ export default class MyDocument extends Document {
         <Head>
           {/* Not exactly required, but this is the PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
+          <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
         </Head>
         <body>
           <Main />
