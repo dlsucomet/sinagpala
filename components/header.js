@@ -47,6 +47,13 @@ export default function Header(){
    return (
         router.pathname == '/' ?
             <header className={classes.header}>
+                <Link href="/explore">
+                    <a
+                        className={classes.headerLink}
+                    >
+                        Explore
+                    </a>
+                </Link>
                 <Link href="/about">
                     <a
                         className={classes.headerLink}
