@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { point, polygon, booleanPointInPolygon } from '@turf/turf'
+
+const marikinaPolygon = require('./marikina_polygon.json')['features'][0]['geometry']['coordinates']
 
 export default function handler(req, res) {
     const baseQueryString = 'https://maps.googleapis.com/maps/api/geocode/json?address='
@@ -8,8 +11,17 @@ export default function handler(req, res) {
 
     axios.get(baseQueryString + queryString + apiString)
     .then(response => {
-        console.log(response)
-        if (response.data.results.length == 0) {
+        // Filter results to those within Marikina Polygon 
+        let filteredResponse = response.data.results.filter((item) => {
+            var pt = point([item.geometry.location.lng, item.geometry.location.lat])
+            var poly = polygon(marikinaPolygon)
+            console.log("ITEM ", item.formatted_address)
+            console.log(booleanPointInPolygon(pt, poly))
+            return booleanPointInPolygon(pt, poly)
+        })
+
+        // console.log(response)
+        if (filteredResponse.length == 0) {
             res.status(200).json([{'place_name': "No addresses found.", 'center': [ 0, 0 ]}])
         }
             
@@ -30,8 +42,8 @@ export default function handler(req, res) {
     
                 return formattedItem
             })
-            console.log("RESPONSE BODY: ", formattedResponse)
-            console.log("Total responses: ", formattedResponse.length)
+            // console.log("RESPONSE BODY: ", formattedResponse)
+            // console.log("Total responses: ", formattedResponse.length)
             res.status(200).json(formattedResponse)
         }
     })
