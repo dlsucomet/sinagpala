@@ -48,13 +48,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Home() {
   const classes = useStyles();
-  const data = {
-    annual_potential: 4,
-    hourly_potential: 3,
-    daily_potential: 3,
-    avail_rooftop: 34,
-    num_panels: 4,
-  }
 
   return (
     <NoSsr>
@@ -77,10 +70,6 @@ export default function Home() {
             <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
             Sinagpala
           </h1>
-
-          <SummaryCard data={data}/>
-          <br/>
-          <EnvironmentCard data={data}/>  
 
           <p className={classes.description}>
           Have your rooftops checked for its solar energy potential.
