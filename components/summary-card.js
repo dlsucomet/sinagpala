@@ -46,6 +46,9 @@ const useStyles = makeStyles(theme => ({
         bgcolor: 'background.paper',
         flexWrap: 'wrap',
         flexGrow: 1,
+    },
+    posCard: {
+        marginBottom: '10px'
     }
 }));
 
@@ -89,7 +92,7 @@ export default function SummaryCard(props) {
                         <Typography variant="h6" component="div" className={classes.numData}>
                             {hourly_potential} kW/h
                         </Typography>
-                        <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
+                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                             Hourly Potential
                         </Typography>
                     </div>
@@ -97,7 +100,7 @@ export default function SummaryCard(props) {
                         <Typography variant="h6" component="div" className={classes.numData}>
                             {daily_potential} kW/h
                         </Typography>
-                        <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
+                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                         Daily Potential
                         </Typography>
                     </div>
@@ -123,7 +126,7 @@ export default function SummaryCard(props) {
                         <Typography variant="h6" component="div" className={classes.numData}>
                             {num_panels}
                         </Typography>
-                        <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
+                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                         Panels for Installation
                         </Typography>
                     </div>
@@ -133,7 +136,7 @@ export default function SummaryCard(props) {
     );
 
     return (
-        <Box sx={{ minWidth: '35%' }}>
+        <Box sx={{ minWidth: '35%' }} className={classes.posCard}>
             <Card >{card}</Card>
         </Box>
     );

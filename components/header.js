@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
 
 // Passing props and theme 
 // https://stackoverflow.com/questions/48879517/passing-props-to-mui-styles
@@ -13,6 +13,7 @@ const useStyles = props => makeStyles(theme => ({
         borderTtop: '1px solid #ebd6d6',
         justifyContent: props.pathname == '/' ? 'right' : 'left',
         alignItems: 'center',
+        height: '10vh',
     },
     headerLink: {
         display: 'flex',
