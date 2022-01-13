@@ -1,5 +1,6 @@
-import { useState, useCallback, useRef } from "react"
+import { useState, useRef, useCallback} from "react"
 import ReactMapGL from "react-map-gl"
+import Search from './search'
 
 export default function Map() {
     const mapRef = useRef();
@@ -20,6 +21,7 @@ export default function Map() {
         minZoom: 18,
         maxZoom: 20,
     });
+    const mapRef = useRef();
     
     const onViewportChange = viewport => {
         // console.log(viewport.longitude, viewport.latitude)
@@ -59,10 +61,8 @@ export default function Map() {
         //     // mapRef.current.setFilter('choropleth-stroke', muniFilter);
         //     // mapRef.current.setLayoutProperty('choropleth-stroke', 'visibility', 'visible'); 
     }, []);
-
-    return (
-        <>
-            <ReactMapGL
+  
+    return <ReactMapGL
                 ref={mapRef}
                 mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
                 mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
@@ -70,7 +70,8 @@ export default function Map() {
                 onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                 onClick={onClick}
                 >
+                <Search 
+                 mapRef={mapRef}
+                 setViewport={setViewport}/>
             </ReactMapGL>
-        </>
-    )
 }
