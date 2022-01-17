@@ -2,6 +2,7 @@ import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import EnvironmentCard from '../components/environment-card'
+import Search from '../components/search'
 import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
@@ -97,7 +98,10 @@ export default function Explore(){
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >
-                </ReactMapGL>
+                    <Search 
+                        mapRef={mapRef}
+                        setViewport={setViewport}/>
+            </ReactMapGL>
         </React.Fragment>
     ) 
 
