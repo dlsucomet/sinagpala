@@ -14,6 +14,8 @@ const useStyles = props => makeStyles(theme => ({
         justifyContent: props.pathname == '/' ? 'right' : 'left',
         alignItems: 'center',
         height: '10vh',
+        marginLeft: '1%',
+        marginRight: '1%',
     },
     headerLink: {
         display: 'flex',
@@ -25,7 +27,6 @@ const useStyles = props => makeStyles(theme => ({
             textDecoration: 'underline'
         },
     },
-
     aboutHeaderLink: {
         display: 'flex',
         justifyContent: 'left',
@@ -65,7 +66,7 @@ export default function Header(){
             </header>
         :
             <header className={classes.header}>
-                <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36} className={classes.logo}/>
+                <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36}/>
                 <Link href="/">
                     <a
                         className={classes.aboutHeaderLink}

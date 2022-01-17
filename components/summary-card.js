@@ -54,14 +54,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function SummaryCard(props) {
     const classes = useStyles();
+    console.log(props)
     const {
-        annual_potential,
-        hourly_potential,
-        daily_potential,
-        avail_rooftop,
-        num_panels
-    } = props.data
-      
+        total_kwh,
+        num_panels,
+        panel_area
+    } = props.data.properties
+
     const card = (
         <React.Fragment>
             <CardContent>
@@ -74,7 +73,7 @@ export default function SummaryCard(props) {
                 >
                     <div>
                         <Typography variant="h6" component="div" className={classes.numData}>
-                            {annual_potential} kW/h
+                            {total_kwh} kW/h
                         </Typography>
                         <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
                         Annual potential solar energy generation
@@ -90,20 +89,20 @@ export default function SummaryCard(props) {
                 >
                     <div className={classes.groupData}>
                         <Typography variant="h6" component="div" className={classes.numData}>
-                            {hourly_potential} kW/h
+                            {num_panels} kW/h
                         </Typography>
                         <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                             Hourly Potential
                         </Typography>
                     </div>
-                    <div className={classes.groupData}>
+                    {/* <div className={classes.groupData}>
                         <Typography variant="h6" component="div" className={classes.numData}>
                             {daily_potential} kW/h
                         </Typography>
                         <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                         Daily Potential
                         </Typography>
-                    </div>
+                    </div> */}
                 </Box>
                 <Box
                     sx={{
@@ -114,7 +113,7 @@ export default function SummaryCard(props) {
                 >
                     <div className={classes.groupData}>
                         <Typography variant="h6" component="div" className={classes.numData}>
-                            {avail_rooftop} m<sup style={{
+                            {panel_area} m<sup style={{
                                                         fontSize:'small'
                                                     }}>2</sup>
                         </Typography>
@@ -122,14 +121,14 @@ export default function SummaryCard(props) {
                             Available roof area {<br />} for installation
                         </Typography>
                     </div>
-                    <div className={classes.groupData}>
+                    {/* <div className={classes.groupData}>
                         <Typography variant="h6" component="div" className={classes.numData}>
                             {num_panels}
                         </Typography>
                         <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                         Panels for Installation
                         </Typography>
-                    </div>
+                    </div> */}
                 </Box>
             </CardContent>
         </React.Fragment>

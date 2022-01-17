@@ -1,8 +1,9 @@
-import { useState, useRef, useCallback} from "react"
+import * as React from 'react'
+import { useState, useCallback, useRef } from "react"
 import ReactMapGL from "react-map-gl"
 import Search from './search'
 
-export default function Map() {
+export default function Map(props) {
     const mapRef = useRef();
 
     const maxBounds = {
@@ -10,7 +11,7 @@ export default function Map() {
         west: 14.619,
         north: 121.135,
         east: 14.676
-    }
+    };
 
     const [viewport, setViewport] = useState({
         width: "100%",
@@ -38,7 +39,7 @@ export default function Map() {
             viewport.latitude = maxBounds.east;
         }
         setViewport(viewport);
-    }
+    };
 
     const onClick = useCallback(event => {
         const {
@@ -46,32 +47,37 @@ export default function Map() {
           srcEvent: {offsetX, offsetY}
         } = event;
         console.log(features);
+        
+        var buildingData = null;
 
-        // Highlight Filter - To Try
-        //     var muniFilter = data.reduce(
-        //         function (munimemo, munifeature) {
-        //                 console.log(munifeature)
-        //                 munimemo.push(munifeature.id);
-        //             return munimemo;
-        //         },
-        //         ['in', "ID"]
-        //     );
-            
-        //     console.log(muniFilter)
-        //     // mapRef.current.setFilter('choropleth-stroke', muniFilter);
-        //     // mapRef.current.setLayoutProperty('choropleth-stroke', 'visibility', 'visible'); 
-    }, []);
-  
-    return <ReactMapGL
-                ref={mapRef}
-                mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
-                mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
-                {...viewport}
-                onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
-                onClick={onClick}
-                >
-                <Search 
-                 mapRef={mapRef}
-                 setViewport={setViewport}/>
-            </ReactMapGL>
+        //Find feature with building properties
+        features.forEach(element => {
+            if (element.layer.id == "choropleth-fill") {
+                buildingData = JSON.parse(JSON.stringify(element));
+            }
+        });
+
+        console.log(buildingData);
+        props.onDataChange(buildingData);
+    }, [props]);
+
+    const refMap = (
+        <React.Fragment>
+            <ReactMapGL
+                    ref={mapRef}
+                    mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
+                    mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
+                    {...viewport}
+                    onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
+                    onClick={onClick}
+                    >
+                </ReactMapGL>
+        </React.Fragment>
+    ) 
+    
+    return (
+        <>
+            {refMap}
+        </>
+    )
 }

@@ -3,8 +3,6 @@ import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import SummaryCard from '../components/summary-card'
-import EnvironmentCard from '../components/environment-card'
 import NoSsr from '../components/NoSsr'
 // import styles from '../styles/Home.module.css'
 
@@ -13,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     padding: '0 2rem',
     backgroundImage: `linear-gradient(to bottom, ${theme.palette.yellow.secondary}, #FFFFFF)`
   },
-  
   main: {
     minHeight: '100vh',
     padding: '4rem 0',
@@ -23,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
   title: {
     margin: 0,
     lineHeight: 1.15,
@@ -33,14 +29,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     textAlign: 'center',
   },
-  
   description: {
     margin: '4rem 0',
     lineHeight: 1.5,
     fontSize: '1.5rem',
     textAlign: 'center',
   },
-  
   logo: {
     verticalAlign: 'middle',
   },
