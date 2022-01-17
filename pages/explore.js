@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
@@ -6,6 +7,10 @@ import { makeStyles } from '@mui/styles'
 import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
 import ReactMapGL from 'react-map-gl'
+const LinePlot = dynamic(() => import("../components/line-plot"), {
+    loading: () => "Loading...",
+    ssr: false
+});
 
 const useStyles = makeStyles(theme => ({
     mapContainer: {
@@ -18,6 +23,10 @@ const useStyles = makeStyles(theme => ({
         right: '1vw',
         top: '1vh',
         zIndex: 1,
+    },
+    sideMargin: {
+        marginLeft: '1%',
+        margineRight: '1%',
     }
 }));
 
@@ -116,8 +125,19 @@ export default function Explore(){
                     <></>
                 }
             </div>
-
-            <h1>Solar Energy Information</h1>
+            
+            <div className={classes.sideMargin}>
+                <h1>Solar Energy Information</h1>
+                {
+                    buildingData != null ?
+                        <div className={classes.posCard}>
+                            <SummaryCard data={buildingData} />
+                            {/* <EnvironmentCard data={data}/> */}
+                        </div>
+                    :
+                    <></>
+                }
+            </div>
         </NoSsr>
     )
 }
