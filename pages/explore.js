@@ -5,7 +5,7 @@ import SummaryCard from '../components/summary-card'
 import EnvironmentCard from '../components/environment-card'
 import { makeStyles } from '@mui/styles'
 import * as React from 'react'
-import { useState, useCallback, useRef } from "react"
+import { useState, useCallback, useRef, useEffect } from "react"
 import ReactMapGL from 'react-map-gl'
 const LinePlot = dynamic(() => import("../components/line-plot"), {
     loading: () => "Loading...",
@@ -96,6 +96,10 @@ export default function Explore(){
         setBuildingData(buildingData);
     }, []);
 
+    useEffect(() => {
+        console.log("State Changed!");
+    }, [buildingData])
+    
     const refMap = (
         <React.Fragment>
             <ReactMapGL
@@ -119,7 +123,6 @@ export default function Explore(){
                     buildingData != null ?
                         <div className={classes.posCard}>
                             <SummaryCard data={buildingData} />
-                            {/* <EnvironmentCard data={data}/> */}
                         </div>
                     :
                     <></>
@@ -130,7 +133,12 @@ export default function Explore(){
                 <h1>Solar Energy Information</h1>
                 {
                     buildingData != null ?
-                        <LinePlot data={buildingData}/>
+                        <>
+                            <LinePlot data={buildingData}
+                            type="month"/>
+                            <LinePlot data={buildingData}
+                            type="hour"/>
+                        </>
                     :
                         <></>
                 }

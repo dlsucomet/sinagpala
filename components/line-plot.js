@@ -12,38 +12,32 @@ const useStyles = makeStyles(theme => ({
 export default function LinePlot(props){
     const classes = useStyles();
 
-    const {
-        avg_month_1,
-        avg_month_2,
-        avg_month_3,
-        avg_month_4,
-        avg_month_5,
-        avg_month_6,
-        avg_month_7,
-        avg_month_8,
-        avg_month_9,
-        avg_month_10,
-        avg_month_11,
-        avg_month_12,
-    } = props.data.properties
+    var data = [];
+    var dataX = [];
+    var dataLabels = [] ;
+    const tableTitle = props.type == "month" ? 'Average Monthly kW/h' : 'Average Hourly kW/h';
 
-    const monthData = [avg_month_1,
-                        avg_month_2,
-                        avg_month_3,
-                        avg_month_4,
-                        avg_month_5,
-                        avg_month_6,
-                        avg_month_7,
-                        avg_month_8,
-                        avg_month_9,
-                        avg_month_10,
-                        avg_month_11,
-                        avg_month_12]
-    const monthX = [...Array(12).keys()]
-    const monthNames = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+    if (props.type == "month") {
+        Object.keys(props.data.properties).forEach((key) => {
+            if (key.startsWith("avg_month")) {
+                data.push(props.data.properties[key]);
+            }
+        });
 
-    console.log(monthData)
-    console.log(monthX)
+        dataX = [...Array(12).keys()];
+        dataLabels = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+
+    }
+    else if (props.type == "hour") {
+        Object.keys(props.data.properties).forEach((key) => {
+            if (key.startsWith("avg_hour")) {
+                data.push(props.data.properties[key]);
+            }
+        });
+
+        dataX = [...Array(24).keys()];
+        dataLabels = dataX.map((hour) => `${hour}:00`);
+    }
 
     // https://plotly.com/javascript/hover-text-and-formatting/
     // https://plotly.com/javascript/tick-formatting/
@@ -52,8 +46,8 @@ export default function LinePlot(props){
             <Plot
                 data={[
                     {
-                        x: monthX,
-                        y: monthData,
+                        x: dataX,
+                        y: data,
                         type: 'scatter',
                         mode: 'lines+marker',
                         marker: {color: '#fd811e'},
@@ -65,13 +59,33 @@ export default function LinePlot(props){
                   xaxis: {
                       fixedrange: true,
                       tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
-                      tickvals: monthX,
-                      ticktext: monthNames
+                      tickvals: dataX,
+                      ticktext: dataLabels,
+                      tickfont: {
+                        // family: 'Old Standard TT, serif',
+                        size: 16,
+                        color: 'black'
+                      },
                     },
-                  yaxis: {fixedrange: true},
+                  yaxis: {
+                      fixedrange: true,
+                      tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
+                      tick0: 0,
+                      dtick: 5,
+                      tickfont: {
+                        // family: 'Old Standard TT, serif',
+                        size: 16,
+                        color: 'black'
+                      },
+                    },
                   hovermode: "closest",
                   hoverlabel: { bgcolor: "#FFF" },
-                  title: 'Average Monthly kW/h'
+                  title: tableTitle,
+                  titlefont: {
+                    // family: 'Arial, sans-serif',
+                    size: 20,
+                    color: 'black'
+                  },
                 }}
                 config={{displayModeBar: false, responsive: true }}
             />
