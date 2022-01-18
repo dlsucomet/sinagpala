@@ -19,6 +19,7 @@ import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
 import ReactMapGL from "react-map-gl"
 import Search from './search'
+import PropTypes from 'prop-types'
 
 export default function Map(props) {
     const mapRef = useRef();

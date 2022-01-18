@@ -21,7 +21,7 @@ import Card from '@mui/material/Card'
 import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
     numData: {
