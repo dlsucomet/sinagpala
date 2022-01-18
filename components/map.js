@@ -87,7 +87,10 @@ export default function Map(props) {
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >
-                </ReactMapGL>
+                    <Search
+                        mapRef={mapRef}
+                        setViewport={setViewport}/>
+            </ReactMapGL>
         </React.Fragment>
     ) 
     
