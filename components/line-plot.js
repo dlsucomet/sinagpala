@@ -3,9 +3,21 @@ import Plot from 'react-plotly.js';
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
-    plot: {
+    container: {
         display: 'flex',
         justifyContent: 'center',
+    },
+    plot: {
+        width: '100%',
+        height: '100%',
+        [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
+            width: '90%',
+            height: '90%',
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '70%',
+            height: '70%',
+        },
     }
 }));
 
@@ -39,10 +51,14 @@ export default function LinePlot(props){
         dataLabels = dataX.map((hour) => `${hour}:00`);
     }
 
+    console.log("LP: ", props.type)
+    console.log(data)
+    console.log(dataX)
+
     // https://plotly.com/javascript/hover-text-and-formatting/
     // https://plotly.com/javascript/tick-formatting/
     return (
-        <div className={classes.plot}>
+        <div className={classes.container}>
             <Plot
                 data={[
                     {
@@ -54,7 +70,8 @@ export default function LinePlot(props){
                         hovertemplate: '%{y}<extra></extra>',
                     },
                 ]}
-                style={{ width: "70%", height: "70%" }}
+                // style={{ width: "70%", height: "70%" }}
+                className={classes.plot}
                 layout={{
                   xaxis: {
                       fixedrange: true,
