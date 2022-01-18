@@ -130,12 +130,9 @@ export default function Explore(){
                 <h1>Solar Energy Information</h1>
                 {
                     buildingData != null ?
-                        <div className={classes.posCard}>
-                            <SummaryCard data={buildingData} />
-                            {/* <EnvironmentCard data={data}/> */}
-                        </div>
+                        <LinePlot data={buildingData}/>
                     :
-                    <></>
+                        <></>
                 }
             </div>
         </NoSsr>
