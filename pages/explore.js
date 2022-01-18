@@ -5,6 +5,7 @@ import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import EnvironmentCard from '../components/environment-card'
+import Search from '../components/search'
 import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box';
 
