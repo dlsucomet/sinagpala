@@ -46,7 +46,7 @@ export default function Explore(){
         const emptyDataChance = Math.floor(Math.random() * 2);
         console.log("Chance ", emptyDataChance)
         // If 1, set first data to -999 (but irl, all of the data should be -999)
-        if (buildingData != null && emptyDataChance == 1) {
+        if (buildingData != null && emptyDataChance == 1 && data != null) {
             data.properties['total_kwh'] = -999;
         }
 

@@ -4,6 +4,7 @@ import { point, polygon, booleanPointInPolygon } from '@turf/turf'
 const marikinaPolygon = require('./marikina_polygon.json')['features'][0]['geometry']['coordinates']
 
 export default function handler(req, res) {
+    // https://developers.google.com/maps/documentation/geocoding/requests-geocoding#RegionCodes
     const baseQueryString = 'https://maps.googleapis.com/maps/api/geocode/json?address='
     let { queryString } = req.query
     console.log(`QUERY STRING: ${queryString}`) 
