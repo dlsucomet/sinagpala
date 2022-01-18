@@ -1,3 +1,21 @@
+/**
+ * ------------------------------------------------------------------------------------------
+ * [COMPONENT]
+ * @function Header   -   Web application header
+ *                                  
+ *
+ * #HOW TO CALL:
+ *      <Header />
+ *
+ *
+ * USED IN:
+ * index.js
+ * about.js
+ * explore.js
+ *
+ * ------------------------------------------------------------------------------------------
+ */
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
@@ -43,19 +61,19 @@ const useStyles = props => makeStyles(theme => ({
 }));
 
 export default function Header(){
-    const router = useRouter()
+    const router = useRouter();
     const classes = useStyles({'pathname':router.pathname})();
     
    return (
         router.pathname == '/' ?
             <header className={classes.header}>
-                <Link href="/explore">
+                {/* <Link href="/explore">
                     <a
                         className={classes.headerLink}
                     >
                         Explore
                     </a>
-                </Link>
+                </Link> */}
                 <Link href="/about">
                     <a
                         className={classes.headerLink}

@@ -1,3 +1,20 @@
+/**
+ * ------------------------------------------------------------------------------------------
+ * [COMPONENT]
+ * @function Map   -   Map component for building display
+ *                                  
+ *
+ * #HOW TO CALL:
+ *      <Map     onDataChange />
+ *
+ *    @prop { Function }   onDataChange  - function call to parent to update building data state
+ *
+ * USED IN:
+ * explore.js
+ *
+ * ------------------------------------------------------------------------------------------
+ */
+
 import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
 import ReactMapGL from "react-map-gl"
@@ -45,7 +62,6 @@ export default function Map(props) {
           features,
           srcEvent: {offsetX, offsetY}
         } = event;
-        console.log(features);
         
         var buildingData = null;
 
@@ -79,4 +95,8 @@ export default function Map(props) {
             {refMap}
         </>
     )
+}
+
+Map.propTypes = {
+    onDataChange: PropTypes.function
 }

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { makeStyles } from '@mui/styles'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -37,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     verticalAlign: 'middle',
-  },
+  }
 }));
 
 export default function Home() {
@@ -70,9 +71,11 @@ export default function Home() {
           Have your rooftops checked for its solar energy potential.
           </p>
 
-          <a href="https://nextjs.org/docs" >
-              <p>Explore Marikina Area</p>
-          </a>
+          <Link href="/explore">
+            <a href="https://nextjs.org/docs" >
+                <p>Explore Marikina Area</p>
+            </a>
+          </Link>
 
         </main>
 

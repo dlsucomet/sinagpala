@@ -7,10 +7,10 @@
  * #HOW TO CALL:
  *      <SumaryCard     data />
  *
- *    @prop { Array }   data  - object data with the statitics information
+ *    @prop { Object }   data  - object data with the statitics information
  *
  * USED IN:
- * <TO FOLLOW>
+ * explore.js
  *
  * ------------------------------------------------------------------------------------------
  */
@@ -21,6 +21,7 @@ import Card from '@mui/material/Card'
 import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -54,18 +55,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function SummaryCard(props) {
     const classes = useStyles();
-    console.log(props)
+
     const {
         total_kwh,
         num_panels,
         panel_area
-    } = props.data.properties
+    } = props.data.properties;
 
     const card = (
         <React.Fragment>
             <CardContent>
                 {
-                    total_kwh != -999 ? 
+                    total_kwh != -999 ? //Check if building polygon has data
                     <>
                         <Box
                             sx={{
@@ -132,4 +133,8 @@ export default function SummaryCard(props) {
             <Card >{card}</Card>
         </Box>
     );
+}
+
+SummaryCard.propTypes = {
+    data: PropTypes.object
 }

@@ -1,12 +1,11 @@
+import * as React from 'react'
+import { useState } from "react"
 import dynamic from 'next/dynamic'
 import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import EnvironmentCard from '../components/environment-card'
 import { makeStyles } from '@mui/styles'
-import * as React from 'react'
-import { useState, useCallback, useRef, useEffect } from "react"
-import ReactMapGL from 'react-map-gl'
 import Box from '@mui/material/Box';
 
 //TODO Dyanmic Loading showing up concern: https://github.com/vercel/next.js/discussions/19142
@@ -43,7 +42,6 @@ export default function Explore(){
     const [buildingData, setBuildingData] = useState(null);
 
     const onDataChange = data => {
-        
         //TODO Temporary checker for no data (no rooftops were predicted for that building polygon)
         const emptyDataChance = Math.floor(Math.random() * 2);
         console.log("Chance ", emptyDataChance)

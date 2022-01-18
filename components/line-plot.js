@@ -1,6 +1,25 @@
+/**
+ * ------------------------------------------------------------------------------------------
+ * [COMPONENT]
+ * @function LinePlot   -   Graph chart component of a building to display monthly/hourly averages
+ *                                  
+ *
+ * #HOW TO CALL:
+ *      <SumaryCard     data type />
+ *
+ *    @prop { Object }   data  - object data with the statitics information
+ *    @prop { String }   type  - type of information to display (Monthly Average or Hourly Average)
+ *
+ * USED IN:
+ * explore.js
+ *
+ * ------------------------------------------------------------------------------------------
+ */
+
 import React from 'react';
 import Plot from 'react-plotly.js';
 import { makeStyles } from '@mui/styles'
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -59,12 +78,6 @@ export default function LinePlot(props){
             }
         }
     }
-
-    console.log(total_kwh)
-
-    console.log("LP: ", props.type)
-    console.log(data)
-    console.log(dataX)
 
     /**
      Graph display condition 
@@ -140,4 +153,9 @@ export default function LinePlot(props){
             }
         </div>
     )
+}
+
+LinePlot.propTypes = {
+    data: PropTypes.object,
+    type: PropTypes.string
 }

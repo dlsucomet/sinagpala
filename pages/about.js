@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { makeStyles } from '@mui/styles'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -10,7 +11,6 @@ const useStyles = makeStyles(theme => ({
     padding: '0 2rem',
     backgroundImage: `linear-gradient(to bottom, ${theme.palette.yellow.secondary}, #FFFFFF)`
   },
-  
   main: {
     minHeight: '100vh',
     padding: '4rem 0',
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  
   title: {
     margin: 0,
     lineHeight: 1.15,
@@ -30,14 +29,12 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     textAlign: 'center',
   },
-  
   description: {
     margin: '4rem 0',
     lineHeight: 1.5,
     fontSize: '1.5rem',
     textAlign: 'center',
   },
-  
   logo: {
     verticalAlign: 'middle',
   },
@@ -75,9 +72,11 @@ export default function About() {
           About us content here.
           </p>
 
-          <a href="https://nextjs.org/docs" >
-              <p>Explore Marikina Area</p>
-          </a>
+          <Link href="/explore">
+            <a href="https://nextjs.org/docs" >
+                <p>Explore Marikina Area</p>
+            </a>
+          </Link>
 
         </main>
 
