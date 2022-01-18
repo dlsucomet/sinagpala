@@ -6,7 +6,6 @@ import Footer from '../components/footer'
 import SummaryCard from '../components/summary-card'
 import EnvironmentCard from '../components/environment-card'
 import NoSsr from '../components/NoSsr'
-// import styles from '../styles/Home.module.css'
 
 const useStyles = makeStyles(theme => ({
   container: {

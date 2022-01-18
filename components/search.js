@@ -1,10 +1,42 @@
 import { useCallback, useRef, useState } from 'react'
-import styles from '../styles/Search.module.css'
 import axios from 'axios'
 import mapboxgl from '!mapbox-gl';
+import { makeStyles } from '@mui/styles'
+
+const useStyles = makeStyles(theme => ({
+  container: {
+    float: 'left',
+    margin: '20px 0px 0px 20px',
+    width: '30%',
+    minWidth: '300px',
+  },
+  search: {
+    width: '100%',
+    border: '1px solid #666',
+    boxSizing: 'border-box',
+    fontSize: '18px',
+    padding: '18px',
+  },
+  results: {
+    listStyle: 'none',
+    overflow: 'hidden',
+    margin: '0',
+    padding: '0',
+  },
+  result: {
+    background: 'white',
+    color: 'black',
+    padding: '18px',
+  },
+  hoverHighlight: {
+    '&:hover': {
+      background: '#FFE169',
+    },
+  }
+}));
 
 export default function Search(props) {
-
+  const classes = useStyles();
   const searchRef = useRef(null)
   const markerRef = useRef(null)
   const [query, setQuery] = useState('')
@@ -62,23 +94,23 @@ export default function Search(props) {
 
   return (
     <div
-      className={styles.container}
+      className={classes.container}
       ref={searchRef}
     >
       <input
-        className={styles.search}
+        className={classes.search}
         onChange={onChange}
         placeholder='Search addresses'
         type='text'
         value={query}
       />
       { active && results.length > 0 && (
-        <ul className={styles.results}>
+        <ul className={classes.results}>
           {results.map(({ place_name, center }) => (
             <li 
                 className={`
-                ${styles.result} 
-                ${place_name == "No addresses found." ? '' : 'hover-highlight'}`}
+                ${classes.result} 
+                ${place_name == "No addresses found." ? '' : 'classes.hoverHighlight'}`}
                 center={center}
                 key={center}
                 onClick={onClick}>

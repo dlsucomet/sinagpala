@@ -25,7 +25,6 @@ const useStyles = props => makeStyles(theme => ({
             textDecoration: 'underline'
         },
     },
-
     aboutHeaderLink: {
         display: 'flex',
         justifyContent: 'left',

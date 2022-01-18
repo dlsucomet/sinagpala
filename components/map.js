@@ -21,7 +21,6 @@ export default function Map() {
         minZoom: 18,
         maxZoom: 20,
     });
-    const mapRef = useRef();
     
     const onViewportChange = viewport => {
         // console.log(viewport.longitude, viewport.latitude)
