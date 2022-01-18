@@ -16,10 +16,10 @@
  * ------------------------------------------------------------------------------------------
  */
 
-import React from 'react';
-import Plot from 'react-plotly.js';
+import React from 'react'
+import Plot from 'react-plotly.js'
 import { makeStyles } from '@mui/styles'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
     container: {
