@@ -8,6 +8,8 @@ import * as React from 'react'
 import { useState, useCallback, useRef, useEffect } from "react"
 import ReactMapGL from 'react-map-gl'
 import Box from '@mui/material/Box';
+
+//TODO Dyanmic Loading showing up concern: https://github.com/vercel/next.js/discussions/19142
 const LinePlot = dynamic(() => import("../components/line-plot"), {
     loading: () => "Loading...",
     ssr: false
@@ -28,6 +30,7 @@ const useStyles = makeStyles(theme => ({
         right: '1vw',
         top: '1vh',
         zIndex: 1,
+        minWidth: '20%',
     },
     sideMargin: {
         marginLeft: '1%',
@@ -40,6 +43,15 @@ export default function Explore(){
     const [buildingData, setBuildingData] = useState(null);
 
     const onDataChange = data => {
+        
+        //TODO Temporary checker for no data (no rooftops were predicted for that building polygon)
+        const emptyDataChance = Math.floor(Math.random() * 2);
+        console.log("Chance ", emptyDataChance)
+        // If 1, set first data to -999 (but irl, all of the data should be -999)
+        if (buildingData != null && emptyDataChance == 1) {
+            data.properties['total_kwh'] = -999;
+        }
+
         setBuildingData(data);
     }
 
