@@ -84,9 +84,9 @@ export default function EnvironmentCard(props) {
             treeSeedlings = carbonEmissions / 0.06
             passengerCars = carbonEmissions / 0.000398 
 
-            carbonEmissions = carbonEmissions.toFixed(2)
-            treeSeedlings = treeSeedlings.toFixed(2)
-            passengerCars = passengerCars.toFixed(2)
+            carbonEmissions = carbonEmissions.toFixed(4)
+            treeSeedlings = treeSeedlings.toFixed(4)
+            passengerCars = passengerCars.toFixed(4)
         }
     }
       
