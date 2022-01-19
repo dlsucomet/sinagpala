@@ -1,4 +1,20 @@
-import Link from 'next/link'
+/**
+ * ------------------------------------------------------------------------------------------
+ * [COMPONENT]
+ * @function Footer   -   Web application footer
+ *                                  
+ *
+ * #HOW TO CALL:
+ *      <Footer />
+ *
+ *
+ * USED IN:
+ * index.js
+ * about.js
+ *
+ * ------------------------------------------------------------------------------------------
+ */
+
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 

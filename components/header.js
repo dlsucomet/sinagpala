@@ -1,3 +1,21 @@
+/**
+ * ------------------------------------------------------------------------------------------
+ * [COMPONENT]
+ * @function Header   -   Web application header
+ *                                  
+ *
+ * #HOW TO CALL:
+ *      <Header />
+ *
+ *
+ * USED IN:
+ * index.js
+ * about.js
+ * explore.js
+ *
+ * ------------------------------------------------------------------------------------------
+ */
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
@@ -8,34 +26,26 @@ import { useRouter } from 'next/router'
 const useStyles = props => makeStyles(theme => ({
     header: {
         display: 'flex',
-        flex: 1,
-        padding: '2rem 0',
-        borderTtop: '1px solid #ebd6d6',
-        justifyContent: props.pathname == '/' ? 'right' : 'left',
+        padding: props.pathname == '/explore' ? '2rem 2rem' : '2rem 0',
+        justifyContent: props.pathname == '/' ? 'right' : 'space-between',
         alignItems: 'center',
         height: '10vh',
-        marginLeft: '1%',
-        marginRight: '1%',
+        marginLeft: '10px',
+        marginRight: '10px',
     },
     headerLink: {
-        display: 'flex',
         justifyContent: 'right',
-        flexGrow: 1,
         fontSize: '1.5rem',
         alignItems: 'center',
         '&:hover': {
             textDecoration: 'underline'
         },
     },
-    aboutHeaderLink: {
+    logoHeaderLink: {
         display: 'flex',
-        justifyContent: 'left',
-        flexGrow: 1,
-        margin: 0,
         lineHeight: 1.15,
         fontSize: '1.5rem',
         letterSpacing: '4px',
-        display: 'flex',
         textAlign: 'center',
         alignItems: 'center',
         fontWeight: 'bold'
@@ -43,19 +53,12 @@ const useStyles = props => makeStyles(theme => ({
 }));
 
 export default function Header(){
-    const router = useRouter()
+    const router = useRouter();
     const classes = useStyles({'pathname':router.pathname})();
     
    return (
         router.pathname == '/' ?
             <header className={classes.header}>
-                <Link href="/explore">
-                    <a
-                        className={classes.headerLink}
-                    >
-                        Explore
-                    </a>
-                </Link>
                 <Link href="/about">
                     <a
                         className={classes.headerLink}
@@ -66,12 +69,19 @@ export default function Header(){
             </header>
         :
             <header className={classes.header}>
-                <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36}/>
-                <Link href="/">
+                <div className={classes.logoHeaderLink}>
+                    <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36}/>
+                    <Link href="/">
+                        <a>
+                            Sinagpala
+                        </a>
+                    </Link>
+                </div>
+                <Link href="/about">
                     <a
-                        className={classes.aboutHeaderLink}
+                        className={classes.headerLink}
                     >
-                        Sinagpala
+                        About us
                     </a>
                 </Link>
             </header>

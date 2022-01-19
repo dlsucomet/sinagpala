@@ -7,10 +7,10 @@
  * #HOW TO CALL:
  *      <SumaryCard     data />
  *
- *    @prop { Array }   data  - object data with the statitics information
+ *    @prop { Object }   data  - object data with the statitics information
  *
  * USED IN:
- * <TO FOLLOW>
+ * explore.js
  *
  * ------------------------------------------------------------------------------------------
  */
@@ -18,9 +18,12 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, styled  } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import PropTypes from 'prop-types'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -52,91 +55,101 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      maxWidth: 250,
+    },
+});
+
 export default function SummaryCard(props) {
     const classes = useStyles();
-    console.log(props)
+
     const {
         total_kwh,
         num_panels,
         panel_area
-    } = props.data.properties
+    } = props.data.properties;
 
     const card = (
         <React.Fragment>
             <CardContent>
-                <Box
-                    sx={{
-                        p: 0.5,
-                        m: 0.5,
-                    }}
-                    className={classes.dataRow}
-                >
-                    <div>
-                        <Typography variant="h6" component="div" className={classes.numData}>
-                            {total_kwh} kW/h
-                        </Typography>
-                        <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
-                        Annual potential solar energy generation
-                        </Typography>
-                    </div>
-                </ Box>
-                <Box
-                    sx={{
-                        p: 0.5,
-                        m: 0.5,
-                    }}
-                    className={classes.dataRow}
-                >
-                    <div className={classes.groupData}>
-                        <Typography variant="h6" component="div" className={classes.numData}>
-                            {num_panels} kW/h
-                        </Typography>
-                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                            Hourly Potential
-                        </Typography>
-                    </div>
-                    {/* <div className={classes.groupData}>
-                        <Typography variant="h6" component="div" className={classes.numData}>
-                            {daily_potential} kW/h
-                        </Typography>
-                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                        Daily Potential
-                        </Typography>
-                    </div> */}
-                </Box>
-                <Box
-                    sx={{
-                        p: 0.5,
-                        m: 0.5,
-                    }}
-                    className={classes.dataRow}
-                >
-                    <div className={classes.groupData}>
-                        <Typography variant="h6" component="div" className={classes.numData}>
-                            {panel_area} m<sup style={{
-                                                        fontSize:'small'
-                                                    }}>2</sup>
-                        </Typography>
-                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} gutterBottom>
-                            Available roof area {<br />} for installation
-                        </Typography>
-                    </div>
-                    {/* <div className={classes.groupData}>
-                        <Typography variant="h6" component="div" className={classes.numData}>
-                            {num_panels}
-                        </Typography>
-                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                        Panels for Installation
-                        </Typography>
-                    </div> */}
-                </Box>
+                {
+                    total_kwh != -999 ? //Check if building polygon has data
+                    <>
+                        <Box
+                            sx={{
+                                p: 0.5,
+                                m: 0.5,
+                            }}
+                            className={classes.dataRow}
+                        >
+                            <div>
+                                <Typography variant="h6" component="div" className={classes.numData}>
+                                    {total_kwh} kWh
+                                </Typography>
+                                <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                                Annual potential solar {<br />} energy generation
+                                </Typography>
+                            </div>
+                        </ Box>
+                        <Box
+                            sx={{
+                                p: 0.5,
+                                m: 0.5,
+                            }}
+                            className={classes.dataRow}
+                        >
+                            <div className={classes.groupData}>
+                                <Typography variant="h6" component="div" className={classes.numData}>
+                                    {num_panels}
+                                </Typography>
+                                <div>
+                                    <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                                        Number of panels
+                                    <CustomWidthTooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
+                                        <HelpOutlineIcon />
+                                    </CustomWidthTooltip>
+                                    </Typography>
+                                </div>
+                            </div>
+                        </Box>
+                        <Box
+                            sx={{
+                                p: 0.5,
+                                m: 0.5,
+                            }}
+                            className={classes.dataRow}
+                        >
+                            <div className={classes.groupData}>
+                                <Typography variant="h6" component="div" className={classes.numData}>
+                                    {panel_area} m<sup style={{
+                                                                fontSize:'small'
+                                                            }}>2</sup>
+                                </Typography>
+                                <Typography sx={{ fontSize: 12, textAlign: 'center' }} gutterBottom>
+                                    Available roof area {<br />} for installation
+                                </Typography>
+                            </div>
+                        </Box>
+                    </>
+                    :
+                    <Box className={classes.labelData}>
+                        <p>No Data Found</p>
+                    </Box>
+                }
             </CardContent>
         </React.Fragment>
     );
 
     return (
-        <Box sx={{ minWidth: '35%' }} className={classes.posCard}>
+        <Box className={classes.posCard}>
             <Card >{card}</Card>
         </Box>
     );
+}
+
+SummaryCard.propTypes = {
+    data: PropTypes.object
 }

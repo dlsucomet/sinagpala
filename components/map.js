@@ -1,7 +1,25 @@
+/**
+ * ------------------------------------------------------------------------------------------
+ * [COMPONENT]
+ * @function Map   -   Map component for building display
+ *                                  
+ *
+ * #HOW TO CALL:
+ *      <Map     onDataChange />
+ *
+ *    @prop { Function }   onDataChange  - function call to parent to update building data state
+ *
+ * USED IN:
+ * explore.js
+ *
+ * ------------------------------------------------------------------------------------------
+ */
+
 import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
 import ReactMapGL from "react-map-gl"
 import Search from './search'
+import PropTypes from 'prop-types'
 
 export default function Map(props) {
     const mapRef = useRef();
@@ -22,7 +40,6 @@ export default function Map(props) {
         minZoom: 18,
         maxZoom: 20,
     });
-    const mapRef = useRef();
     
     const onViewportChange = viewport => {
         // console.log(viewport.longitude, viewport.latitude)
@@ -46,7 +63,6 @@ export default function Map(props) {
           features,
           srcEvent: {offsetX, offsetY}
         } = event;
-        console.log(features);
         
         var buildingData = null;
 
@@ -71,7 +87,10 @@ export default function Map(props) {
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >
-                </ReactMapGL>
+                    <Search
+                        mapRef={mapRef}
+                        setViewport={setViewport}/>
+            </ReactMapGL>
         </React.Fragment>
     ) 
     
@@ -80,4 +99,8 @@ export default function Map(props) {
             {refMap}
         </>
     )
+}
+
+Map.propTypes = {
+    onDataChange: PropTypes.function
 }
