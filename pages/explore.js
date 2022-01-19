@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
+import ChartLegend from '../components/chart-legend'
 import EnvironmentCard from '../components/environment-card'
 import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box';
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
         right: '1vw',
         top: '1vh',
         zIndex: 1,
-        minWidth: '20%',
+        minWidth: '180px',
     },
     sideMargin: {
         marginLeft: '1%',
@@ -46,7 +47,7 @@ export default function Explore(){
         const emptyDataChance = Math.floor(Math.random() * 2);
         console.log("Chance ", emptyDataChance)
         // If 1, set first data to -999 (but irl, all of the data should be -999)
-        if (buildingData != null && emptyDataChance == 1) {
+        if (data != null && emptyDataChance == 1) {
             data.properties['total_kwh'] = -999;
         }
 
@@ -62,9 +63,11 @@ export default function Explore(){
                     buildingData != null ?
                         <div className={classes.posCard}>
                             <SummaryCard data={buildingData} />
+                            <ChartLegend />
                         </div>
                     :
                     <></>
+
                 }
             </div>
             

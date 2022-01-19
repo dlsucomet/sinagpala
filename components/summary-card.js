@@ -79,8 +79,8 @@ export default function SummaryCard(props) {
                                 <Typography variant="h6" component="div" className={classes.numData}>
                                     {total_kwh} kW/h
                                 </Typography>
-                                <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
-                                Annual potential solar energy generation
+                                <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                                Annual potential solar {<br />} energy generation
                                 </Typography>
                             </div>
                         </ Box>
