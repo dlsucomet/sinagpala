@@ -87,7 +87,7 @@ export default function SummaryCard(props) {
                         >
                             <div>
                                 <Typography variant="h6" component="div" className={classes.numData}>
-                                    {total_kwh} kW/h
+                                    {total_kwh} kWh
                                 </Typography>
                                 <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                                 Annual potential solar {<br />} energy generation
@@ -103,12 +103,12 @@ export default function SummaryCard(props) {
                         >
                             <div className={classes.groupData}>
                                 <Typography variant="h6" component="div" className={classes.numData}>
-                                    {num_panels} kW/h
+                                    {num_panels}
                                 </Typography>
                                 <div>
                                     <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                                         Number of panels
-                                    <CustomWidthTooltip title="Know more about our panel specifications on our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
+                                    <CustomWidthTooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
                                         <HelpOutlineIcon />
                                     </CustomWidthTooltip>
                                     </Typography>
