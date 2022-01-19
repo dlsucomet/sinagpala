@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
+import ChartLegend from '../components/chart-legend'
 import EnvironmentCard from '../components/environment-card'
 import Search from '../components/search'
 import { makeStyles } from '@mui/styles'
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         right: '1vw',
         top: '1vh',
         zIndex: 1,
-        minWidth: '20%',
+        minWidth: '180px',
     },
     sideMargin: {
         marginLeft: '1%',
@@ -63,9 +64,11 @@ export default function Explore(){
                     buildingData != null ?
                         <div className={classes.posCard}>
                             <SummaryCard data={buildingData} />
+                            <ChartLegend />
                         </div>
                     :
                     <></>
+
                 }
             </div>
             
