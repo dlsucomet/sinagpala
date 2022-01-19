@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `linear-gradient(to bottom, ${theme.palette.yellow.secondary}, #FFFFFF)`
   },
   main: {
-    minHeight: '100vh',
+    minHeight: '90vh',
     padding: '4rem 0',
     flex: 1,
     display: 'flex',
@@ -79,7 +79,7 @@ export default function Home() {
 
         </main>
 
-          <Footer />
+          {/* <Footer /> */}
       </div>
     </NoSsr>
   )

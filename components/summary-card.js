@@ -18,10 +18,12 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, styled  } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -53,6 +55,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      maxWidth: 250,
+    },
+});
+
 export default function SummaryCard(props) {
     const classes = useStyles();
 
@@ -77,7 +87,7 @@ export default function SummaryCard(props) {
                         >
                             <div>
                                 <Typography variant="h6" component="div" className={classes.numData}>
-                                    {total_kwh} kW/h
+                                    {total_kwh} kWh
                                 </Typography>
                                 <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                                 Annual potential solar {<br />} energy generation
@@ -93,11 +103,16 @@ export default function SummaryCard(props) {
                         >
                             <div className={classes.groupData}>
                                 <Typography variant="h6" component="div" className={classes.numData}>
-                                    {num_panels} kW/h
+                                    {num_panels}
                                 </Typography>
-                                <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                                    Hourly Potential
-                                </Typography>
+                                <div>
+                                    <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                                        Number of panels
+                                    <CustomWidthTooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
+                                        <HelpOutlineIcon />
+                                    </CustomWidthTooltip>
+                                    </Typography>
+                                </div>
                             </div>
                         </Box>
                         <Box
