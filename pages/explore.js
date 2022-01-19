@@ -6,6 +6,7 @@ import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
 import EnvironmentCard from '../components/environment-card'
+import Search from '../components/search'
 import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box';
 
@@ -47,7 +48,7 @@ export default function Explore(){
         const emptyDataChance = Math.floor(Math.random() * 2);
         console.log("Chance ", emptyDataChance)
         // If 1, set first data to -999 (but irl, all of the data should be -999)
-        if (data != null && emptyDataChance == 1) {
+        if (buildingData != null && emptyDataChance == 1 && data != null) {
             data.properties['total_kwh'] = -999;
         }
 
