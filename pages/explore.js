@@ -73,8 +73,9 @@ export default function Explore(){
                             <ChartLegend />
                         </div>
                     :
-                    <></>
-
+                        <div className={classes.posCard}>
+                            <ChartLegend />
+                        </div>
                 }
             </div>
             
