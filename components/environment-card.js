@@ -22,6 +22,7 @@ import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -34,9 +35,14 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    groupData: { //statistics and label
+    groupDataContainer: { //statistics and label
         flexGrow: 1,
-        flexBasis: 0,
+        flexBasis: 0
+    },
+    groupData: {
+        display: 'flex',
+        justifyContent: 'center',
+        gap: '20px'
     },
     dataRow: { //one row in the card
         display: 'flex',
@@ -65,13 +71,24 @@ const useStyles = makeStyles(theme => ({
 
 export default function EnvironmentCard(props) {
     const classes = useStyles();
-    const {
-        annual_potential,
-        hourly_potential,
-        daily_potential,
-        avail_rooftop,
-        num_panels
-    } = props.data
+    
+    var carbonEmissions = 0;
+    var treeSeedlings = 0;
+    var passengerCars = 0;
+
+    if (props.data != null) {
+        const { total_kwh } = props.data.properties;
+
+        if (total_kwh !== -999 && total_kwh != 0) {
+            carbonEmissions = 0.65 * 0.001 * total_kwh
+            treeSeedlings = carbonEmissions / 0.06
+            passengerCars = carbonEmissions / 0.000398 
+
+            carbonEmissions = carbonEmissions.toFixed(4)
+            treeSeedlings = treeSeedlings.toFixed(4)
+            passengerCars = passengerCars.toFixed(4)
+        }
+    }
       
     const card = (
         <React.Fragment>
@@ -83,29 +100,59 @@ export default function EnvironmentCard(props) {
                     }}
                     className={classes.dataRow}
                 >
-                    <div className={classes.groupData}>
-                        <div className={classes.labelData}>
-                            <Image src="/CO2.svg" alt="CO2" width={30} height={30}/>
+                    <div className={classes.groupDataContainer}>
+                        <div className={classes.groupData}>
+                            <div className={classes.labelData}>
+                                <Image src="/CO2.svg" alt="CO2" width={80} height={80}/>
+                            </div>
+                            <div>
+                                <Typography sx={{ fontSize: 18 }}>
+                                    Carbon Dioxide
+                                </Typography>
+                                <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                    {carbonEmissions} 
+                                </Typography>
+                                <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                    metric tons
+                                </Typography>
+                            </div>
                         </div>
-                        <Typography sx={{ fontSize: 12 }} className={classes.labelData} gutterBottom>
-                        {annual_potential} Metric Tons / kWh
-                        </Typography>
                     </div>
-                    <div className={classes.groupData}>
-                        <div className={classes.labelData}>
-                            <Image src="/Seedling.svg" alt="Seedling" width={30} height={30}/>
+                    <div className={classes.groupDataContainer}>
+                        <div className={classes.groupData}>
+                            <div className={classes.labelData}>
+                                <Image src="/Seedling.svg" alt="Seedling" width={80} height={80}/>
+                            </div>
+                            <div>
+                                <Typography sx={{ fontSize: 18 }}>
+                                    Tree Seedlings
+                                </Typography>
+                                <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                    {treeSeedlings} 
+                                </Typography>
+                                <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                    grown for 10 years
+                                </Typography>
+                            </div>
                         </div>
-                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                        {annual_potential} Metric Tons / Urban trees planted
-                        </Typography>
                     </div>
-                    <div className={classes.groupData}>
-                        <div className={classes.labelData}>
-                            <Image src="/Car.svg" alt="Car" width={30} height={30}/>
+                    <div className={classes.groupDataContainer}>
+                        <div className={classes.groupData}>
+                            <div className={classes.labelData}>
+                                <Image src="/Car.svg" alt="Car" width={80} height={80}/>
+                            </div>
+                            <div>
+                                <Typography sx={{ fontSize: 18 }}>
+                                    Miles driven
+                                </Typography>
+                                <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                    {passengerCars}
+                                </Typography>
+                                <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                    by average passenger cars
+                                </Typography>
+                            </div>
                         </div>
-                        <Typography sx={{ fontSize: 12}} className={classes.labelData} gutterBottom>
-                        {annual_potential} Metric / Per Mile
-                        </Typography>
                     </div>
                 </ Box>
             </CardContent>
@@ -113,8 +160,22 @@ export default function EnvironmentCard(props) {
     );
 
     return (
-        <Box sx={{ minWidth: '35%' }} className={classes.posCard}>
-            <Card >{card}</Card>
-        </Box>
+        <div>
+            {
+                props.data !== null && total_kwh != -999 ?
+                    <div>
+                        <h1>Potential Environmental Impact</h1>
+                        <Box sx={{ minWidth: '35%' }} className={classes.posCard}>
+                            <Card >{card}</Card>
+                        </Box> 
+                    </div>
+                : 
+                    <></>
+            }
+        </div>
     );
+}
+
+EnvironmentCard.propTypes = {
+    data: PropTypes.object
 }
