@@ -18,10 +18,12 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, styled  } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -52,6 +54,14 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '10px'
     }
 }));
+
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} classes={{ popper: className }} />
+  ))({
+    [`& .${tooltipClasses.tooltip}`]: {
+      maxWidth: 250,
+    },
+});
 
 export default function SummaryCard(props) {
     const classes = useStyles();
@@ -95,9 +105,14 @@ export default function SummaryCard(props) {
                                 <Typography variant="h6" component="div" className={classes.numData}>
                                     {num_panels} kW/h
                                 </Typography>
-                                <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                                    Hourly Potential
-                                </Typography>
+                                <div>
+                                    <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                                        Number of panels
+                                    <CustomWidthTooltip title="Know more about our panel specifications on our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
+                                        <HelpOutlineIcon />
+                                    </CustomWidthTooltip>
+                                    </Typography>
+                                </div>
                             </div>
                         </Box>
                         <Box
