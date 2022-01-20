@@ -11,50 +11,51 @@
  * USED IN:
  * index.js
  * about.js
- *
+ * explore.js
  * ------------------------------------------------------------------------------------------
  */
-
-import Image from 'next/image'
-import { makeStyles } from '@mui/styles'
-
-const useStyles = makeStyles(theme => ({
-    footer: {
-        display: 'flex',
-        flex: 1,
-        padding: '2rem 0',
-        borderTop: '1px solid #eaeaea',
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
-      
-      footerLink: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexGrow: 1,
-        alignItems: 'center',
-        '&:hover': {
-          textDecoration: 'underline'
-        },
-      },   
-}));
-
-export default function Footer(){
-    const classes = useStyles();
-
-    return (
-      <footer className={classes.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={classes.footerLink}
-        >
-          Powered by{' '}
-          <span className={classes.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    )
-}
+ import { useRouter } from 'next/router'
+ import { makeStyles } from '@mui/styles'
+ 
+ const useStyles = props => makeStyles(theme => ({
+     footer: {
+         display: 'flex',
+         flex: 1,
+         padding: props.pathname == '/explore' ? '2rem 2rem' : '2rem 0',
+         borderTop: '1px solid #eaeaea',
+         justifyContent: 'space-between',
+         alignItems: 'center',
+     },
+     footerLink: {
+       display: 'flex',
+       justifyContent: 'center',
+       flexGrow: 1,
+       alignItems: 'center',
+       // '&:hover': {
+       //   textDecoration: 'underline'
+       // },
+     },   
+ }));
+ 
+ export default function Footer(){
+     const router = useRouter();
+     const classes = useStyles({'pathname':router.pathname})();
+ 
+     return (
+       <footer className={classes.footer}>
+         <div>
+           Sinagpala © 2021
+         </div>
+         {/* <a
+           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+           target="_blank"
+           rel="noopener noreferrer"
+           className={classes.footerLink}
+         > */}
+         <div>
+            sinagpala.team@gmail.com
+         </div>
+         {/* </a> */}
+       </footer>
+     )
+ }

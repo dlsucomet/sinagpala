@@ -37,6 +37,7 @@ const useStyles = props => makeStyles(theme => ({
         justifyContent: 'right',
         fontSize: '1.5rem',
         alignItems: 'center',
+        margin: '0px 15px',
         '&:hover': {
             textDecoration: 'underline'
         },
@@ -59,6 +60,13 @@ export default function Header(){
    return (
         router.pathname == '/' ?
             <header className={classes.header}>
+                <Link href="/explore">
+                    <a
+                        className={classes.headerLink}
+                    >
+                        Explore
+                    </a>
+                </Link>
                 <Link href="/about">
                     <a
                         className={classes.headerLink}
@@ -77,13 +85,22 @@ export default function Header(){
                         </a>
                     </Link>
                 </div>
-                <Link href="/about">
-                    <a
-                        className={classes.headerLink}
-                    >
-                        About us
-                    </a>
-                </Link>
+                <div>
+                    <Link href="/explore">
+                        <a
+                            className={classes.headerLink}
+                        >
+                            Explore
+                        </a>
+                    </Link>
+                    <Link href="/about">
+                        <a
+                            className={classes.headerLink}
+                        >
+                            About us
+                        </a>
+                    </Link>
+                </div>
             </header>
     )
 }

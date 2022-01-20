@@ -18,12 +18,13 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
-import { makeStyles, styled  } from '@mui/styles'
+import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip'
+import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import { styled } from '@mui/system';
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -55,13 +56,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const CustomWidthTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} classes={{ popper: className }} />
-  ))({
-    [`& .${tooltipClasses.tooltip}`]: {
-      maxWidth: 250,
-    },
-});
+const CardContentNoPadding = styled(CardContent)(`
+  padding: 8px;
+  &:last-child {
+    padding-bottom: 8px;
+  }
+`);
 
 export default function SummaryCard(props) {
     const classes = useStyles();
@@ -74,7 +74,7 @@ export default function SummaryCard(props) {
 
     const card = (
         <React.Fragment>
-            <CardContent>
+            <CardContentNoPadding>
                 {
                     total_kwh != -999 ? //Check if building polygon has data
                     <>
@@ -108,9 +108,11 @@ export default function SummaryCard(props) {
                                 <div>
                                     <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                                         Number of panels
-                                    <CustomWidthTooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
-                                        <HelpOutlineIcon />
-                                    </CustomWidthTooltip>
+                                        <span>
+                                            <Tooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
+                                                <HelpOutlineIcon />
+                                            </Tooltip>
+                                        </span>
                                     </Typography>
                                 </div>
                             </div>
@@ -139,7 +141,7 @@ export default function SummaryCard(props) {
                         <p>No Data Found</p>
                     </Box>
                 }
-            </CardContent>
+            </CardContentNoPadding>
         </React.Fragment>
     );
 

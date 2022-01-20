@@ -20,26 +20,27 @@ import React from 'react'
 import Plot from 'react-plotly.js'
 import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
+import { Typography } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
-    container: {
+    plotContainer: {
         display: 'flex',
         justifyContent: 'center',
+        width: '100%'
     },
-    plot: {
-        width: '100%',
-        height: '450px',
-        [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
-            width: '90%',
-        },
-        [theme.breakpoints.up('md')]: {
-            width: '70%',
-        },
-    },
+    // plot: {
+    //     width: '100%',
+    //     height: '450px',
+    //     // [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
+    //     //     width: '90%',
+    //     // },
+    //     // [theme.breakpoints.up('md')]: {
+    //     //     width: '70%',
+    //     // },
+    // },
     infoMarker: {
-        fontSize: '30px',
-        padding: '0px',
-        margin: '0px'
+        // padding: '0px',
+        margin: '20px 0'
     }
 }));
 
@@ -49,7 +50,10 @@ export default function LinePlot(props){
     var data = [];
     var dataX = [];
     var dataLabels = [] ;
-    const tableTitle = props.type == "month" ? 'Average Monthly kW/h' : 'Average Hourly kW/h';
+    const tableTitle = props.type == "month" ? 'Average Monthly kWh (kilowatt-hour) ' : 'Average Hourly kWh (kilowatt-hour) ';
+    
+    console.log("props")
+    console.log(props)
     
     if (props.data !== null) {
         const { total_kwh } = props.data.properties; //Basis for no data (if -999)
@@ -89,7 +93,7 @@ export default function LinePlot(props){
     // https://plotly.com/javascript/hover-text-and-formatting/
     // https://plotly.com/javascript/tick-formatting/
     return (
-        <div className={classes.container}>
+        <div className={classes.plotContainer}>
             {
                 props.data !== null ?
                     total_kwh !== -999 ? //with data
@@ -104,27 +108,43 @@ export default function LinePlot(props){
                                     hovertemplate: '%{y}<extra></extra>',
                                 },
                             ]}
-                            // style={{ width: "70%", height: "70%" }}
-                            className={classes.plot}
+                            // className={classes.plot}
                             layout={{
+                            paper_bgcolor: "rgba(0,0,0,0)",
+                            plot_bgcolor:'rgba(0,0,0,0)',
                             xaxis: {
+                                title: {
+                                    text: props.type == 'month' ? 'Month' : 'Hour',
+                                    font: {
+                                      size: 18,
+                                      color: 'black'
+                                    },
+                                    standoff: 20
+                                },
+                                automargin: true,
                                 fixedrange: true,
                                 tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
                                 tickvals: dataX,
                                 ticktext: dataLabels,
                                 tickfont: {
-                                    // family: 'Old Standard TT, serif',
                                     size: 16,
                                     color: 'black'
                                 },
                                 },
                             yaxis: {
+                                title: {
+                                    text: 'kWh (kilowatt-hour)',
+                                    font: {
+                                      size: 18,
+                                      color: 'black'
+                                    }
+                                },
+                                automargin: true,
                                 fixedrange: true,
                                 tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
                                 tick0: 0,
                                 dtick: 5,
                                 tickfont: {
-                                    // family: 'Old Standard TT, serif',
                                     size: 16,
                                     color: 'black'
                                 },
@@ -133,21 +153,22 @@ export default function LinePlot(props){
                             hoverlabel: { bgcolor: "#FFF" },
                             title: tableTitle,
                             titlefont: {
-                                // family: 'Arial, sans-serif',
                                 size: 20,
                                 color: 'black'
                             },
                             }}
+                            useResizeHandler={true}
+                            style={{width: "90%", height: "100%"}}
                             config={{displayModeBar: false, responsive: true }}
                         />
                     :
                         props.type == 'hour' ? //no data, display only once
-                            <p className={classes.infoMarker}> No data found</p>
+                            <Typography variant="h4" className={classes.infoMarker}> No data found</Typography>
                         :
                             <></>
                 :
                     props.type == 'hour' ? //no selected polygon, display only once
-                            <p className={classes.infoMarker}> Select a building polygon to know more about its potential! </p>
+                            <Typography variant="h4"  className={classes.infoMarker}> Select a building polygon to know more about its potential! </Typography>
                         :
                             <></>
             }

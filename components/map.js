@@ -102,5 +102,5 @@ export default function Map(props) {
 }
 
 Map.propTypes = {
-    onDataChange: PropTypes.function
+    onDataChange: PropTypes.func
 }
