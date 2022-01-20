@@ -23,7 +23,7 @@
          flex: 1,
          padding: props.pathname == '/explore' ? '2rem 2rem' : '2rem 0',
          borderTop: '1px solid #eaeaea',
-         justifyContent: 'space-evenly',
+         justifyContent: 'space-between',
          alignItems: 'center',
      },
      footerLink: {
