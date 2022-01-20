@@ -113,6 +113,7 @@ export default function LinePlot(props){
                             paper_bgcolor: "rgba(0,0,0,0)",
                             plot_bgcolor:'rgba(0,0,0,0)',
                             xaxis: {
+                                automargin: true,
                                 fixedrange: true,
                                 tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
                                 tickvals: dataX,
@@ -124,6 +125,7 @@ export default function LinePlot(props){
                                 },
                                 },
                             yaxis: {
+                                automargin: true,
                                 fixedrange: true,
                                 tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
                                 tick0: 0,
