@@ -64,6 +64,12 @@ const useStyles = makeStyles(theme => ({
   },
   imgBound: {
     margin: '100px'
+  },
+  underline: {
+    color: 'blue',
+    '&:hover': {
+      textDecoration: 'underline'
+   }
   }
 }));
 
@@ -84,7 +90,7 @@ function Item(props) {
 export default function Home({ data }) {
   const classes = useStyles();
   const marikina_data = data.properties;
-  console.log(marikina_data)
+  // console.log(marikina_data)
   return (
     <NoSsr>
       <div className={classes.container}>
@@ -105,7 +111,7 @@ export default function Home({ data }) {
         <main className={classes.main}>
           <Item>
             <Typography variant="h1" className={classes.title} >
-              <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
+              <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo} priority={true}/>
               Sinagpala
             </Typography>
           </Item>
@@ -133,6 +139,14 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
+            <Typography variant="h6" className={classes.centerText}>
+              Marikina City has a household energy consumption of 1,868 kWh/yr which is relatively high compared
+              compared to the Philippines' average of 1,150 kWh/yr (Shell, 2015). With the growing demand for electricity, 
+              solar panels can help reduce the demand of electricity and help households save money on electricity. 
+            </Typography>
+          </Item>
+
+          <Item>
             <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound} priority={true}/>
             <div className={classes.dataColumn}>
               <div className={classes.infoBlock}> 
@@ -148,6 +162,34 @@ export default function Home({ data }) {
 
           <Item>
             <LinePlot data={{properties:marikina_data}} type="hour" />
+          </Item>
+
+          <Item>
+            <LinePlot data={{properties:marikina_data}} type="month" />
+          </Item>
+
+          <Item>
+            <Typography variant="h3" className={classes.centerText}>
+              Interested in solar? 
+            </Typography>
+          </Item>
+          
+          <Item>
+            <Typography variant="h6" className={classes.centerText}>
+              See <Link href="https://residential.meralco.com.ph/products-services-and-programs/solar-net-metering"><a className={classes.underline} target="_blank">solar net metering </a></Link> {' '}
+               on how you can apply for a solar installation today. Note that the estimations displayed in the application
+              are merely estimates given area-wide data. For a more accurate evaluation, consult with solar experts.
+            </Typography>
+          </Item>
+
+          <Item>
+            <Typography variant="h5" className={classes.centerText}>
+              References
+            </Typography>
+            <Typography variant="p">
+            Shell Philippines. (2015).  City Resilience Study. Challenges & Opportunities for Marikina City. 
+            <br/>https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf
+            </Typography>
           </Item>
         </main>
 

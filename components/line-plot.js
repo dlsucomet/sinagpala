@@ -26,17 +26,18 @@ const useStyles = makeStyles(theme => ({
     plotContainer: {
         display: 'flex',
         justifyContent: 'center',
+        width: '100%'
     },
-    plot: {
-        width: '100%',
-        height: '450px',
-        [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
-            width: '90%',
-        },
-        [theme.breakpoints.up('md')]: {
-            width: '70%',
-        },
-    },
+    // plot: {
+    //     width: '100%',
+    //     height: '450px',
+    //     // [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
+    //     //     width: '90%',
+    //     // },
+    //     // [theme.breakpoints.up('md')]: {
+    //     //     width: '70%',
+    //     // },
+    // },
     infoMarker: {
         // padding: '0px',
         margin: '20px 0'
@@ -107,11 +108,12 @@ export default function LinePlot(props){
                                     hovertemplate: '%{y}<extra></extra>',
                                 },
                             ]}
-                            className={classes.plot}
+                            // className={classes.plot}
                             layout={{
                             paper_bgcolor: "rgba(0,0,0,0)",
                             plot_bgcolor:'rgba(0,0,0,0)',
                             xaxis: {
+                                automargin: true,
                                 fixedrange: true,
                                 tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
                                 tickvals: dataX,
@@ -123,6 +125,7 @@ export default function LinePlot(props){
                                 },
                                 },
                             yaxis: {
+                                automargin: true,
                                 fixedrange: true,
                                 tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
                                 tick0: 0,
@@ -142,6 +145,8 @@ export default function LinePlot(props){
                                 color: 'black'
                             },
                             }}
+                            useResizeHandler={true}
+                            style={{width: "90%", height: "100%"}}
                             config={{displayModeBar: false, responsive: true }}
                         />
                     :
