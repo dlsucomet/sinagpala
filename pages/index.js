@@ -67,6 +67,9 @@ const useStyles = makeStyles(theme => ({
   },
   underline: {
     textDecoration: 'underline'
+  },
+  centerText: {
+    width: '80%'
   }
 }));
 
@@ -122,7 +125,7 @@ export default function Home({ data }) {
           <Item>
             <Button variant="contained">
               <Link href="/explore">
-                  <a href="https://nextjs.org/docs" >
+                  <a>
                       <p>Explore Marikina Area</p>
                   </a>
               </Link>
@@ -161,6 +164,28 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
+           <Typography variant="h4" className={classes.centerText}>
+              When the sun's out high, so will the solar energy potential!
+            </Typography>
+          </Item>
+
+          <Item>
+            <Typography variant="p" className={classes.centerText}>
+              Solar enegy is a renewable energy resource that relies on the energy emmitted from the sun. This means that on brighter, sunnier days, your solar panel could potentially generate more energy! This also means that on hotter months, you could also generate more. Check out our calculated potential for the Marikina area! <sup>1</sup>
+            </Typography>
+          </Item>
+
+          <Typography sx={{fontSize: '12px'}}>
+            <sup>1</sup>Estimated potentials are only for proof of concept, please refer to limitations on the {' '} 
+              <span style={{textDecoration: 'underline'}}>
+                <Link href="/about">
+                  about us
+                </Link>
+              </span> 
+            {' '}page for more information.
+          </Typography>
+
+          <Item>
             <LinePlot data={{properties:marikina_data}} type="hour" />
           </Item>
 
@@ -180,6 +205,16 @@ export default function Home({ data }) {
                on how you can apply for a solar installation today. Note that the estimations displayed in the application
               are merely estimates given area-wide data. For a more accurate evaluation, consult with solar experts.
             </Typography>
+          </Item>
+
+          <Item>
+            <Button variant="contained">
+              <Link href="/explore">
+                  <a>
+                      <p>Explore Marikina Area</p>
+                  </a>
+              </Link>
+            </Button>
           </Item>
         </main>
 
