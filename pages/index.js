@@ -66,10 +66,10 @@ const useStyles = makeStyles(theme => ({
     margin: '100px'
   },
   underline: {
-    color: 'blue',
-    '&:hover': {
-      textDecoration: 'underline'
-   }
+    textDecoration: 'underline'
+  },
+  centerText: {
+    width: '80%'
   }
 }));
 
@@ -125,7 +125,7 @@ export default function Home({ data }) {
           <Item>
             <Button variant="contained">
               <Link href="/explore">
-                  <a href="https://nextjs.org/docs" >
+                  <a>
                       <p>Explore Marikina Area</p>
                   </a>
               </Link>
@@ -141,8 +141,11 @@ export default function Home({ data }) {
           <Item>
             <Typography variant="h6" className={classes.centerText}>
               Marikina City has a household energy consumption of 1,868 kWh/yr which is relatively high compared
-              compared to the Philippines' average of 1,150 kWh/yr (Shell, 2015). With the growing demand for electricity, 
+              compared to the Philippines' average of 1,150 kWh/yr. With the growing demand for electricity, 
               solar panels can help reduce the demand of electricity and help households save money on electricity. 
+            </Typography>
+            <Typography variant="p" className={classes.centerText}>
+            Source: <Link href="https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf"><a className={classes.underline} target="_blank">Shell Philippines, 2015</a></Link>
             </Typography>
           </Item>
 
@@ -159,6 +162,28 @@ export default function Home({ data }) {
               </div>
             </div>
           </Item>
+
+          <Item>
+           <Typography variant="h4" className={classes.centerText}>
+              When the sun's out high, so will the solar energy potential!
+            </Typography>
+          </Item>
+
+          <Item>
+            <Typography variant="p" className={classes.centerText}>
+              Solar enegy is a renewable energy resource that relies on the energy emmitted from the sun. This means that on brighter, sunnier days, your solar panel could potentially generate more energy! This also means that on hotter months, you could also generate more. Check out our calculated potential for the Marikina area! <sup>1</sup>
+            </Typography>
+          </Item>
+
+          <Typography sx={{fontSize: '12px'}}>
+            <sup>1</sup>Estimated potentials are only for proof of concept, please refer to limitations on the {' '} 
+              <span style={{textDecoration: 'underline'}}>
+                <Link href="/about">
+                  about us
+                </Link>
+              </span> 
+            {' '}page for more information.
+          </Typography>
 
           <Item>
             <LinePlot data={{properties:marikina_data}} type="hour" />
@@ -183,13 +208,13 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
-            <Typography variant="h5" className={classes.centerText}>
-              References
-            </Typography>
-            <Typography variant="p">
-            Shell Philippines. (2015).  City Resilience Study. Challenges & Opportunities for Marikina City. 
-            <br/>https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf
-            </Typography>
+            <Button variant="contained">
+              <Link href="/explore">
+                  <a>
+                      <p>Explore Marikina Area</p>
+                  </a>
+              </Link>
+            </Button>
           </Item>
         </main>
 

@@ -50,7 +50,7 @@ export default function LinePlot(props){
     var data = [];
     var dataX = [];
     var dataLabels = [] ;
-    const tableTitle = props.type == "month" ? 'Average Monthly kW/h' : 'Average Hourly kW/h';
+    const tableTitle = props.type == "month" ? 'Average Monthly kWh (kilowatt-hour) ' : 'Average Hourly kWh (kilowatt-hour) ';
     
     console.log("props")
     console.log(props)
@@ -113,25 +113,38 @@ export default function LinePlot(props){
                             paper_bgcolor: "rgba(0,0,0,0)",
                             plot_bgcolor:'rgba(0,0,0,0)',
                             xaxis: {
+                                title: {
+                                    text: props.type == 'month' ? 'Month' : 'Hour',
+                                    font: {
+                                      size: 18,
+                                      color: 'black'
+                                    },
+                                    standoff: 20
+                                },
                                 automargin: true,
                                 fixedrange: true,
                                 tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
                                 tickvals: dataX,
                                 ticktext: dataLabels,
                                 tickfont: {
-                                    // family: 'Old Standard TT, serif',
                                     size: 16,
                                     color: 'black'
                                 },
                                 },
                             yaxis: {
+                                title: {
+                                    text: 'kWh (kilowatt-hour)',
+                                    font: {
+                                      size: 18,
+                                      color: 'black'
+                                    }
+                                },
                                 automargin: true,
                                 fixedrange: true,
                                 tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
                                 tick0: 0,
                                 dtick: 5,
                                 tickfont: {
-                                    // family: 'Old Standard TT, serif',
                                     size: 16,
                                     color: 'black'
                                 },
@@ -140,7 +153,6 @@ export default function LinePlot(props){
                             hoverlabel: { bgcolor: "#FFF" },
                             title: tableTitle,
                             titlefont: {
-                                // family: 'Arial, sans-serif',
                                 size: 20,
                                 color: 'black'
                             },

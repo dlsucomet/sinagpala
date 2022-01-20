@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useState } from "react"
 import dynamic from 'next/dynamic'
 import Header from "../components/header"
-import Footer from "../components/Footer"
+import Footer from "../components/footer"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
