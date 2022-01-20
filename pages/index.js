@@ -9,6 +9,8 @@ import data from './api/marikinaBounds/marikina_polygon_bounds.json'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import dynamic from 'next/dynamic'  
+import Typography from '@mui/material/Typography'
+
 const LinePlot = dynamic(() => import("../components/line-plot"), {
   loading: () => "Loading...",
   ssr: false
@@ -21,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
   main: {
     minHeight: '90vh',
-    padding: '4rem 0',
+    padding: '3rem 0',
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -29,32 +31,22 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   title: {
-    margin: 0,
     lineHeight: 1.15,
-    fontSize: '4rem',
     letterSpacing: '8px',
     display: 'flex',
     alignItems: 'center',
-    textAlign: 'center',
-  },
-  description: {
-    margin: '4rem 0',
-    lineHeight: 1.5,
-    fontSize: '1.5rem',
-    textAlign: 'center',
   },
   logo: {
     verticalAlign: 'middle',
   },
-  centerText: {
-    textAlign: 'center',
-  },
-  dataRow: { //one row in the card
+  dataRow: {
     display: 'flex',
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     alignItems: 'center',
-    width: '70%',
+    width: '80%',
+    margin: '2rem 0',
+    textAlign: 'center',
   },
   dataColumn: {
     display: 'flex',
@@ -74,6 +66,20 @@ const useStyles = makeStyles(theme => ({
     margin: '100px'
   }
 }));
+
+function Item(props) {
+  const { sx, ...other } = props;
+  const classes = useStyles();
+  return (
+    <Box
+      sx={{
+        ...sx,
+      }} 
+      className={classes.dataRow}
+      {...other}
+    />
+  )
+}
 
 export default function Home({ data }) {
   const classes = useStyles();
@@ -97,30 +103,36 @@ export default function Home({ data }) {
         <Header />
 
         <main className={classes.main}>
-          <h1 className={classes.title} >
-            <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
-            Sinagpala
-          </h1>
+          <Item>
+            <Typography variant="h1" className={classes.title} >
+              <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
+              Sinagpala
+            </Typography>
+          </Item>
 
-          <p className={classes.description}>
-          Have your rooftops checked for its solar energy potential.
-          </p>
+          <Item>
+            <Typography variant="h6" lassName={classes.centerText}>
+              Have your rooftops checked for its solar energy potential.
+            </Typography>
+          </Item>
 
-          <Button variant="outlined">
-            <Link href="/explore">
-                <a href="https://nextjs.org/docs" >
-                    <p>Explore Marikina Area</p>
-                </a>
-            </Link>
-          </Button>
+          <Item>
+            <Button variant="outlined">
+              <Link href="/explore">
+                  <a href="https://nextjs.org/docs" >
+                      <p>Explore Marikina Area</p>
+                  </a>
+              </Link>
+            </Button>
+          </Item>
 
-          <div style={{fontSize: '30px'}}>
-            <h1 className={classes.centerText}>Did You Know?</h1>
-          </div>
+          <Item>
+            <Typography variant="h3" lassName={classes.centerText}>
+              Did You Know?
+            </Typography>
+          </Item>
 
-          <Box
-              className={classes.dataRow}
-          >
+          <Item>
             <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound}/>
             <div className={classes.dataColumn}>
               <div className={classes.infoBlock}> 
@@ -132,9 +144,11 @@ export default function Home({ data }) {
                 of solar energy
               </div>
             </div>
-          </Box>
+          </Item>
 
-          <LinePlot data={{properties:marikina_data}} type="hour" />
+          <Item>
+            <LinePlot data={{properties:marikina_data}} type="hour" />
+          </Item>
         </main>
 
         {/* <Footer /> */}
