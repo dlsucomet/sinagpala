@@ -141,7 +141,7 @@ export default function Home({ data }) {
           <Item>
             <Typography variant="h6" className={classes.centerText}>
               Marikina City has a household energy consumption of 1,868 kWh/yr which is relatively high compared
-              compared to the Philippines' average of 1,150 kWh/yr (Shell Philippines, 2015). With the growing demand for electricity, 
+              compared to the Philippines' average of 1,150 kWh/yr<sup>1</sup>. With the growing demand for electricity, 
               solar panels can help reduce the demand of electricity and help households save money on electricity. 
             </Typography>
           </Item>
@@ -187,7 +187,7 @@ export default function Home({ data }) {
               References
             </Typography>
             <Typography variant="p">
-            Shell Philippines. (2015).  City Resilience Study. Challenges & Opportunities for Marikina City. 
+           [1] Shell Philippines. (2015).  City Resilience Study. Challenges & Opportunities for Marikina City. 
             <br/>https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf
             </Typography>
           </Item>
