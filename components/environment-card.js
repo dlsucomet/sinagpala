@@ -23,6 +23,8 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
 import PropTypes from 'prop-types'
+import Tooltip from '@mui/material/Tooltip'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 const useStyles = makeStyles(theme => ({
     labelData: {
@@ -144,7 +146,12 @@ export default function EnvironmentCard(props) {
             {
                 props.data !== null && total_kwh != -999 ?
                     <div>
-                        <Typography variant="h4" className={classes.infoTitle}>Potential Environmental Impact</Typography>
+                        <Typography variant="h4" className={classes.infoTitle}>Potential Environmental Impact <span>
+                            <Tooltip title="With this much renewable energy produced, you can contribute this much back to mother earth!" arrow placement="right" sx={{ fontSize: 15, textAlign: 'center' }}>
+                                <HelpOutlineIcon />
+                            </Tooltip>
+                        </span>
+                        </Typography>
                         <Box
                             sx={{
                                 p: 0.5,
@@ -170,6 +177,11 @@ export default function EnvironmentCard(props) {
                                     </div>
                                 </div>
                             </div>
+                            <Typography variant="h2" sx={{display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center"}}>
+                                =
+                            </Typography>
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>
@@ -188,6 +200,11 @@ export default function EnvironmentCard(props) {
                                     </div>
                                 </div>
                             </div>
+                            <Typography variant="h2" sx={{display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center"}}>
+                                =
+                            </Typography>
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>

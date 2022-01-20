@@ -108,9 +108,11 @@ export default function SummaryCard(props) {
                                 <div>
                                     <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
                                         Number of panels
-                                    <Tooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
-                                        <HelpOutlineIcon />
-                                    </Tooltip>
+                                        <span>
+                                            <Tooltip title="Panel specifications listed in our about page." arrow sx={{ fontSize: 10, textAlign: 'center' }}>
+                                                <HelpOutlineIcon />
+                                            </Tooltip>
+                                        </span>
                                     </Typography>
                                 </div>
                             </div>
