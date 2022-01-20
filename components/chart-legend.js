@@ -20,7 +20,7 @@ import Card from '@mui/material/Card'
 import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import { styled } from '@mui/system';
+import { styled } from '@mui/system'
 
 const useStyles = makeStyles(theme => ({
     numData: {

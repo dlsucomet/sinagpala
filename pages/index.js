@@ -111,13 +111,13 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
-            <Typography variant="h6" lassName={classes.centerText}>
+            <Typography variant="h6" className={classes.centerText}>
               Have your rooftops checked for its solar energy potential.
             </Typography>
           </Item>
 
           <Item>
-            <Button variant="outlined">
+            <Button variant="contained">
               <Link href="/explore">
                   <a href="https://nextjs.org/docs" >
                       <p>Explore Marikina Area</p>
@@ -127,7 +127,7 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
-            <Typography variant="h3" lassName={classes.centerText}>
+            <Typography variant="h3" className={classes.centerText}>
               Did You Know?
             </Typography>
           </Item>
@@ -151,7 +151,7 @@ export default function Home({ data }) {
           </Item>
         </main>
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </NoSsr>
   )

@@ -25,11 +25,6 @@ import Image from 'next/image'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
-    numData: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
     labelData: {
         display: 'flex',
         justifyContent: 'center',
@@ -37,7 +32,6 @@ const useStyles = makeStyles(theme => ({
     },
     groupDataContainer: { //statistics and label
         flexGrow: 1,
-        flexBasis: 0
     },
     groupData: {
         display: 'flex',
@@ -47,25 +41,11 @@ const useStyles = makeStyles(theme => ({
     dataRow: { //one row in the card
         display: 'flex',
         justifyContent: 'space-around',
-        // padding and margin are set on MUI Component
-        // p: 0.5,
-        // m: 0.5,
-        bgcolor: 'background.paper',
         flexWrap: 'wrap',
-        flexGrow: 1,
     },
-    logo: {
-        verticalAlign: 'middle',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-    posCard: {
-        // position: 'absolute',
-        // right: '1vw',
-        // top: '7vh',
-        // zIndex: 1,
+    infoTitle: {
+        fontWeight: 'bold',
+        margin: '1rem 0',
     }
 }));
 
@@ -164,10 +144,69 @@ export default function EnvironmentCard(props) {
             {
                 props.data !== null && total_kwh != -999 ?
                     <div>
-                        <h1>Potential Environmental Impact</h1>
-                        <Box sx={{ minWidth: '35%' }} className={classes.posCard}>
-                            <Card >{card}</Card>
-                        </Box> 
+                        <Typography variant="h4" className={classes.infoTitle}>Potential Environmental Impact</Typography>
+                        <Box
+                            sx={{
+                                p: 0.5,
+                                m: 0.5,
+                            }}
+                            className={classes.dataRow}
+                        >
+                            <div className={classes.groupDataContainer}>
+                                <div className={classes.groupData}>
+                                    <div className={classes.labelData}>
+                                        <Image src="/CO2.svg" alt="CO2" width={80} height={80}/>
+                                    </div>
+                                    <div>
+                                        <Typography sx={{ fontSize: 18 }}>
+                                            Carbon Dioxide
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                            {carbonEmissions} 
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                            metric tons
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={classes.groupDataContainer}>
+                                <div className={classes.groupData}>
+                                    <div className={classes.labelData}>
+                                        <Image src="/Seedling.svg" alt="Seedling" width={80} height={80}/>
+                                    </div>
+                                    <div>
+                                        <Typography sx={{ fontSize: 18 }}>
+                                            Tree Seedlings
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                            {treeSeedlings} 
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                            grown for 10 years
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={classes.groupDataContainer}>
+                                <div className={classes.groupData}>
+                                    <div className={classes.labelData}>
+                                        <Image src="/Car.svg" alt="Car" width={80} height={80}/>
+                                    </div>
+                                    <div>
+                                        <Typography sx={{ fontSize: 18 }}>
+                                            Miles driven
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                            {passengerCars}
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                            by average passenger cars
+                                        </Typography>
+                                    </div>
+                                </div>
+                            </div>
+                        </ Box>
                     </div>
                 : 
                     <></>

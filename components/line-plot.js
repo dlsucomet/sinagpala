@@ -20,6 +20,7 @@ import React from 'react'
 import Plot from 'react-plotly.js'
 import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
+import { Typography } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     plotContainer: {
@@ -37,9 +38,8 @@ const useStyles = makeStyles(theme => ({
         },
     },
     infoMarker: {
-        fontSize: '30px',
-        padding: '0px',
-        margin: '0px'
+        // padding: '0px',
+        margin: '20px 0'
     }
 }));
 
@@ -146,12 +146,12 @@ export default function LinePlot(props){
                         />
                     :
                         props.type == 'hour' ? //no data, display only once
-                            <p className={classes.infoMarker}> No data found</p>
+                            <Typography variant="h4" className={classes.infoMarker}> No data found</Typography>
                         :
                             <></>
                 :
                     props.type == 'hour' ? //no selected polygon, display only once
-                            <p className={classes.infoMarker}> Select a building polygon to know more about its potential! </p>
+                            <Typography variant="h4"  className={classes.infoMarker}> Select a building polygon to know more about its potential! </Typography>
                         :
                             <></>
             }
