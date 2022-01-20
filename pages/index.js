@@ -66,10 +66,7 @@ const useStyles = makeStyles(theme => ({
     margin: '100px'
   },
   underline: {
-    color: 'blue',
-    '&:hover': {
-      textDecoration: 'underline'
-   }
+    textDecoration: 'underline'
   }
 }));
 
@@ -141,8 +138,11 @@ export default function Home({ data }) {
           <Item>
             <Typography variant="h6" className={classes.centerText}>
               Marikina City has a household energy consumption of 1,868 kWh/yr which is relatively high compared
-              compared to the Philippines' average of 1,150 kWh/yr<sup>1</sup>. With the growing demand for electricity, 
+              compared to the Philippines' average of 1,150 kWh/yr. With the growing demand for electricity, 
               solar panels can help reduce the demand of electricity and help households save money on electricity. 
+            </Typography>
+            <Typography variant="p" className={classes.centerText}>
+            Source: <Link href="https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf"><a className={classes.underline} target="_blank">Shell Philippines, 2015</a></Link>
             </Typography>
           </Item>
 
@@ -179,16 +179,6 @@ export default function Home({ data }) {
               See <Link href="https://residential.meralco.com.ph/products-services-and-programs/solar-net-metering"><a className={classes.underline} target="_blank">solar net metering </a></Link> {' '}
                on how you can apply for a solar installation today. Note that the estimations displayed in the application
               are merely estimates given area-wide data. For a more accurate evaluation, consult with solar experts.
-            </Typography>
-          </Item>
-
-          <Item>
-            <Typography variant="h5" className={classes.centerText}>
-              References
-            </Typography>
-            <Typography variant="p">
-           [1] Shell Philippines. (2015).  City Resilience Study. Challenges & Opportunities for Marikina City. 
-            <br/>https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf
             </Typography>
           </Item>
         </main>
