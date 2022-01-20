@@ -145,5 +145,5 @@ export default function Search(props) {
 
 Search.propTypes = {
   mapRef: PropTypes.object,
-  setViewport: PropTypes.function
+  setViewport: PropTypes.func
 }

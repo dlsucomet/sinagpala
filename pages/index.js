@@ -123,7 +123,7 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
-            <Button variant="outlined">
+            <Button variant="contained">
               <Link href="/explore">
                   <a href="https://nextjs.org/docs" >
                       <p>Explore Marikina Area</p>
@@ -193,7 +193,7 @@ export default function Home({ data }) {
           </Item>
         </main>
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </NoSsr>
   )

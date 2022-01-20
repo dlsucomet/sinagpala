@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { makeStyles } from '@mui/styles'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -144,7 +143,7 @@ export default function About() {
 
         </main>
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </NoSsr>
   )
