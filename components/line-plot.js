@@ -25,17 +25,18 @@ const useStyles = makeStyles(theme => ({
     plotContainer: {
         display: 'flex',
         justifyContent: 'center',
+        width: '100%'
     },
-    plot: {
-        width: '100%',
-        height: '450px',
-        [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
-            width: '90%',
-        },
-        [theme.breakpoints.up('md')]: {
-            width: '70%',
-        },
-    },
+    // plot: {
+    //     width: '100%',
+    //     height: '450px',
+    //     // [theme.breakpoints.up('sm')]: { //https://levelup.gitconnected.com/using-breakpoints-and-media-queries-in-material-ui-47470d3c43d9
+    //     //     width: '90%',
+    //     // },
+    //     // [theme.breakpoints.up('md')]: {
+    //     //     width: '70%',
+    //     // },
+    // },
     infoMarker: {
         fontSize: '30px',
         padding: '0px',
@@ -107,7 +108,7 @@ export default function LinePlot(props){
                                     hovertemplate: '%{y}<extra></extra>',
                                 },
                             ]}
-                            className={classes.plot}
+                            // className={classes.plot}
                             layout={{
                             paper_bgcolor: "rgba(0,0,0,0)",
                             plot_bgcolor:'rgba(0,0,0,0)',
@@ -142,6 +143,8 @@ export default function LinePlot(props){
                                 color: 'black'
                             },
                             }}
+                            useResizeHandler={true}
+                            style={{width: "80%", height: "100%"}}
                             config={{displayModeBar: false, responsive: true }}
                         />
                     :

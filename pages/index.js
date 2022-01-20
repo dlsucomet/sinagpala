@@ -105,7 +105,7 @@ export default function Home({ data }) {
         <main className={classes.main}>
           <Item>
             <Typography variant="h1" className={classes.title} >
-              <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
+              <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo} priority={true}/>
               Sinagpala
             </Typography>
           </Item>
@@ -133,7 +133,7 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
-            <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound}/>
+            <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound} priority={true}/>
             <div className={classes.dataColumn}>
               <div className={classes.infoBlock}> 
                 Marikina has an estimated {<br />}
@@ -148,6 +148,9 @@ export default function Home({ data }) {
 
           <Item>
             <LinePlot data={{properties:marikina_data}} type="hour" />
+          </Item>
+          <Item>
+            <LinePlot data={{properties:marikina_data}} type="month" />
           </Item>
         </main>
 
