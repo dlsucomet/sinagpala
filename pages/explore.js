@@ -6,7 +6,6 @@ import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
 import EnvironmentCard from '../components/environment-card'
-import Search from '../components/search'
 import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box';
 
@@ -31,6 +30,13 @@ const useStyles = makeStyles(theme => ({
         right: '1vw',
         top: '1vh',
         zIndex: 1,
+        minWidth: '180px',
+    },
+    posLegendCard: {
+        position: 'absolute',
+        left: '1vw',
+        bottom: '1vh',
+        zIndex: 999,
         minWidth: '180px',
     },
     sideMargin: {
@@ -68,12 +74,16 @@ export default function Explore(){
                 <Map onDataChange={onDataChange}/>
                 {
                     buildingData != null ?
+                    <>
                         <div className={classes.posCard}>
                             <SummaryCard data={buildingData} />
+                        </div>
+                        <div className={classes.posLegendCard}>
                             <ChartLegend />
                         </div>
+                    </>
                     :
-                        <div className={classes.posCard}>
+                        <div className={classes.posLegendCard}>
                             <ChartLegend />
                         </div>
                 }

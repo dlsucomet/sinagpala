@@ -1,13 +1,12 @@
 /**
  * ------------------------------------------------------------------------------------------
  * [COMPONENT]
- * @function SummaryCard   -   Summary card that shows the statistics of a building
+ * @function ChartLegend   -   Choropleth Chart Legend
  *                                  
  *
  * #HOW TO CALL:
- *      <SumaryCard     data />
+ *      <ChartLegend />
  *
- *    @prop { Object }   data  - object data with the statitics information
  *
  * USED IN:
  * explore.js
@@ -21,7 +20,7 @@ import Card from '@mui/material/Card'
 import { makeStyles } from '@mui/styles'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
-import PropTypes from 'prop-types'
+import { styled } from '@mui/system';
 
 const useStyles = makeStyles(theme => ({
     numData: {
@@ -65,19 +64,27 @@ const useStyles = makeStyles(theme => ({
     },
     legendCircle: {
         borderRadius: '50%',
-        // display: 'inline-block',
         height: '10px',
-        // marginRight: '5px',
         width: '10px',
+    },
+    posCard: {
+        padding: '0px',
     }
 }));
+
+const CardContentNoPadding = styled(CardContent)(`
+  padding: 8px;
+  &:last-child {
+    padding-bottom: 8px;
+  }
+`);
 
 export default function ChartLegend(props) {
     const classes = useStyles();
 
     const card = (
         <React.Fragment>
-            <CardContent>
+            <CardContentNoPadding>
                 <>
                     <Box
                         sx={{
@@ -97,27 +104,23 @@ export default function ChartLegend(props) {
                         </Box>
                         <Box
                             sx={{ flexGrow: 1 }}
+                            className={classes.dataColumn}
                         >
-                            <div>40.01 - 50.00</div>
-                            <div>30.01 - 40.00</div>
-                            <div>20.01 - 30.00</div>
-                            <div>10.01 - 20.00</div>
-                            <div>1.00 - 10.00</div>
-                        </Box>
-                        
+                            <Typography variant='h8'>40.01 - 50.00</Typography>
+                            <Typography variant='h8'>30.01 - 40.00</Typography>
+                            <Typography variant='h8'>20.01 - 30.00</Typography>
+                            <Typography variant='h8'>10.01 - 20.00</Typography>
+                            <Typography variant='h8'>1.00 - 10.00</Typography>
+                        </Box>   
                     </ Box>
                 </>
-            </CardContent>
+            </CardContentNoPadding>
         </React.Fragment>
     );
 
     return (
-        <Box className={classes.posCard}>
-            <Card >{card}</Card>
+        <Box>
+            <Card>{card}</Card>
         </Box>
     );
-}
-
-ChartLegend.propTypes = {
-    data: PropTypes.object
 }

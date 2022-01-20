@@ -133,7 +133,7 @@ export default function Home({ data }) {
           </Item>
 
           <Item>
-            <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound}/>
+            <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound} priority={true}/>
             <div className={classes.dataColumn}>
               <div className={classes.infoBlock}> 
                 Marikina has an estimated {<br />}
