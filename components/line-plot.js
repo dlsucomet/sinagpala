@@ -144,7 +144,7 @@ export default function LinePlot(props){
                             },
                             }}
                             useResizeHandler={true}
-                            style={{width: "80%", height: "100%"}}
+                            style={{width: "90%", height: "100%"}}
                             config={{displayModeBar: false, responsive: true }}
                         />
                     :
