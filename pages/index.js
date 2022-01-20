@@ -5,7 +5,14 @@ import { makeStyles } from '@mui/styles'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import NoSsr from '../components/NoSsr'
-// import styles from '../styles/Home.module.css'
+import data from './api/marikinaBounds/marikina_polygon_bounds.json'
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+import dynamic from 'next/dynamic'  
+const LinePlot = dynamic(() => import("../components/line-plot"), {
+  loading: () => "Loading...",
+  ssr: false
+});
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -38,12 +45,40 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     verticalAlign: 'middle',
+  },
+  centerText: {
+    textAlign: 'center',
+  },
+  dataRow: { //one row in the card
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    width: '70%',
+  },
+  dataColumn: {
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: '1rem'
+  },
+  infoBlock: {
+    fontSize: '30px',
+  },
+  dataBlock: {
+    fontSize: '60px',
+    color: theme.palette.orange.main,
+    fontWeight: 'bold',
+  },
+  imgBound: {
+    margin: '100px'
   }
 }));
 
-export default function Home() {
+export default function Home({ data }) {
   const classes = useStyles();
-
+  const marikina_data = data.properties;
+  console.log(marikina_data)
   return (
     <NoSsr>
       <div className={classes.container}>
@@ -59,9 +94,9 @@ export default function Home() {
               crossOrigin=""
             />
         </Head>
-          <Header />
+        <Header />
 
-          <main className={classes.main}>
+        <main className={classes.main}>
           <h1 className={classes.title} >
             <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo}/>
             Sinagpala
@@ -71,16 +106,48 @@ export default function Home() {
           Have your rooftops checked for its solar energy potential.
           </p>
 
-          <Link href="/explore">
-            <a href="https://nextjs.org/docs" >
-                <p>Explore Marikina Area</p>
-            </a>
-          </Link>
+          <Button variant="outlined">
+            <Link href="/explore">
+                <a href="https://nextjs.org/docs" >
+                    <p>Explore Marikina Area</p>
+                </a>
+            </Link>
+          </Button>
 
+          <div style={{fontSize: '30px'}}>
+            <h1 className={classes.centerText}>Did You Know?</h1>
+          </div>
+
+          <Box
+              className={classes.dataRow}
+          >
+            <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound}/>
+            <div className={classes.dataColumn}>
+              <div className={classes.infoBlock}> 
+                Marikina has an estimated {<br />}
+                potential of having {<br />} 
+                <span className={classes.dataBlock}>
+                  {marikina_data['total_kwh']}
+                </span> kWh {<br />}
+                of solar energy
+              </div>
+            </div>
+          </Box>
+
+          <LinePlot data={{properties:marikina_data}} type="hour" />
         </main>
 
-          {/* <Footer /> */}
+        {/* <Footer /> */}
       </div>
     </NoSsr>
   )
 }
+
+export async function getStaticProps(){
+  return {
+    props: {
+      data: data.features[0],
+    },
+  }
+}
+

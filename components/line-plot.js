@@ -22,7 +22,7 @@ import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
-    container: {
+    plotContainer: {
         display: 'flex',
         justifyContent: 'center',
     },
@@ -50,6 +50,9 @@ export default function LinePlot(props){
     var dataX = [];
     var dataLabels = [] ;
     const tableTitle = props.type == "month" ? 'Average Monthly kW/h' : 'Average Hourly kW/h';
+    
+    console.log("props")
+    console.log(props)
     
     if (props.data !== null) {
         const { total_kwh } = props.data.properties; //Basis for no data (if -999)
@@ -89,7 +92,7 @@ export default function LinePlot(props){
     // https://plotly.com/javascript/hover-text-and-formatting/
     // https://plotly.com/javascript/tick-formatting/
     return (
-        <div className={classes.container}>
+        <div className={classes.plotContainer}>
             {
                 props.data !== null ?
                     total_kwh !== -999 ? //with data
@@ -104,9 +107,10 @@ export default function LinePlot(props){
                                     hovertemplate: '%{y}<extra></extra>',
                                 },
                             ]}
-                            // style={{ width: "70%", height: "70%" }}
                             className={classes.plot}
                             layout={{
+                            paper_bgcolor: "rgba(0,0,0,0)",
+                            plot_bgcolor:'rgba(0,0,0,0)',
                             xaxis: {
                                 fixedrange: true,
                                 tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
