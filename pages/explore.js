@@ -17,7 +17,7 @@ const LinePlot = dynamic(() => import("../components/line-plot"), {
     loading: () => "Loading...",
     ssr: false
 });
-const Map = dynamic(() => import("../components/Map"), {
+const Map = dynamic(() => import("../components/map"), {
     loading: () => "Loading...",
     ssr: false
   });
