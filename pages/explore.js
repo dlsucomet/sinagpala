@@ -9,7 +9,7 @@ import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
 import EnvironmentCard from '../components/environment-card'
 import { makeStyles } from '@mui/styles'
-import Box from '@mui/material/Box';
+import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
 //TODO Dyanmic Loading showing up concern: https://github.com/vercel/next.js/discussions/19142

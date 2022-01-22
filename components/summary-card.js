@@ -24,7 +24,7 @@ import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
-import { styled } from '@mui/system';
+import { styled } from '@mui/system'
 
 const useStyles = makeStyles(theme => ({
     numData: {
