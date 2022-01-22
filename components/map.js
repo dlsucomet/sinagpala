@@ -17,7 +17,7 @@
 
 import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
-import ReactMapGL from "react-map-gl"
+import ReactMapGL, {Source, Layer} from "react-map-gl"
 import Search from './search'
 import PropTypes from 'prop-types'
 
@@ -68,7 +68,7 @@ export default function Map(props) {
 
         //Find feature with building properties
         features.forEach(element => {
-            if (element.layer.id == "choropleth-fill") {
+            if (element.layer.id == "building_data") {
                 buildingData = JSON.parse(JSON.stringify(element));
             }
         });
@@ -76,6 +76,30 @@ export default function Map(props) {
         console.log(buildingData);
         props.onDataChange(buildingData);
     }, [props]);
+
+    const layerStyle = {
+        id: 'building_data',
+        type: 'fill',
+        'source-layer': 'WebApp_Dummy_Data-3t9qlc',
+        paint: {
+            'fill-opacity': 0.8,
+            // 'fill-opacity-transition': {
+            //   duration: 800,
+            //   delay: 0,
+            // },
+            'fill-outline-color': '#f65026',
+            'fill-color': {
+              property: 'total_kwh',
+              stops: [
+                [1, '#fafa6e'],
+                [13.25, '#fed445'],
+                [25.5, '#ffac28'],
+                [37.75, '#fd811e'],
+                [50, '#f65026'],
+              ],
+            },
+          },
+    };
 
     const refMap = (
         <React.Fragment>
@@ -87,6 +111,9 @@ export default function Map(props) {
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >
+                        <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.3k7xdblq'}>
+                            <Layer {...layerStyle} />
+                        </Source>
                     <Search
                         mapRef={mapRef}
                         setViewport={setViewport}/>
