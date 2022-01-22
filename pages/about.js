@@ -83,7 +83,7 @@ export default function About() {
           <h1 className={classes.centerText}>Sinagpala: About Us</h1>
           
           <div className={classes.infoBlock}>
-            <h2 className={classes.centerText}>What's Sinagpala？</h2>
+            <h2 className={classes.centerText}>What&apos;s Sinagpala？</h2>
             <p className={classes.description}>
               Sinagpala is a project that aims to provide a solar energy potential assessment to Marikina Buildings. With the rising traction of shifting towards renewable energy, this website can help users visualize and digest the solar energy potential information of select Marikina buildings.
             </p>
