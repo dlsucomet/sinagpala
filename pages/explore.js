@@ -78,7 +78,7 @@ export default function Explore(){
         <NoSsr>
             <Head>
                 <title>Sinagpala: Explore</title>
-                <meta name="description" content="Explore the solar potential of Marikina city today with Sinagpala" />
+                <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
                 <link rel="icon" type="image/png" 
                 href="/logo.svg" />
                 

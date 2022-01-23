@@ -64,7 +64,7 @@ export default function About() {
       <div className={classes.container}>
         <Head>
           <title>Sinagpala: About us</title>
-          <meta name="description" content="Explore the solar potential of Marikina city today with Sinagpala" />
+          <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
           <link rel="icon" type="image/png" 
           href="/logo.svg" />
           

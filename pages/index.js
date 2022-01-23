@@ -96,7 +96,7 @@ export default function Home({ data }) {
       <div className={classes.container}>
         <Head>
           <title>Sinagpala</title>
-          <meta name="description" content="Explore the solar potential of Marikina city today with Sinagpala" />
+          <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
           <link rel="icon" type="image/png" 
           href="../public/logo.svg" />
           <link
