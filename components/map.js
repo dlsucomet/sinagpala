@@ -17,12 +17,14 @@
 
 import * as React from 'react'
 import { useState, useCallback, useRef } from "react"
-import ReactMapGL, {Source, Layer} from "react-map-gl"
+import ReactMapGL, { Source, Layer, FlyToInterpolator } from "react-map-gl"
 import Search from './search'
 import PropTypes from 'prop-types'
+import mapboxgl from '!mapbox-gl'
 
 export default function Map(props) {
     const mapRef = useRef();
+    const markerRef = useRef(null);
 
     const maxBounds = {
         south: 121.076,
@@ -61,9 +63,9 @@ export default function Map(props) {
     const onClick = useCallback(event => {
         const {
           features,
-          srcEvent: {offsetX, offsetY}
+          srcEvent: {offsetX, offsetY},
         } = event;
-        
+        console.log(event)
         var buildingData = null;
 
         //Find feature with building properties
@@ -73,16 +75,61 @@ export default function Map(props) {
             }
         });
 
-        console.log(buildingData);
+        //Calculate for the centroid of polygon to fly to
+        if (buildingData !== null) {
+            const polygonBounds = buildingData.geometry.coordinates[0];
+
+            var [maxX, maxY]  = polygonBounds[0];
+            var [minX, minY]  = polygonBounds[0];
+
+            polygonBounds.forEach((coordinate) => {
+                if (coordinate[0] > maxX) {
+                    maxX = coordinate[0];
+                }
+                else if (coordinate[0] < minX) {
+                    minX = coordinate[0];
+                }
+
+                if (coordinate[1] > maxY) {
+                    maxY = coordinate[1];
+                }
+                else if (coordinate[1] < minY) {
+                    minY = coordinate[1];
+                }
+            })
+
+            // console.log('X - ', maxX, minX);
+            // console.log('Y - ', maxY, minY);
+
+            const centerX = minX + ((maxX - minX) / 2);
+            const centerY = minY + ((maxY - minY) / 2);
+
+            setViewport({
+                ...viewport,
+                longitude: centerX,
+                latitude: centerY,
+                zoom: 20,
+                transitionDuration: 500,
+                transitionInterpolator: new FlyToInterpolator(),
+            });
+
+            // Remove previous marker 
+            if (markerRef.current != null)
+                markerRef.current.remove()
+
+            // Add a marker to location
+            markerRef.current = new mapboxgl.Marker().setLngLat([centerX, centerY]).addTo(mapRef.current.getMap())
+        }
+
         props.onDataChange(buildingData);
-    }, [props]);
+    }, [props, viewport]);
 
     const layerStyle = {
         id: 'building_data',
         type: 'fill',
         'source-layer': 'WebApp_Dummy_Data-3t9qlc',
         paint: {
-            'fill-opacity': 0.8,
+            'fill-opacity': 0.6,
             // 'fill-opacity-transition': {
             //   duration: 800,
             //   delay: 0,
@@ -101,6 +148,18 @@ export default function Map(props) {
           },
     };
 
+    const buildingStyle = {
+        id: 'mapbox_building',
+        type: 'symbol',
+        'source-layer': 'poi_label',
+        'layout': {
+            'text-field': '{name}',
+            'text-letter-spacing': 0.05,
+            'text-offset': [0, 1.5],
+            'text-size': 10
+        }
+    };
+
     const refMap = (
         <React.Fragment>
             <ReactMapGL
@@ -114,8 +173,12 @@ export default function Map(props) {
                         <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.3k7xdblq'}>
                             <Layer {...layerStyle} />
                         </Source>
+                        <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
+                            <Layer {...buildingStyle} />
+                        </Source>
                     <Search
                         mapRef={mapRef}
+                        markerRef={markerRef}
                         setViewport={setViewport}/>
             </ReactMapGL>
         </React.Fragment>

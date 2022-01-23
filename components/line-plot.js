@@ -52,8 +52,8 @@ export default function LinePlot(props){
     var dataLabels = [] ;
     const tableTitle = props.type == "month" ? 'Average Monthly kWh (kilowatt-hour) ' : 'Average Hourly kWh (kilowatt-hour) ';
     
-    console.log("props")
-    console.log(props)
+    // console.log("props")
+    // console.log(props)
     
     if (props.data !== null) {
         const { total_kwh } = props.data.properties; //Basis for no data (if -999)
