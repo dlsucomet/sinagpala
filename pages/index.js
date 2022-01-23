@@ -186,11 +186,19 @@ export default function Home({ data }) {
           </Typography>
 
           <Item>
-            <LinePlot data={{properties:marikina_data}} type="hour" />
+            <LinePlot data={{properties:marikina_data}}
+                        type="hour"
+                        width={750}
+                        height={450}
+            />
           </Item>
 
           <Item>
-            <LinePlot data={{properties:marikina_data}} type="month" />
+            <LinePlot data={{properties:marikina_data}}
+                        type="month"
+                        width={750}
+                        height={450}
+            />
           </Item>
 
           <Item>

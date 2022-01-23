@@ -152,12 +152,15 @@ export default function Map(props) {
         id: 'mapbox_building',
         type: 'symbol',
         'source-layer': 'poi_label',
-        'layout': {
+        paint: {
+            'text-color': '#374140',
+        },
+        layout: {
             'text-field': '{name}',
-            'text-letter-spacing': 0.05,
-            'text-offset': [0, 1.5],
-            'text-size': 10
-        }
+            // 'text-letter-spacing': 0.05,
+            // 'text-offset': [0, 1.5],
+            'text-size': 12,
+        },
     };
 
     const refMap = (
