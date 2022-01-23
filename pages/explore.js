@@ -24,7 +24,7 @@ const Map = dynamic(() => import("../components/map"), {
 
 const useStyles = makeStyles(theme => ({
     mapContainer: {
-        height: '70vh',
+        height: '92vh',
         position: 'relative',
         overflow: 'hidden',
     },
@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
         right: '1vw',
         top: '1vh',
         zIndex: 1,
-        minWidth: '180px',
+        minWidth: '390px',
+        maxHeight: '90vh',
     },
     posLegendCard: {
         position: 'absolute',
@@ -109,22 +110,8 @@ export default function Explore(){
                         </div>
                 }
             </div>
-            
-            <div className={classes.sideMargin}>
-                <Typography variant="h4" className={classes.infoTitle}>Solar Energy Information</Typography>
-                <Box sx={{ 
-                            display: 'flex',
-                            flexDirection: 'column',
-                    }}>
-                    <LinePlot data={buildingData}
-                    type="hour"/>
-                    <LinePlot data={buildingData}
-                    type="month"/>
-                </Box> 
-                <EnvironmentCard data={buildingData}/>
-            </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </NoSsr>
     )
 }
