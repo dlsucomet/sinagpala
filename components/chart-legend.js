@@ -63,9 +63,9 @@ const useStyles = makeStyles(theme => ({
         height: '100%'
     },
     legendCircle: {
-        borderRadius: '50%',
-        height: '10px',
-        width: '10px',
+        borderRadius: '10%',
+        height: '15px',
+        width: '15px',
     },
     posCard: {
         padding: '0px',
@@ -86,6 +86,7 @@ export default function ChartLegend(props) {
         <React.Fragment>
             <CardContentNoPadding>
                 <>
+                    <Typography variant='h8'>Total Energy (kWh)</Typography>
                     <Box
                         sx={{
                             p: 0.5,
@@ -106,11 +107,11 @@ export default function ChartLegend(props) {
                             sx={{ flexGrow: 1 }}
                             className={classes.dataColumn}
                         >
-                            <Typography variant='h8'>40.01 - 50.00</Typography>
-                            <Typography variant='h8'>30.01 - 40.00</Typography>
-                            <Typography variant='h8'>20.01 - 30.00</Typography>
-                            <Typography variant='h8'>10.01 - 20.00</Typography>
-                            <Typography variant='h8'>1.00 - 10.00</Typography>
+                            <Typography variant='h8'>40 - 50</Typography>
+                            <Typography variant='h8'>30 - 40</Typography>
+                            <Typography variant='h8'>20 - 30</Typography>
+                            <Typography variant='h8'>10 - 20</Typography>
+                            <Typography variant='h8'>1 - 10</Typography>
                         </Box>   
                     </ Box>
                 </>

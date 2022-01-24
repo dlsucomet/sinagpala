@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
         left: '1vw',
         bottom: '1vh',
         zIndex: 999,
-        minWidth: '180px',
+        minWidth: '130px',
     },
     sideMargin: {
         marginLeft: '1%',
