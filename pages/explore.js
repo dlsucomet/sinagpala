@@ -25,6 +25,7 @@ const Map = dynamic(() => import("../components/map"), {
 const useStyles = makeStyles(theme => ({
     mapContainer: {
         height: '92vh',
+        width: '100%',
         position: 'relative',
         overflow: 'hidden',
     },

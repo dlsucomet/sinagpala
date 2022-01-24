@@ -175,6 +175,8 @@ export default function Map(props) {
                     mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
                     mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                     {...viewport}
+                    width='100%'
+                    height='100%'
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >

@@ -28,14 +28,15 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     margin: '20px 0px 0px 20px',
     width: '30%',
-    minWidth: '300px',
+    minWidth: '100px',
+    maxWidth: '500px'
   },
   search: {
     width: '100%',
     border: '1px solid #666',
     boxSizing: 'border-box',
-    fontSize: '18px',
-    padding: '18px',
+    fontSize: '16px',
+    padding: '16px',
   },
   results: {
     listStyle: 'none',

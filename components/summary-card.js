@@ -88,7 +88,7 @@ export default function SummaryCard(props) {
             <CardContentNoPadding>
                 {
                     total_kwh != -999 ? //Check if building polygon has data
-                    <>
+                    <Scrollbars  style={{ height: '85vh' }}>
                         <Box
                             sx={{
                                 p: 0.5,
@@ -187,7 +187,7 @@ export default function SummaryCard(props) {
                         >
                             <EnvironmentCard data={props.data}/>
                         </Box> 
-                    </>
+                    </Scrollbars>
                     :
                     <Box className={classes.labelData}>
                         <p>No Data Found</p>
@@ -199,9 +199,7 @@ export default function SummaryCard(props) {
 
     return (
         <Box className={classes.posCard}>
-            <Scrollbars  style={{ height: '90vh' }}>
-                <Card >{card}</Card>
-            </Scrollbars>
+            <Card >{card}</Card>
         </Box>
     );
 }
