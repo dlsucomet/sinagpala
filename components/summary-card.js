@@ -88,7 +88,7 @@ export default function SummaryCard(props) {
             <CardContentNoPadding>
                 {
                     total_kwh != -999 ? //Check if building polygon has data
-                    <Scrollbars  style={{ height: '85vh' }}>
+                    <Scrollbars  autoHeight autoHeightMin={350}>
                         <Box
                             sx={{
                                 p: 0.5,
