@@ -24,7 +24,8 @@ import { FlyToInterpolator } from "react-map-gl"
 
 const useStyles = makeStyles(theme => ({
   container: {
-    float: 'left',
+    zIndex: '1',
+    position: 'absolute',
     margin: '20px 0px 0px 20px',
     width: '30%',
     minWidth: '300px',
