@@ -31,18 +31,33 @@ const useStyles = makeStyles(theme => ({
     },
     posCard: {
         position: 'absolute',
+        zIndex: 1,
         right: '1vw',
         top: '1vh',
-        zIndex: 1,
         minWidth: '390px',
         maxHeight: '90vh',
+        [theme.breakpoints.down('md')]: {
+            left:'0',
+            right:'0',
+            top:'auto',
+            bottom: '1vh',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '90%'
+        }
     },
     posLegendCard: {
         position: 'absolute',
-        left: '1vw',
         bottom: '1vh',
+        left: '1vw', 
         zIndex: 999,
         minWidth: '180px',
+        [theme.breakpoints.down('md')]: {
+            bottom: 'auto',
+            left: 'auto', 
+            top: '1vh',
+            right: '1vw',
+        }
     },
     sideMargin: {
         marginLeft: '1%',
