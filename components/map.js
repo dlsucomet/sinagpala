@@ -165,11 +165,18 @@ export default function Map(props) {
 
     const refMap = (
         <React.Fragment>
+            <Search
+                mapRef={mapRef}
+                markerRef={markerRef}
+                onClick={e => e.stopPropagation()}
+                setViewport={setViewport}/>
             <ReactMapGL
                     ref={mapRef}
                     mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
                     mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                     {...viewport}
+                    width='100%'
+                    height='100%'
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >
@@ -179,10 +186,6 @@ export default function Map(props) {
                         <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
                             <Layer {...buildingStyle} />
                         </Source>
-                    <Search
-                        mapRef={mapRef}
-                        markerRef={markerRef}
-                        setViewport={setViewport}/>
             </ReactMapGL>
         </React.Fragment>
     ) 

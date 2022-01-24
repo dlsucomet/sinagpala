@@ -52,15 +52,43 @@ const useStyles = makeStyles(theme => ({
     },
     dataRow: { //one row in the card
         display: 'flex',
+        flexDirection: 'row',
         justifyContent: 'space-around',
-        // padding and margin are set on MUI Component
-        // p: 0.5,
-        // m: 0.5,
         flexWrap: 'wrap',
         flexGrow: 1,
+        [theme.breakpoints.down('md')]: {
+            alignContent: 'flex-start',
+            width: 'max-content',
+        },
+    },
+    flexContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'row',
+            // height: '450px',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+        },
+    },
+    chartContainer: {
+        padding: '8px',
+        margin: '8px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flexWrap: 'wrap',
+        flexGrow: 1,
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            gap: '16px',
+            // flex: '0 0 auto'
+        },
     },
     posCard: {
-        marginBottom: '10px',
+        marginBottom: '10px'
     },
     infoTitle: {
         fontWeight: 'bold'
@@ -88,14 +116,8 @@ export default function SummaryCard(props) {
             <CardContentNoPadding>
                 {
                     total_kwh != -999 ? //Check if building polygon has data
-                    <>
-                        <Box
-                            sx={{
-                                p: 0.5,
-                                m: 0.5,
-                            }}
-                            className={classes.dataRow}
-                        >
+                    <Scrollbars autoHeight autoHeightMax={400}>
+                        <div className={classes.flexContainer}> 
                             <Box
                                 sx={{
                                     p: 0.5,
@@ -103,27 +125,33 @@ export default function SummaryCard(props) {
                                 }}
                                 className={classes.dataRow}
                             >
-                                <div>
-                                    <Typography variant="h6" component="div" className={classes.numData}>
-                                        {total_kwh} kWh
-                                    </Typography>
-                                    <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
-                                    Annual potential solar {<br />} energy generation
-                                    </Typography>
-                                </div>
-                            </ Box>
-                            <Box
-                                sx={{
-                                    p: 0.5,
-                                    m: 0.5,
-                                }}
-                                className={classes.dataRow}
-                            >
-                                <div className={classes.groupData}>
-                                    <Typography variant="h6" component="div" className={classes.numData}>
-                                        {num_panels}
-                                    </Typography>
+                                <Box
+                                    sx={{
+                                        p: 0.5,
+                                        m: 0.5,
+                                    }}
+                                    className={classes.dataRow}
+                                >
                                     <div>
+                                        <Typography variant="h6" component="div" className={classes.numData}>
+                                            {total_kwh} kWh
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
+                                        Annual potential solar {<br />} energy generation
+                                        </Typography>
+                                    </div>
+                                </ Box>
+                                <Box
+                                    sx={{
+                                        p: 0.5,
+                                        m: 0.5,
+                                    }}
+                                    className={classes.dataRow}
+                                >
+                                    <div>
+                                        <Typography variant="h6" component="div" className={classes.numData}>
+                                            {num_panels}
+                                        </Typography>
                                         <Typography variant="h7" sx={{ fontSize: 12, textAlign: 'center' }}>Number of panels <span>
                                             <Tooltip title="Panel specifications listed in our about page." arrow placement="bottom" sx={{ fontSize: 12, textAlign: 'center' }}>
                                                 <HelpOutlineIcon />
@@ -131,63 +159,54 @@ export default function SummaryCard(props) {
                                         </span>
                                         </Typography>
                                     </div>
-                                </div>
+                                </Box>
+                                <Box
+                                    sx={{
+                                        p: 0.5,
+                                        m: 0.5,
+                                    }}
+                                    className={classes.dataRow}
+                                >
+                                    <div>
+                                        <Typography variant="h6" component="div" className={classes.numData}>
+                                            {panel_area} m<sup style={{
+                                                                        fontSize:'small'
+                                                                    }}>2</sup>
+                                        </Typography>
+                                        <Typography sx={{ fontSize: 12, textAlign: 'center' }} gutterBottom>
+                                            Available roof area {<br />} for installation
+                                        </Typography>
+                                    </div>
+                                </Box>
                             </Box>
-                            <Box
-                                sx={{
+                            <Divider sx={{marginBottom: '15px'}}/>
+                            {/* <Typography variant="h7" className={classes.infoTitle}>Solar Energy Information</Typography> */}
+                            <Box 
+                                className={classes.chartContainer}
+                            >
+                                <LinePlot data={props.data}
+                                            type="hour"
+                                            width={350}
+                                            height={250}
+                                />
+                                <br />
+                                <LinePlot data={props.data}
+                                            type="month"
+                                            width={350}
+                                            height={250}
+                                />
+                            </Box> 
+                            <Divider sx={{marginBottom: '15px'}}/>
+                            <Box sx={{
                                     p: 0.5,
                                     m: 0.5,
                                 }}
-                                className={classes.dataRow}
+                                // className={classes.dataRow}
                             >
-                                <div className={classes.groupData}>
-                                    <Typography variant="h6" component="div" className={classes.numData}>
-                                        {panel_area} m<sup style={{
-                                                                    fontSize:'small'
-                                                                }}>2</sup>
-                                    </Typography>
-                                    <Typography sx={{ fontSize: 12, textAlign: 'center' }} gutterBottom>
-                                        Available roof area {<br />} for installation
-                                    </Typography>
-                                </div>
-                            </Box>
-                        </Box>
-                        <Divider sx={{marginBottom: '15px'}}/>
-                        {/* <Typography variant="h7" className={classes.infoTitle}>Solar Energy Information</Typography> */}
-                        <Box sx={{
-                                p: 0.5,
-                                m: 0.5,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                alignContent: 'center',
-                                flexWrap: 'wrap',
-                                flexGrow: 1,
-                            }}
-                            // className={classes.dataRow}
-                        >
-                            <LinePlot data={props.data}
-                                        type="hour"
-                                        width={350}
-                                        height={250}
-                            />
-                            <br />
-                            <LinePlot data={props.data}
-                                        type="month"
-                                        width={350}
-                                        height={250}
-                            />
-                        </Box> 
-                        <Divider sx={{marginBottom: '15px'}}/>
-                        <Box sx={{
-                                p: 0.5,
-                                m: 0.5,
-                            }}
-                            // className={classes.dataRow}
-                        >
-                            <EnvironmentCard data={props.data}/>
-                        </Box> 
-                    </>
+                                <EnvironmentCard data={props.data}/>
+                            </Box> 
+                        </div>
+                    </Scrollbars>
                     :
                     <Box className={classes.labelData}>
                         <p>No Data Found</p>
@@ -199,9 +218,7 @@ export default function SummaryCard(props) {
 
     return (
         <Box className={classes.posCard}>
-            <Scrollbars  style={{ height: '90vh' }}>
-                <Card >{card}</Card>
-            </Scrollbars>
+            <Card >{card}</Card>
         </Box>
     );
 }
