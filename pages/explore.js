@@ -25,23 +25,39 @@ const Map = dynamic(() => import("../components/map"), {
 const useStyles = makeStyles(theme => ({
     mapContainer: {
         height: '92vh',
+        width: '100%',
         position: 'relative',
         overflow: 'hidden',
     },
     posCard: {
         position: 'absolute',
+        zIndex: 1,
         right: '1vw',
         top: '1vh',
-        zIndex: 1,
         minWidth: '390px',
         maxHeight: '90vh',
+        [theme.breakpoints.down('md')]: {
+            left:'0',
+            right:'0',
+            top:'auto',
+            bottom: '0',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            width: '100%'
+        }
     },
     posLegendCard: {
         position: 'absolute',
-        left: '1vw',
         bottom: '1vh',
+        left: '1vw', 
         zIndex: 999,
         minWidth: '130px',
+        [theme.breakpoints.down('md')]: {
+            bottom: 'auto',
+            left: 'auto', 
+            top: '1vh',
+            right: '1vw',
+        }
     },
     sideMargin: {
         marginLeft: '1%',
