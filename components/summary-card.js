@@ -54,26 +54,39 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        // padding and margin are set on MUI Component
-        // p: 0.5,
-        // m: 0.5,
         flexWrap: 'wrap',
         flexGrow: 1,
-        // [theme.breakpoints.down('md')]: {
-        //     flexWrap: 'nowrap',
-        //     flexBasis: '100%'
-        // },
+        [theme.breakpoints.down('md')]: {
+            alignContent: 'flex-start',
+            width: 'max-content',
+        },
     },
-    // flexContainer: {
-    //     display: 'flex',
-    //     flexDirection: 'column',
-    //     [theme.breakpoints.down('md')]: {
-    //         flexDirection: 'row',
-    //         height: '450px',
-    //         overflowX: 'scroll',
-    //         overflowY: 'hidden',
-    //     },
-    // },
+    flexContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'row',
+            // height: '450px',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+        },
+    },
+    chartContainer: {
+        padding: '8px',
+        margin: '8px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flexWrap: 'wrap',
+        flexGrow: 1,
+        [theme.breakpoints.down('md')]: {
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            gap: '16px',
+            // flex: '0 0 auto'
+        },
+    },
     posCard: {
         marginBottom: '10px'
     },
@@ -103,7 +116,7 @@ export default function SummaryCard(props) {
             <CardContentNoPadding>
                 {
                     total_kwh != -999 ? //Check if building polygon has data
-                    <Scrollbars autoHeight autoHeightMin={350}>
+                    <Scrollbars autoHeight autoHeightMax={400}>
                         <div className={classes.flexContainer}> 
                             <Box
                                 sx={{
@@ -168,17 +181,8 @@ export default function SummaryCard(props) {
                             </Box>
                             <Divider sx={{marginBottom: '15px'}}/>
                             {/* <Typography variant="h7" className={classes.infoTitle}>Solar Energy Information</Typography> */}
-                            <Box sx={{
-                                    p: 0.5,
-                                    m: 0.5,
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    alignContent: 'center',
-                                    flexWrap: 'wrap',
-                                    flexGrow: 1,
-                                }}
-                                // className={classes.dataRow}
+                            <Box 
+                                className={classes.chartContainer}
                             >
                                 <LinePlot data={props.data}
                                             type="hour"

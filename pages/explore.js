@@ -40,10 +40,10 @@ const useStyles = makeStyles(theme => ({
             left:'0',
             right:'0',
             top:'auto',
-            bottom: '1vh',
+            bottom: '0',
             marginLeft: 'auto',
             marginRight: 'auto',
-            width: '90%'
+            width: '100%'
         }
     },
     posLegendCard: {

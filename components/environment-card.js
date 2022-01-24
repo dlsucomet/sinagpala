@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
         // alignItems: 'center',
     },
     groupDataContainer: { //statistics and label
+        width: 'max-content',
         flexGrow: 1,
     },
     groupData: {
@@ -43,6 +44,7 @@ const useStyles = makeStyles(theme => ({
     dataRow: { //one row in the card
         display: 'flex',
         justifyContent: 'space-around',
+        // width: 'max-content',
         flexWrap: 'wrap',
         // alignItems: 'center',
     },
@@ -176,13 +178,13 @@ export default function EnvironmentCard(props) {
                                             metric tons
                                         </Typography>
                                     </div>
+                                    <Typography variant="h7" sx={{display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center"}}>
+                                        =
+                                    </Typography>
                                 </div>
                             </div>
-                            <Typography variant="h7" sx={{display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center"}}>
-                                =
-                            </Typography>
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>
@@ -199,13 +201,13 @@ export default function EnvironmentCard(props) {
                                             grown for 10 years
                                         </Typography>
                                     </div>
+                                    <Typography variant="h7" sx={{display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center"}}>
+                                        =
+                                    </Typography>
                                 </div>
                             </div>
-                            <Typography variant="h7" sx={{display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center"}}>
-                                =
-                            </Typography>
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>
