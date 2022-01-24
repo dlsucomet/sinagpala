@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
         bottom: '1vh',
         left: '1vw', 
         zIndex: 999,
-        minWidth: '180px',
+        minWidth: '130px',
         [theme.breakpoints.down('md')]: {
             bottom: 'auto',
             left: 'auto', 
