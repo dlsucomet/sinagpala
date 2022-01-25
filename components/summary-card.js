@@ -35,7 +35,7 @@ const LinePlot = dynamic(() => import("./line-plot"), {
     ssr: false
 });
 
-const useStyles = makeStyles(theme => ({
+const useStyles =  props => makeStyles(theme => ({
     numData: {
         display: 'flex',
         justifyContent: 'center',
@@ -96,7 +96,7 @@ const useStyles = makeStyles(theme => ({
     cardHeight: {
         height: '88vh !important',
         [theme.breakpoints.down('md')]: {
-            height: '42vh !important',
+            height: `${props.plotHeight + 60}px !important`,
         }, 
     }
 }));
@@ -109,7 +109,9 @@ const CardContentNoPadding = styled(CardContent)(`
 `);
 
 export default function SummaryCard(props) {
-    const classes = useStyles();
+    const plotHeight = 250;
+    const plotWidth = 350;
+    const classes = useStyles({'plotHeight': plotHeight, 'plotWidth': plotWidth})();
 
     const {
         total_kwh,
@@ -193,14 +195,14 @@ export default function SummaryCard(props) {
                             >
                                 <LinePlot data={props.data}
                                             type="hour"
-                                            width={350}
-                                            height={250}
+                                            width={plotWidth}
+                                            height={plotHeight}
                                 />
                                 <br />
                                 <LinePlot data={props.data}
                                             type="month"
-                                            width={350}
-                                            height={250}
+                                            width={plotWidth}
+                                            height={plotHeight}
                                 />
                             </Box> 
                             <Divider sx={{marginBottom: '15px'}}/>
