@@ -40,6 +40,7 @@ const useStyles =  props => makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        textAlign: 'center',
     },
     labelData: {
         display: 'flex',
@@ -118,7 +119,8 @@ export default function SummaryCard(props) {
     const {
         total_kwh,
         num_panels,
-        panel_area
+        panel_area,
+        address
     } = props.data.properties;
 
     const card = (
@@ -129,6 +131,17 @@ export default function SummaryCard(props) {
                     // <Scrollbars autoHeight autoHeightMax={'90vh'}>
                     <Scrollbars className={classes.cardHeight} >
                         <div className={classes.flexContainer}> 
+                            <Box
+                                    sx={{
+                                        p: 0.5,
+                                        m: 0.5,
+                                    }}
+                                    className={classes.dataRow}
+                                >
+                                    <Typography variant="h6" component="div" className={classes.numData}>
+                                            {address}
+                                    </Typography>
+                            </Box>
                             <Box
                                 sx={{
                                     p: 0.5,

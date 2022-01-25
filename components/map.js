@@ -65,7 +65,7 @@ export default function Map(props) {
           features,
           srcEvent: {offsetX, offsetY},
         } = event;
-        console.log(event)
+        
         var buildingData = null;
 
         //Find feature with building properties
@@ -127,7 +127,7 @@ export default function Map(props) {
     const layerStyle = {
         id: 'building_data',
         type: 'fill',
-        'source-layer': 'WebApp_Dummy_Data-3t9qlc',
+        'source-layer': 'WebApp_Dummy_Data_1-4gxvgk',
         paint: {
             'fill-opacity': 0.6,
             // 'fill-opacity-transition': {
@@ -180,7 +180,7 @@ export default function Map(props) {
                     onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                     onClick={onClick}
                     >
-                        <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.3k7xdblq'}>
+                        <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
                             <Layer {...layerStyle} />
                         </Source>
                         <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
