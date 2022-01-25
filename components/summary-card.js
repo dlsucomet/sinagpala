@@ -80,10 +80,12 @@ const useStyles =  props => makeStyles(theme => ({
         alignContent: 'center',
         flexWrap: 'wrap',
         flexGrow: 1,
+        minHeight: '40vh',
         [theme.breakpoints.down('md')]: {
             flexDirection: 'row',
             flexWrap: 'nowrap',
             gap: '16px',
+            minHeight: '0px'
             // flex: '0 0 auto'
         },
     },
