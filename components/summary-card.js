@@ -94,7 +94,10 @@ const useStyles = makeStyles(theme => ({
         fontWeight: 'bold'
     },
     cardHeight: {
-        height: '90vh'
+        height: '88vh !important',
+        [theme.breakpoints.down('md')]: {
+            height: '42vh !important',
+        }, 
     }
 }));
 
@@ -120,7 +123,7 @@ export default function SummaryCard(props) {
                 {
                     total_kwh != -999 ? //Check if building polygon has data
                     // <Scrollbars autoHeight autoHeightMax={'90vh'}>
-                    <Scrollbars className={classes.cardHeight} style={{height: '88vh'}}>
+                    <Scrollbars className={classes.cardHeight} >
                         <div className={classes.flexContainer}> 
                             <Box
                                 sx={{
