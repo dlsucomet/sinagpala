@@ -17,23 +17,26 @@
  */
 import { useCallback, useRef, useState } from 'react'
 import axios from 'axios'
-import mapboxgl from '!mapbox-gl';
+import mapboxgl from '!mapbox-gl'
 import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
+import { FlyToInterpolator } from "react-map-gl"
 
 const useStyles = makeStyles(theme => ({
   container: {
-    float: 'left',
+    zIndex: '1',
+    position: 'absolute',
     margin: '20px 0px 0px 20px',
     width: '30%',
-    minWidth: '300px',
+    minWidth: '100px',
+    maxWidth: '500px'
   },
   search: {
     width: '100%',
     border: '1px solid #666',
     boxSizing: 'border-box',
-    fontSize: '18px',
-    padding: '18px',
+    fontSize: '16px',
+    padding: '16px',
   },
   results: {
     listStyle: 'none',
@@ -55,11 +58,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Search(props) {
   const classes = useStyles();
-  const searchRef = useRef(null)
-  const markerRef = useRef(null)
-  const [query, setQuery] = useState('')
-  const [active, setActive] = useState(false)
-  const [results, setResults] = useState([])
+  const searchRef = useRef(null);
+  // const markerRef = useRef(null);
+  const [query, setQuery] = useState('');
+  const [active, setActive] = useState(false);
+  const [results, setResults] = useState([]);
 
   const searchEndpoint = (query) => `/api/search/${query}`
 
@@ -90,12 +93,11 @@ export default function Search(props) {
         })
 
         // Remove previous marker 
-        if (markerRef.current != null)
-            markerRef.current.remove()
+        if (props.markerRef.current != null)
+          props.markerRef.current.remove()
 
         // Add a marker to location
-        markerRef.current = new mapboxgl.Marker().setLngLat(center).addTo(props.mapRef.current.getMap())
-        // Set the marker in the parent component
+        props.markerRef.current = new mapboxgl.Marker().setLngLat(center).addTo(props.mapRef.current.getMap())
         
         // Set the viewport to the new center 
         props.setViewport({
@@ -106,11 +108,13 @@ export default function Search(props) {
             zoom: 20,
             minZoom: 18,
             maxZoom: 20,
+            transitionDuration: 500,
+            transitionInterpolator: new FlyToInterpolator(),
         })
         // Hides the search suggestions
         setActive(false)
     }
-  }, [])
+  }, [props])
 
   return (
     <div

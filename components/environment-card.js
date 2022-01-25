@@ -29,25 +29,28 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 const useStyles = makeStyles(theme => ({
     labelData: {
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
     },
     groupDataContainer: { //statistics and label
+        width: 'max-content',
         flexGrow: 1,
     },
     groupData: {
         display: 'flex',
         justifyContent: 'center',
-        gap: '20px'
+        // gap: '20px'
     },
     dataRow: { //one row in the card
         display: 'flex',
         justifyContent: 'space-around',
+        // width: 'max-content',
         flexWrap: 'wrap',
+        // alignItems: 'center',
     },
-    infoTitle: {
-        fontWeight: 'bold',
-        margin: '1rem 0',
+    infoLabel: {
+        fontSize: 12,
+        textAlign: 'center',
     }
 }));
 
@@ -146,8 +149,8 @@ export default function EnvironmentCard(props) {
             {
                 props.data !== null && total_kwh != -999 ?
                     <div>
-                        <Typography variant="h4" className={classes.infoTitle}>Potential Environmental Impact <span>
-                            <Tooltip title="With this much renewable energy produced, you can contribute this much back to mother earth!" arrow placement="right" sx={{ fontSize: 15, textAlign: 'center' }}>
+                        <Typography variant="h7" className={classes.infoTitle}>Potential Environmental Impact <span>
+                            <Tooltip title="With this much renewable energy produced, you can contribute this much back to mother earth!" arrow placement="top" sx={{ fontSize: 12, textAlign: 'center' }}>
                                 <HelpOutlineIcon />
                             </Tooltip>
                         </span>
@@ -162,63 +165,67 @@ export default function EnvironmentCard(props) {
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>
-                                        <Image src="/CO2.svg" alt="CO2" width={80} height={80}/>
+                                        <Image src="/CO2.svg" alt="CO2" width={25} height={25}/>
                                     </div>
                                     <div>
-                                        <Typography sx={{ fontSize: 18 }}>
+                                        <Typography className={classes.infoLabel}>
                                             Carbon Dioxide
                                         </Typography>
-                                        <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
                                             {carbonEmissions} 
                                         </Typography>
-                                        <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                        <Typography className={classes.infoLabel} sx={{fontWeight: 'light' }} gutterBottom>
                                             metric tons
                                         </Typography>
                                     </div>
+                                    <Typography variant="h7" sx={{display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center"}}>
+                                        =
+                                    </Typography>
                                 </div>
                             </div>
-                            <Typography variant="h2" sx={{display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center"}}>
-                                =
-                            </Typography>
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>
-                                        <Image src="/Seedling.svg" alt="Seedling" width={80} height={80}/>
+                                        <Image src="/Seedling.svg" alt="Seedling" width={25} height={25}/>
                                     </div>
                                     <div>
-                                        <Typography sx={{ fontSize: 18 }}>
+                                        <Typography className={classes.infoLabel}>
                                             Tree Seedlings
                                         </Typography>
-                                        <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
                                             {treeSeedlings} 
                                         </Typography>
-                                        <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
+                                        <Typography className={classes.infoLabel}sx={{ fontWeight: 'light' }} gutterBottom>
                                             grown for 10 years
                                         </Typography>
                                     </div>
+                                    <Typography variant="h7" sx={{display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "center"}}>
+                                        =
+                                    </Typography>
                                 </div>
                             </div>
-                            <Typography variant="h2" sx={{display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center"}}>
-                                =
-                            </Typography>
                             <div className={classes.groupDataContainer}>
                                 <div className={classes.groupData}>
                                     <div className={classes.labelData}>
-                                        <Image src="/Car.svg" alt="Car" width={80} height={80}/>
+                                        <Image src="/Car.svg" alt="Car" width={25} height={25}/>
                                     </div>
                                     <div>
-                                        <Typography sx={{ fontSize: 18 }}>
+                                        <Typography className={classes.infoLabel}>
                                             Miles driven
                                         </Typography>
-                                        <Typography sx={{ fontSize: 42, fontWeight: 'bold' }}>
+                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
                                             {passengerCars}
                                         </Typography>
-                                        <Typography sx={{ fontSize: 18, fontWeight: 'light' }} gutterBottom>
-                                            by average passenger cars
+                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'light' }} gutterBottom>
+                                            by cars <span>
+                                                <Tooltip title="Average passenger car" arrow placement="bottom" sx={{ fontSize: 12, textAlign: 'center' }}>
+                                                    <HelpOutlineIcon />
+                                                </Tooltip>
+                                            </span>
                                         </Typography>
                                     </div>
                                 </div>

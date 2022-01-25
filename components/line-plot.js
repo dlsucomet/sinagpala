@@ -24,9 +24,9 @@ import { Typography } from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
     plotContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-        width: '100%'
+        // display: 'flex',
+        // justifyContent: 'center',
+        // width: '100%'
     },
     // plot: {
     //     width: '100%',
@@ -52,8 +52,8 @@ export default function LinePlot(props){
     var dataLabels = [] ;
     const tableTitle = props.type == "month" ? 'Average Monthly kWh (kilowatt-hour) ' : 'Average Hourly kWh (kilowatt-hour) ';
     
-    console.log("props")
-    console.log(props)
+    // console.log("props")
+    // console.log(props)
     
     if (props.data !== null) {
         const { total_kwh } = props.data.properties; //Basis for no data (if -999)
@@ -105,60 +105,69 @@ export default function LinePlot(props){
                                     type: 'scatter',
                                     mode: 'lines+marker',
                                     marker: {color: '#fd811e'},
-                                    hovertemplate: '%{y}<extra></extra>',
+                                    hovertemplate: '%{y}kWh<extra></extra>',
                                 },
                             ]}
                             // className={classes.plot}
                             layout={{
-                            paper_bgcolor: "rgba(0,0,0,0)",
-                            plot_bgcolor:'rgba(0,0,0,0)',
-                            xaxis: {
-                                title: {
-                                    text: props.type == 'month' ? 'Month' : 'Hour',
-                                    font: {
-                                      size: 18,
-                                      color: 'black'
+                                paper_bgcolor: "rgba(0,0,0,0)",
+                                plot_bgcolor:'rgba(0,0,0,0)',
+                                margin: {
+                                    l: 0,
+                                    r: 0,
+                                    t: 25,
+                                    b: 0,
+                                },
+                                xaxis: {
+                                    title: {
+                                        text: props.type == 'month' ? 'Month' : 'Hour',
+                                        font: {
+                                        size: 10,
+                                        color: 'black'
+                                        },
+                                        standoff: 20
                                     },
-                                    standoff: 20
+                                    automargin: true,
+                                    fixedrange: true,
+                                    tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
+                                    tickvals: dataX,
+                                    ticktext: dataLabels,
+                                    tickfont: {
+                                        size: 8,
+                                        color: 'black'
+                                    },
                                 },
-                                automargin: true,
-                                fixedrange: true,
-                                tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
-                                tickvals: dataX,
-                                ticktext: dataLabels,
-                                tickfont: {
-                                    size: 16,
+                                yaxis: {
+                                    title: {
+                                        text: 'kWh (kilowatt-hour)',
+                                        font: {
+                                        size: 10,
+                                        color: 'black'
+                                        },
+                                        standoff: 20
+                                    },
+                                    automargin: true,
+                                    fixedrange: true,
+                                    tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
+                                    tick0: 0,
+                                    dtick: 5,
+                                    tickfont: {
+                                        size: 8,
+                                        color: 'black'
+                                    },
+                                    },
+                                hovermode: "closest",
+                                hoverlabel: { bgcolor: "#FFF" },
+                                title: tableTitle,
+                                titlefont: {
+                                    size: 15,
                                     color: 'black'
                                 },
-                                },
-                            yaxis: {
-                                title: {
-                                    text: 'kWh (kilowatt-hour)',
-                                    font: {
-                                      size: 18,
-                                      color: 'black'
-                                    }
-                                },
-                                automargin: true,
-                                fixedrange: true,
-                                tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
-                                tick0: 0,
-                                dtick: 5,
-                                tickfont: {
-                                    size: 16,
-                                    color: 'black'
-                                },
-                                },
-                            hovermode: "closest",
-                            hoverlabel: { bgcolor: "#FFF" },
-                            title: tableTitle,
-                            titlefont: {
-                                size: 20,
-                                color: 'black'
-                            },
+                                // autosize: true,
+                                width: props.width, 
+                                height: props.height, 
                             }}
                             useResizeHandler={true}
-                            style={{width: "90%", height: "100%"}}
                             config={{displayModeBar: false, responsive: true }}
                         />
                     :
@@ -178,5 +187,7 @@ export default function LinePlot(props){
 
 LinePlot.propTypes = {
     data: PropTypes.object,
-    type: PropTypes.string
+    type: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
 }

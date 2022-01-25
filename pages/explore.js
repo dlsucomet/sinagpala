@@ -7,7 +7,6 @@ import Footer from "../components/footer"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
-import EnvironmentCard from '../components/environment-card'
 import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -24,23 +23,40 @@ const Map = dynamic(() => import("../components/map"), {
 
 const useStyles = makeStyles(theme => ({
     mapContainer: {
-        height: '70vh',
+        height: '92vh',
+        width: '100%',
         position: 'relative',
         overflow: 'hidden',
     },
     posCard: {
         position: 'absolute',
+        zIndex: 999,
         right: '1vw',
         top: '1vh',
-        zIndex: 1,
-        minWidth: '180px',
+        minWidth: '390px',
+        maxHeight: '90vh',
+        [theme.breakpoints.down('md')]: {
+            right:'auto',
+            top:'auto',
+            bottom: '1vh',
+            left: '1vh', 
+            // marginLeft: '1%',
+            // marginRight: '1%',
+            width: '98vw'    
+        }
     },
     posLegendCard: {
         position: 'absolute',
-        left: '1vw',
         bottom: '1vh',
+        left: '1vw', 
         zIndex: 999,
-        minWidth: '180px',
+        minWidth: '130px',
+        [theme.breakpoints.down('md')]: {
+            bottom: 'auto',
+            left: 'auto', 
+            top: '1vh',
+            right: '1vw',
+        }
     },
     sideMargin: {
         marginLeft: '1%',
@@ -109,22 +125,8 @@ export default function Explore(){
                         </div>
                 }
             </div>
-            
-            <div className={classes.sideMargin}>
-                <Typography variant="h4" className={classes.infoTitle}>Solar Energy Information</Typography>
-                <Box sx={{ 
-                            display: 'flex',
-                            flexDirection: 'column',
-                    }}>
-                    <LinePlot data={buildingData}
-                    type="hour"/>
-                    <LinePlot data={buildingData}
-                    type="month"/>
-                </Box> 
-                <EnvironmentCard data={buildingData}/>
-            </div>
 
-            <Footer />
+            {/* <Footer /> */}
         </NoSsr>
     )
 }
