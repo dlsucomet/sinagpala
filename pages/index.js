@@ -19,7 +19,8 @@ const LinePlot = dynamic(() => import("../components/line-plot"), {
 const useStyles = makeStyles(theme => ({
   container: {
     padding: '0 2rem',
-    backgroundImage: `linear-gradient(to bottom, ${theme.palette.yellow.secondary}, #FFFFFF)`
+    // backgroundImage: `linear-gradient(to bottom, ${theme.palette.yellow.secondary}, #FFFFFF)`,
+    backgroundColor: theme.palette.yellow.secondary,
   },
   main: {
     minHeight: '90vh',
@@ -90,7 +91,7 @@ function Item(props) {
 export default function Home({ data }) {
   const classes = useStyles();
   const marikina_data = data.properties;
-  // console.log(marikina_data)
+
   return (
     <NoSsr>
       <div className={classes.container}>
@@ -185,7 +186,7 @@ export default function Home({ data }) {
             {' '}page for more information.
           </Typography>
 
-          <Item>
+          <Item >
             <LinePlot data={{properties:marikina_data}}
                         type="hour"
                         width={750}

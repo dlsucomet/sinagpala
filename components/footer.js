@@ -22,7 +22,7 @@
          display: 'flex',
          flex: 1,
          padding: props.pathname == '/explore' ? '2rem 2rem' : '2rem 0',
-         borderTop: '1px solid #eaeaea',
+         borderTop: '1px solid black',
          justifyContent: 'space-between',
          alignItems: 'center',
      },

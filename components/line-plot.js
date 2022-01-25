@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
         // display: 'flex',
         // justifyContent: 'center',
         // width: '100%'
+        padding: '10px'
     },
     // plot: {
     //     width: '100%',
@@ -112,6 +113,7 @@ export default function LinePlot(props){
                             layout={{
                                 paper_bgcolor: "rgba(0,0,0,0)",
                                 plot_bgcolor:'rgba(0,0,0,0)',
+                                colorway: 'black',
                                 margin: {
                                     l: 0,
                                     r: 0,
@@ -136,6 +138,8 @@ export default function LinePlot(props){
                                         size: 8,
                                         color: 'black'
                                     },
+                                    gridcolor: '#374140',
+                                    gridwidth: 0.5,
                                 },
                                 yaxis: {
                                     title: {
@@ -155,7 +159,9 @@ export default function LinePlot(props){
                                         size: 8,
                                         color: 'black'
                                     },
-                                    },
+                                    gridcolor: '#374140',
+                                    gridwidth: 0.5,
+                                },
                                 hovermode: "closest",
                                 hoverlabel: { bgcolor: "#FFF" },
                                 title: tableTitle,
