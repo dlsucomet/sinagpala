@@ -92,6 +92,9 @@ const useStyles = makeStyles(theme => ({
     },
     infoTitle: {
         fontWeight: 'bold'
+    },
+    cardHeight: {
+        height: '90vh'
     }
 }));
 
@@ -116,7 +119,8 @@ export default function SummaryCard(props) {
             <CardContentNoPadding>
                 {
                     total_kwh != -999 ? //Check if building polygon has data
-                    <Scrollbars autoHeight autoHeightMax={400}>
+                    // <Scrollbars autoHeight autoHeightMax={'90vh'}>
+                    <Scrollbars className={classes.cardHeight} style={{height: '88vh'}}>
                         <div className={classes.flexContainer}> 
                             <Box
                                 sx={{

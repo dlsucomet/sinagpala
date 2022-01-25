@@ -7,7 +7,6 @@ import Footer from "../components/footer"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
-import EnvironmentCard from '../components/environment-card'
 import { makeStyles } from '@mui/styles'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -31,19 +30,19 @@ const useStyles = makeStyles(theme => ({
     },
     posCard: {
         position: 'absolute',
-        zIndex: 1,
+        zIndex: 999,
         right: '1vw',
         top: '1vh',
         minWidth: '390px',
         maxHeight: '90vh',
         [theme.breakpoints.down('md')]: {
-            left:'0',
-            right:'0',
+            right:'auto',
             top:'auto',
-            bottom: '0',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            width: '100%'
+            bottom: '1vh',
+            left: '1vh', 
+            // marginLeft: '1%',
+            // marginRight: '1%',
+            width: '98vw'    
         }
     },
     posLegendCard: {
