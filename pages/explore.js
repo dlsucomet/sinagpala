@@ -3,19 +3,11 @@ import Head from 'next/head'
 import { useState } from "react"
 import dynamic from 'next/dynamic'
 import Header from "../components/header"
-import Footer from "../components/footer"
 import NoSsr from "../components/NoSsr"
 import SummaryCard from '../components/summary-card'
 import ChartLegend from '../components/chart-legend'
 import { makeStyles } from '@mui/styles'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
 
-//TODO Dyanmic Loading showing up concern: https://github.com/vercel/next.js/discussions/19142
-const LinePlot = dynamic(() => import("../components/line-plot"), {
-    loading: () => "Loading...",
-    ssr: false
-});
 const Map = dynamic(() => import("../components/map"), {
     loading: () => "Loading...",
     ssr: false
@@ -33,15 +25,13 @@ const useStyles = makeStyles(theme => ({
         zIndex: 999,
         right: '1vw',
         top: '1vh',
-        minWidth: '390px',
+        minWidth: '430px',
         maxHeight: '90vh',
         [theme.breakpoints.down('md')]: {
             right:'auto',
             top:'auto',
             bottom: '1vh',
             left: '1vh', 
-            // marginLeft: '1%',
-            // marginRight: '1%',
             width: '98vw'    
         }
     },
@@ -71,6 +61,7 @@ const useStyles = makeStyles(theme => ({
 export default function Explore(){
     const classes = useStyles();
     const [buildingData, setBuildingData] = useState(null);
+    const [showCard, setShowCard] = useState(false);
 
     const onDataChange = data => {
         //TODO Temporary checker for no data (no rooftops were predicted for that building polygon)
@@ -88,6 +79,11 @@ export default function Explore(){
         }
 
         setBuildingData(data);
+        setShowCard(true);
+    }
+
+    const hideCard = () => {
+        setShowCard(false);
     }
 
     return(
@@ -113,7 +109,7 @@ export default function Explore(){
                     buildingData != null ?
                     <>
                         <div className={classes.posCard}>
-                            <SummaryCard data={buildingData} />
+                            <SummaryCard data={buildingData} showCard={showCard} hideCard={hideCard}/>
                         </div>
                         <div className={classes.posLegendCard}>
                             <ChartLegend />
@@ -125,8 +121,6 @@ export default function Explore(){
                         </div>
                 }
             </div>
-
-            {/* <Footer /> */}
         </NoSsr>
     )
 }

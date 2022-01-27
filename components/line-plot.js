@@ -20,7 +20,8 @@ import React from 'react'
 import Plot from 'react-plotly.js'
 import { makeStyles } from '@mui/styles'
 import PropTypes from 'prop-types'
-import { Typography } from '@mui/material';
+import { Typography } from '@mui/material'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({
     plotContainer: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function LinePlot(props){
+    const router = useRouter();
     const classes = useStyles();
 
     var data = [];
@@ -79,7 +81,8 @@ export default function LinePlot(props){
                 });
         
                 dataX = [...Array(24).keys()];
-                dataLabels = dataX.map((hour) => `${hour}:00`);
+                console.log(dataX)
+                dataLabels = dataX.map((hour) => `${hour} `);
             }
         }
     }
@@ -138,8 +141,10 @@ export default function LinePlot(props){
                                         size: 8,
                                         color: 'black'
                                     },
-                                    gridcolor: '#374140',
+                                    gridcolor: router.pathname == '/' ? '#374140' : '#F',
                                     gridwidth: 0.5,
+                                    // tickangle: 45,
+                                    showticklabels: true,
                                 },
                                 yaxis: {
                                     title: {
@@ -159,12 +164,12 @@ export default function LinePlot(props){
                                         size: 8,
                                         color: 'black'
                                     },
-                                    gridcolor: '#374140',
+                                    gridcolor: router.pathname == '/' ? '#374140' : '#F',
                                     gridwidth: 0.5,
                                 },
                                 hovermode: "closest",
                                 hoverlabel: { bgcolor: "#FFF" },
-                                title: tableTitle,
+                                title: `<b>${tableTitle}</b>`,
                                 titlefont: {
                                     size: 15,
                                     color: 'black'
@@ -182,10 +187,7 @@ export default function LinePlot(props){
                         :
                             <></>
                 :
-                    props.type == 'hour' ? //no selected polygon, display only once
-                            <Typography variant="h4"  className={classes.infoMarker}> Select a building polygon to know more about its potential! </Typography>
-                        :
-                            <></>
+                    <></>
             }
         </div>
     )

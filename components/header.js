@@ -35,7 +35,6 @@ const useStyles = props => makeStyles(theme => ({
         marginRight: '10px',
         position: 'sticky',
         top: 0,
-        borderBottom: '1px solid black',
         // background: 'rgba(255, 255, 255, 1)',
         background: theme.palette.yellow.secondary,
         zIndex: 999,

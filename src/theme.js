@@ -20,6 +20,9 @@ let theme = createTheme({
     error: {
       main: red.A400,
     },
+    gray: {
+      main: '#BABABA'
+    }
   },
   typography: {
     fontFamily: [

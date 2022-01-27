@@ -25,12 +25,18 @@ import Image from 'next/image'
 import PropTypes from 'prop-types'
 import Tooltip from '@mui/material/Tooltip'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
 
 const useStyles = makeStyles(theme => ({
-    labelData: {
+    imgData: {
         display: 'flex',
-        // justifyContent: 'center',
-        // alignItems: 'center',
+        marginRight: '5px'
     },
     groupDataContainer: { //statistics and label
         width: 'max-content',
@@ -39,7 +45,6 @@ const useStyles = makeStyles(theme => ({
     groupData: {
         display: 'flex',
         justifyContent: 'center',
-        // gap: '20px'
     },
     dataRow: { //one row in the card
         display: 'flex',
@@ -49,8 +54,17 @@ const useStyles = makeStyles(theme => ({
         // alignItems: 'center',
     },
     infoLabel: {
-        fontSize: 12,
         textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    envData: {
+        // fontWeight: 'bold',
+        color: theme.palette.orange.main
+    },
+    tableContainer: {
+        width: '390px'
     }
 }));
 
@@ -155,82 +169,170 @@ export default function EnvironmentCard(props) {
                             </Tooltip>
                         </span>
                         </Typography>
-                        <Box
-                            sx={{
-                                p: 0.5,
-                                m: 0.5,
-                            }}
-                            className={classes.dataRow}
-                        >
-                            <div className={classes.groupDataContainer}>
-                                <div className={classes.groupData}>
-                                    <div className={classes.labelData}>
-                                        <Image src="/CO2.svg" alt="CO2" width={25} height={25}/>
-                                    </div>
-                                    <div>
-                                        <Typography className={classes.infoLabel}>
+                    {/* //         <Box sx={{
+                    //             p: 0.5,
+                    //             m: 0.5,
+                    //         }}
+                    //         className={classes.dataRow}
+                    //     >
+                    //         <div className={classes.groupDataContainer}>
+                    //             <div className={classes.groupData}>
+                    //                 <div className={classes.labelData}>
+                    //                     <Image src="/CO2.svg" alt="CO2" width={25} height={25}/>
+                    //                 </div>
+                    //                 <div>
+                    //                     <Typography className={classes.infoLabel}>
+                    //                         Carbon Dioxide
+                    //                     </Typography>
+                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
+                    //                         {carbonEmissions} 
+                    //                     </Typography>
+                    //                     <Typography className={classes.infoLabel} sx={{fontWeight: 'light' }} gutterBottom>
+                    //                         metric tons
+                    //                     </Typography>
+                    //                 </div>
+                    //                 <Typography variant="h7" sx={{display: "flex",
+                    //                     flexDirection: "column",
+                    //                     justifyContent: "center"}}>
+                    //                     =
+                    //                 </Typography>
+                    //             </div>
+                    //         </div>
+                    //         <div className={classes.groupDataContainer}>
+                    //             <div className={classes.groupData}>
+                    //                 <div className={classes.labelData}>
+                    //                     <Image src="/Seedling.svg" alt="Seedling" width={25} height={25}/>
+                    //                 </div>
+                    //                 <div>
+                    //                     <Typography className={classes.infoLabel}>
+                    //                         Tree Seedlings
+                    //                     </Typography>
+                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
+                    //                         {treeSeedlings} 
+                    //                     </Typography>
+                    //                     <Typography className={classes.infoLabel}sx={{ fontWeight: 'light' }} gutterBottom>
+                    //                         grown for 10 years
+                    //                     </Typography>
+                    //                 </div>
+                    //                 <Typography variant="h7" sx={{display: "flex",
+                    //                     flexDirection: "column",
+                    //                     justifyContent: "center"}}>
+                    //                     =
+                    //                 </Typography>
+                    //             </div>
+                    //         </div>
+                    //         <div className={classes.groupDataContainer}>
+                    //             <div className={classes.groupData}>
+                    //                 <div className={classes.labelData}>
+                    //                     <Image src="/Car.svg" alt="Car" width={25} height={25}/>
+                    //                 </div>
+                    //                 <div>
+                    //                     <Typography className={classes.infoLabel}>
+                    //                         Miles driven
+                    //                     </Typography>
+                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
+                    //                         {passengerCars}
+                    //                     </Typography>
+                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'light' }} gutterBottom>
+                    //                         by cars <span>
+                    //                             <Tooltip title="Average passenger car" arrow placement="bottom" sx={{ fontSize: 12, textAlign: 'center' }}>
+                    //                                 <HelpOutlineIcon />
+                    //                             </Tooltip>
+                    //                         </span>
+                    //                     </Typography>
+                    //                 </div>
+                    //             </div>
+                    //         </div>
+                    //     </ Box> */}
+                    <TableContainer component={Paper} className={classes.tableContainer}>
+                        <Table aria-label="simple table">
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                        }}
+                                    >
+                                        <div className={classes.imgData}>
+                                            <Image src="/CO2.svg" alt="CO2" width={25} height={25} />
+                                        </div>
+                                        <Typography variant='h7' className={classes.infoLabel}>
                                             Carbon Dioxide
                                         </Typography>
-                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
-                                            {carbonEmissions} 
+                                    </Box>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography 
+                                            variant='h7'
+                                            className={classes.envData}>
+                                                {carbonEmissions} {' '}
                                         </Typography>
-                                        <Typography className={classes.infoLabel} sx={{fontWeight: 'light' }} gutterBottom>
+                                        <Typography variant='h7' lassName={classes.infoLabel}> 
                                             metric tons
                                         </Typography>
-                                    </div>
-                                    <Typography variant="h7" sx={{display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "center"}}>
-                                        =
-                                    </Typography>
-                                </div>
-                            </div>
-                            <div className={classes.groupDataContainer}>
-                                <div className={classes.groupData}>
-                                    <div className={classes.labelData}>
-                                        <Image src="/Seedling.svg" alt="Seedling" width={25} height={25}/>
-                                    </div>
-                                    <div>
-                                        <Typography className={classes.infoLabel}>
-                                            Tree Seedlings
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                        }}
+                                    >
+                                        <div className={classes.imgData}>
+                                            <Image src="/Seedling.svg" alt="Seedling" width={25} height={25}/>
+                                        </div>
+                                        <Typography variant='h7' className={classes.infoLabel}>
+                                        Tree Seedlings
                                         </Typography>
-                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
-                                            {treeSeedlings} 
+                                    </Box>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography 
+                                            variant='h7'
+                                            className={classes.envData}>
+                                                {treeSeedlings} {' '}
                                         </Typography>
-                                        <Typography className={classes.infoLabel}sx={{ fontWeight: 'light' }} gutterBottom>
+                                        <Typography variant='h7' lassName={classes.infoLabel}> 
                                             grown for 10 years
                                         </Typography>
-                                    </div>
-                                    <Typography variant="h7" sx={{display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "center"}}>
-                                        =
-                                    </Typography>
-                                </div>
-                            </div>
-                            <div className={classes.groupDataContainer}>
-                                <div className={classes.groupData}>
-                                    <div className={classes.labelData}>
-                                        <Image src="/Car.svg" alt="Car" width={25} height={25}/>
-                                    </div>
-                                    <div>
-                                        <Typography className={classes.infoLabel}>
-                                            Miles driven
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                        }}
+                                    >
+                                        <div className={classes.imgData}>
+                                            <Image src="/Car.svg" alt="Car" width={25} height={25}/>
+                                        </div>
+                                        <Typography variant='h7' className={classes.infoLabel}>
+                                        Miles driven
                                         </Typography>
-                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
-                                            {passengerCars}
+                                    </Box>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography 
+                                            variant='h7'
+                                            className={classes.envData}> 
+                                            {passengerCars}{' '}
                                         </Typography>
-                                        <Typography className={classes.infoLabel} sx={{ fontWeight: 'light' }} gutterBottom>
+                                        <Typography variant='h7'> 
                                             by cars <span>
-                                                <Tooltip title="Average passenger car" arrow placement="bottom" sx={{ fontSize: 12, textAlign: 'center' }}>
-                                                    <HelpOutlineIcon />
-                                                </Tooltip>
-                                            </span>
+                                                 <Tooltip title="Average passenger car" arrow placement="bottom" sx={{ fontSize: 12, textAlign: 'center' }}>
+                                                     <HelpOutlineIcon />
+                                                 </Tooltip>
+                                             </span>
                                         </Typography>
-                                    </div>
-                                </div>
-                            </div>
-                        </ Box>
+                                    </TableCell>
+                                </TableRow>
+                                
+                            </TableBody>
+                        </Table>
+                        </TableContainer>
                     </div>
                 : 
                     <></>
