@@ -37,8 +37,13 @@ const useStyles = props => makeStyles(theme => ({
         top: 0,
         borderBottom: '1px solid black',
         // background: 'rgba(255, 255, 255, 1)',
-        background: theme.palette.brown.main,
         zIndex: 999,
+    },
+    headerYellow: {
+        background: theme.palette.yellow.secondary,
+    },
+    headerBrown: {
+        background: theme.palette.brown.main,
     },
     headerLink: {
         justifyContent: 'right',
@@ -73,7 +78,7 @@ export default function Header(){
     
    return (
         router.pathname == '/' ?
-            <header className={classes.header}>
+            <header className={[classes.header, classes.headerYellow].join(" ")}>
                 <Link href="/explore">
                     <a
                         className={classes.headerLink}
@@ -94,7 +99,7 @@ export default function Header(){
                 </Link>
             </header>
         :
-            <header className={classes.header}>
+            <header className={[classes.header, classes.headerBrown].join(" ")}>
                 <div className={classes.logoHeaderLink}>
                     <Image src="/Logo (Alt).svg" alt="Sinagpala Logo" width={36} height={36}/>
                     <Link href="/">
