@@ -34,6 +34,8 @@ const useStyles = makeStyles(theme => ({
   search: {
     width: '100%',
     border: '1px solid #666',
+    borderColor: theme.palette.gray.main,
+    borderRadius: '10px',
     boxSizing: 'border-box',
     fontSize: '16px',
     padding: '16px',
