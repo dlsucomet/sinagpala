@@ -31,13 +31,18 @@ const useStyles = props => makeStyles(theme => ({
         justifyContent: props.pathname == '/' ? 'right' : 'space-between',
         alignItems: 'center',
         height: '8vh',
-        marginLeft: '10px',
-        marginRight: '10px',
+        marginLeft: '-2rem',
+        marginRight: '-2rem',
         position: 'sticky',
         top: 0,
         // background: 'rgba(255, 255, 255, 1)',
-        background: theme.palette.yellow.secondary,
         zIndex: 999,
+    },
+    headerYellow: {
+        background: theme.palette.yellow.secondary,
+    },
+    headerBrown: {
+        background: theme.palette.brown.main,
     },
     headerLink: {
         justifyContent: 'right',
@@ -51,7 +56,11 @@ const useStyles = props => makeStyles(theme => ({
     headerLinks: {
         display: 'flex',
     },
+    headerText: {
+        color: 'white'
+    },
     logoHeaderLink: {
+        marginLeft: '15px',
         display: 'flex',
         // lineHeight: 1.15,
         // fontSize: '1.5rem',
@@ -68,7 +77,7 @@ export default function Header(){
     
    return (
         router.pathname == '/' ?
-            <header className={classes.header}>
+            <header className={[classes.header, classes.headerYellow].join(" ")}>
                 <Link href="/explore">
                     <a
                         className={classes.headerLink}
@@ -89,12 +98,12 @@ export default function Header(){
                 </Link>
             </header>
         :
-            <header className={classes.header}>
+            <header className={[classes.header, classes.headerBrown].join(" ")}>
                 <div className={classes.logoHeaderLink}>
-                    <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36}/>
+                    <Image src="/Logo (Alt).svg" alt="Sinagpala Logo" width={36} height={36}/>
                     <Link href="/">
                         <a>
-                            <Typography variant="h6">
+                            <Typography className={classes.headerText} variant="h6">
                                 Sinagpala
                             </Typography>
                         </a>
@@ -105,7 +114,7 @@ export default function Header(){
                         <a
                             className={classes.headerLink}
                         >
-                            <Typography variant="h6">
+                            <Typography className={classes.headerText} variant="h6">
                                 Explore
                             </Typography>
                         </a>
@@ -114,7 +123,7 @@ export default function Header(){
                         <a
                             className={classes.headerLink}
                         >
-                            <Typography variant="h6">
+                            <Typography className={classes.headerText} variant="h6">
                                 About Us
                             </Typography>
                         </a>
