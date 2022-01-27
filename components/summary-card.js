@@ -268,9 +268,17 @@ export default function SummaryCard(props) {
                         </div>
                     </Scrollbars>
                     :
-                    <Box className={classes.labelData}>
-                        <p>No Data Found</p>
-                    </Box>
+                    <>
+                        <Button
+                            className={classes.extButton}
+                            onClick={onClick}
+                        >
+                            X
+                        </Button>
+                        <Box className={classes.labelData}>
+                            <p>No Data Found</p>
+                        </Box>
+                    </>
                 }
             </CardContentNoPadding>
         </React.Fragment>
