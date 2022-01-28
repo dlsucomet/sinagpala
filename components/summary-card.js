@@ -189,7 +189,11 @@ export default function SummaryCard(props) {
                                     <div>
                                         <div>
                                             <Typography variant="h6" className={classes.numData}>
-                                                <span className={classes.highlightData}>{total_kwh}</span>kWh
+                                                <span className={classes.highlightData}> 
+                                                    <Typography variant="h5" className={classes.numData}>
+                                                        {total_kwh}
+                                                    </Typography>
+                                                </span>kWh
                                             </Typography>
                                         </div>
                                         <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
@@ -207,7 +211,11 @@ export default function SummaryCard(props) {
                                     <div>
                                         <div>
                                             <Typography variant="h6" className={classes.numData}>
-                                                <span className={classes.highlightData}> {num_panels}</span>
+                                                <span className={classes.highlightData}> 
+                                                    <Typography variant="h5" className={classes.numData}>
+                                                        {num_panels}
+                                                    </Typography>
+                                                </span>
                                             </Typography>
                                         </div>
                                         <Typography variant="h7" sx={{ fontSize: 12, textAlign: 'center' }}>Number of panels <span>
@@ -228,7 +236,11 @@ export default function SummaryCard(props) {
                                     <div>
                                         <div>
                                             <Typography variant="h6" className={classes.numData}>
-                                                <span className={classes.highlightData}>{panel_area}</span> m<sup style={{
+                                                <span className={classes.highlightData}> 
+                                                    <Typography variant="h5" className={classes.numData}>
+                                                        {panel_area}
+                                                    </Typography>
+                                                </span> m<sup style={{
                                                                         fontSize:'small'
                                                                     }}>2</sup>
                                             </Typography>
@@ -276,7 +288,7 @@ export default function SummaryCard(props) {
                             X
                         </Button>
                         <Box className={classes.labelData}>
-                            <p>No Data Found</p>
+                            <p>No Data Available</p>
                         </Box>
                     </>
                 }
@@ -300,6 +312,6 @@ export default function SummaryCard(props) {
 
 SummaryCard.propTypes = {
     data: PropTypes.object,
-    showCard: PropTypes.boolean,
+    showCard: PropTypes.bool,
     hideCard: PropTypes.func,
 }

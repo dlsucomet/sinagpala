@@ -61,7 +61,6 @@ export default function About() {
 
   return (
     <NoSsr>
-      <div className={classes.container}>
         <Head>
           <title>Sinagpala: About us</title>
           <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
@@ -78,6 +77,7 @@ export default function About() {
 
         <Header />
 
+      <div className={classes.container}>
         <main className={classes.main}>
 
           <h1 className={classes.centerText}>Sinagpala: About Us</h1>
@@ -142,8 +142,7 @@ export default function About() {
           </div>
 
         </main>
-
-        <Footer />
+      <Footer />
       </div>
     </NoSsr>
   )

@@ -38,8 +38,8 @@ export default function Map(props) {
         height: "100%",
         latitude: 14.6335708,
         longitude: 121.0981465,
-        zoom: 18,
-        minZoom: 18,
+        zoom: 16,
+        minZoom: 16,
         maxZoom: 20,
     });
     

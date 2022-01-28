@@ -53,10 +53,7 @@ export default function LinePlot(props){
     var data = [];
     var dataX = [];
     var dataLabels = [] ;
-    const tableTitle = props.type == "month" ? 'Average Monthly kWh (kilowatt-hour) ' : 'Average Hourly kWh (kilowatt-hour) ';
-    
-    // console.log("props")
-    // console.log(props)
+    const tableTitle = props.type == "month" ? 'Average Monthly kWh ' : 'Average Hourly kWh';
     
     if (props.data !== null) {
         const { total_kwh } = props.data.properties; //Basis for no data (if -999)
@@ -81,8 +78,7 @@ export default function LinePlot(props){
                 });
         
                 dataX = [...Array(24).keys()];
-                console.log(dataX)
-                dataLabels = dataX.map((hour) => `${hour} `);
+                dataLabels = dataX.map((hour) => `${hour}`);
             }
         }
     }
@@ -107,12 +103,11 @@ export default function LinePlot(props){
                                     x: dataX,
                                     y: data,
                                     type: 'scatter',
-                                    mode: 'lines+marker',
+                                    mode: 'lines+markers',
                                     marker: {color: '#fd811e'},
                                     hovertemplate: '%{y}kWh<extra></extra>',
                                 },
                             ]}
-                            // className={classes.plot}
                             layout={{
                                 paper_bgcolor: "rgba(0,0,0,0)",
                                 plot_bgcolor:'rgba(0,0,0,0)',
@@ -143,12 +138,12 @@ export default function LinePlot(props){
                                     },
                                     gridcolor: router.pathname == '/' ? '#374140' : '#F',
                                     gridwidth: 0.5,
-                                    // tickangle: 45,
-                                    showticklabels: true,
+                                    tickangle: props.type == 'month' ? '90' : '',
+                                    // showticklabels: true,
                                 },
                                 yaxis: {
                                     title: {
-                                        text: 'kWh (kilowatt-hour)',
+                                        text: 'kWh',
                                         font: {
                                         size: 10,
                                         color: 'black'
@@ -159,7 +154,7 @@ export default function LinePlot(props){
                                     fixedrange: true,
                                     tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
                                     tick0: 0,
-                                    dtick: 5,
+                                    dtick: 2,
                                     tickfont: {
                                         size: 8,
                                         color: 'black'
