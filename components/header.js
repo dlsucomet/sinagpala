@@ -50,6 +50,7 @@ const useStyles = props => makeStyles(theme => ({
         alignItems: 'center',
         margin: '0px 15px',
         '&:hover': {
+            textDecorationColor: props.pathname == '/' ? 'black' : 'white',
             textDecoration: 'underline'
         },
     },
@@ -71,11 +72,11 @@ const useStyles = props => makeStyles(theme => ({
     },
 }));
 
-export default function Header(){
+export default function Header() {
     const router = useRouter();
-    const classes = useStyles({'pathname':router.pathname})();
-    
-   return (
+    const classes = useStyles({ 'pathname': router.pathname })();
+
+    return (
         router.pathname == '/' ?
             <header className={[classes.header, classes.headerYellow].join(" ")}>
                 <Link href="/explore">
@@ -97,10 +98,10 @@ export default function Header(){
                     </a>
                 </Link>
             </header>
-        :
+            :
             <header className={[classes.header, classes.headerBrown].join(" ")}>
                 <div className={classes.logoHeaderLink}>
-                    <Image src="/Logo (Alt).svg" alt="Sinagpala Logo" width={36} height={36}/>
+                    <Image src="/Logo (Alt).svg" alt="Sinagpala Logo" width={36} height={36} />
                     <Link href="/">
                         <a>
                             <Typography className={classes.headerText} variant="h6">
