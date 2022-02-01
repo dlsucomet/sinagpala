@@ -126,7 +126,7 @@ export default function Map(props) {
     }, [props, viewport]);
 
     useEffect(() => {
-        if (props.resetZoom > 1) {
+        if (props.resetZoom >= 1) {
             console.log("done")
             setViewport({
                 ...viewport,
