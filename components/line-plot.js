@@ -46,18 +46,18 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function LinePlot(props){
+export default function LinePlot(props) {
     const router = useRouter();
     const classes = useStyles();
 
     var data = [];
     var dataX = [];
-    var dataLabels = [] ;
+    var dataLabels = [];
     const tableTitle = props.type == "month" ? 'Average Monthly kWh ' : 'Average Hourly kWh';
-    
+
     if (props.data !== null) {
         const { total_kwh } = props.data.properties; //Basis for no data (if -999)
-        
+
         if (total_kwh !== -999) {
             if (props.type == "month") {
                 Object.keys(props.data.properties).forEach((key) => {
@@ -65,10 +65,10 @@ export default function LinePlot(props){
                         data.push(props.data.properties[key]);
                     }
                 });
-        
+
                 dataX = [...Array(12).keys()];
-                dataLabels = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
-        
+                dataLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
             }
             else if (props.type == "hour") {
                 Object.keys(props.data.properties).forEach((key) => {
@@ -76,7 +76,7 @@ export default function LinePlot(props){
                         data.push(props.data.properties[key]);
                     }
                 });
-        
+
                 dataX = [...Array(24).keys()];
                 dataLabels = dataX.map((hour) => `${hour}`);
             }
@@ -89,7 +89,7 @@ export default function LinePlot(props){
         - Check if building polygon has data
         - Check if hour instance (so that info message is only showed once)
      */
-    
+
     // https://plotly.com/javascript/hover-text-and-formatting/
     // https://plotly.com/javascript/tick-formatting/
     return (
@@ -104,13 +104,13 @@ export default function LinePlot(props){
                                     y: data,
                                     type: 'scatter',
                                     mode: 'lines+markers',
-                                    marker: {color: '#fd811e'},
+                                    marker: { color: '#fd811e' },
                                     hovertemplate: '%{y}kWh<extra></extra>',
                                 },
                             ]}
                             layout={{
                                 paper_bgcolor: "rgba(0,0,0,0)",
-                                plot_bgcolor:'rgba(0,0,0,0)',
+                                plot_bgcolor: 'rgba(0,0,0,0)',
                                 colorway: 'black',
                                 margin: {
                                     l: 0,
@@ -122,8 +122,8 @@ export default function LinePlot(props){
                                     title: {
                                         text: props.type == 'month' ? 'Month' : 'Hour',
                                         font: {
-                                        size: 10,
-                                        color: 'black'
+                                            size: 10,
+                                            color: 'black'
                                         },
                                         standoff: 20
                                     },
@@ -136,7 +136,7 @@ export default function LinePlot(props){
                                         size: 8,
                                         color: 'black'
                                     },
-                                    gridcolor: router.pathname == '/' ? '#374140' : '#F',
+                                    // gridcolor: router.pathname == '/' ? '#374140' : '#F',
                                     gridwidth: 0.5,
                                     tickangle: props.type == 'month' ? '90' : '',
                                     // showticklabels: true,
@@ -145,8 +145,8 @@ export default function LinePlot(props){
                                     title: {
                                         text: 'kWh',
                                         font: {
-                                        size: 10,
-                                        color: 'black'
+                                            size: 10,
+                                            color: 'black'
                                         },
                                         standoff: 20
                                     },
@@ -159,7 +159,7 @@ export default function LinePlot(props){
                                         size: 8,
                                         color: 'black'
                                     },
-                                    gridcolor: router.pathname == '/' ? '#374140' : '#F',
+                                    // gridcolor: router.pathname == '/' ? '#374140' : '#F',
                                     gridwidth: 0.5,
                                 },
                                 hovermode: "closest",
@@ -170,18 +170,18 @@ export default function LinePlot(props){
                                     color: 'black'
                                 },
                                 // autosize: true,
-                                width: props.width, 
-                                height: props.height, 
+                                width: props.width,
+                                height: props.height,
                             }}
                             useResizeHandler={true}
-                            config={{displayModeBar: false, responsive: true }}
+                            config={{ displayModeBar: false, responsive: true }}
                         />
-                    :
+                        :
                         props.type == 'hour' ? //no data, display only once
                             <Typography variant="h4" className={classes.infoMarker}> No data found</Typography>
-                        :
+                            :
                             <></>
-                :
+                    :
                     <></>
             }
         </div>

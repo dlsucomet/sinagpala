@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Head from 'next/head'
-import { useState } from "react"
+import { useState, useRef } from "react"
 import dynamic from 'next/dynamic'
 import Header from "../components/header"
 import NoSsr from "../components/NoSsr"
@@ -62,6 +62,7 @@ export default function Explore(){
     const classes = useStyles();
     const [buildingData, setBuildingData] = useState(null);
     const [showCard, setShowCard] = useState(false);
+    const [resetZoom, setResetZoom] = useState(0);
 
     const onDataChange = data => {
         //TODO Temporary checker for no data (no rooftops were predicted for that building polygon)
@@ -83,6 +84,7 @@ export default function Explore(){
     }
 
     const hideCard = () => {
+        setResetZoom(resetZoom + 1);
         setShowCard(false);
     }
 
@@ -104,7 +106,7 @@ export default function Explore(){
             <Header />
 
             <div className={classes.mapContainer}>
-                <Map onDataChange={onDataChange}/>
+                <Map resetZoom={resetZoom} onDataChange={onDataChange}/>
                 {
                     buildingData != null ?
                     <>

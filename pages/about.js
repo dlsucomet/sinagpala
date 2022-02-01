@@ -56,6 +56,9 @@ const useStyles = makeStyles(theme => ({
   },
   tableContainer: {
     width: '350px'
+  },
+  tableContent: {
+    fontSize: '1.2rem'
   }
 }));
 
@@ -115,22 +118,22 @@ export default function About() {
                 </caption>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Variable</TableCell>
-                    <TableCell>Assumed Value</TableCell>
+                    <TableCell className={classes.tableContent}>Variable</TableCell>
+                    <TableCell className={classes.tableContent}>Assumed Value</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell >Module efficiency</TableCell>
-                    <TableCell >15.5%</TableCell>
+                    <TableCell className={classes.tableContent}>Module efficiency</TableCell>
+                    <TableCell className={classes.tableContent}>15.5%</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell >Module dimensions</TableCell>
-                    <TableCell >1.650m x 0.992m </TableCell>
+                    <TableCell className={classes.tableContent}>Module dimensions</TableCell>
+                    <TableCell className={classes.tableContent}>1.650m x 0.992m </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell >Module power rating</TableCell>
-                    <TableCell >250w </TableCell>
+                    <TableCell className={classes.tableContent}>Module power rating</TableCell>
+                    <TableCell className={classes.tableContent}>250w </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
