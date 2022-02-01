@@ -8,7 +8,7 @@ import NoSsr from '../components/NoSsr'
 import data from './api/marikinaBounds/marikina_polygon_bounds.json'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
-import dynamic from 'next/dynamic'  
+import dynamic from 'next/dynamic'
 import Typography from '@mui/material/Typography'
 
 const LinePlot = dynamic(() => import("../components/line-plot"), {
@@ -18,7 +18,7 @@ const LinePlot = dynamic(() => import("../components/line-plot"), {
 
 const useStyles = makeStyles(theme => ({
   container: {
-    padding: '0 2rem',
+    // padding: '0 2rem',
     // backgroundImage: `linear-gradient(to bottom, ${theme.palette.yellow.secondary}, #FFFFFF)`,
     backgroundColor: theme.palette.yellow.secondary,
   },
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
     flexWrap: 'wrap',
     alignItems: 'center',
-    width: '80%',
+    // width: '80%',
     margin: '2rem 0',
     textAlign: 'center',
   },
@@ -64,13 +64,28 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
   },
   imgBound: {
-    margin: '100px'
+    margin: '0px'
   },
   underline: {
     textDecoration: 'underline'
   },
   centerText: {
     width: '80%'
+  },
+  whiteSection: {
+    backgroundColor: 'white',
+    width: '100%',
+    padding: '0 4rem'
+  },
+  greySection: {
+    backgroundColor: '#f8f8f8',
+    width: '100%',
+    padding: '0 4rem'
+  }, 
+  fillViewport: {
+    [theme.breakpoints.up('md')]: {
+      minHeight: "92vh"
+    },
   }
 }));
 
@@ -81,7 +96,7 @@ function Item(props) {
     <Box
       sx={{
         ...sx,
-      }} 
+      }}
       className={classes.dataRow}
       {...other}
     />
@@ -98,120 +113,130 @@ export default function Home({ data }) {
         <Head>
           <title>Sinagpala</title>
           <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
-          <link rel="icon" type="image/png" 
-          href="../public/logo.svg" />
+          <link rel="icon" type="image/png"
+            href="../public/logo.svg" />
           <link
-              rel="preload"
-              href="/fonts/Ropa_Sans/RopaSans-Regular.ttf"
-              as="font"
-              crossOrigin=""
-            />
+            rel="preload"
+            href="/fonts/Ropa_Sans/RopaSans-Regular.ttf"
+            as="font"
+            crossOrigin=""
+          />
         </Head>
         <Header />
 
         <main className={classes.main}>
-          <Item>
-            <Typography variant="h1" className={classes.title} >
-              <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo} priority={true}/>
-              Sinagpala
-            </Typography>
-          </Item>
+          <div className={classes.fillViewport}>
+            <Item>
+              <Typography variant="h1" className={classes.title} >
+                <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo} priority={true} />
+                Sinagpala
+              </Typography>
+            </Item>
 
-          <Item>
-            <Typography variant="h6" className={classes.centerText}>
-              Have your rooftops checked for its solar energy potential.
-            </Typography>
-          </Item>
+            <Item>
+              <Typography variant="h6" className={classes.centerText}>
+                Have your rooftops checked for its solar energy potential.
+              </Typography>
+            </Item>
 
-          <Item>
-            <Button variant="contained">
-              <Link href="/explore">
+            <Item>
+              <Button variant="contained">
+                <Link href="/explore">
                   <a>
-                      <p>Explore Marikina Area</p>
+                    <p>Explore Marikina Area</p>
                   </a>
-              </Link>
-            </Button>
-          </Item>
-
-          <Item>
-            <Typography variant="h3" className={classes.centerText}>
-              Did You Know?
-            </Typography>
-          </Item>
-
-          <Item>
-            <Typography variant="h6" className={classes.centerText}>
-              Marikina City has a household energy consumption of 1,868 kWh/yr which is relatively high compared
-              compared to the Philippines&apos; average of 1,150 kWh/yr. With the growing demand for electricity, 
-              solar panels can help reduce the demand of electricity and help households save money on electricity. 
-            </Typography>
-            <Typography variant="p" className={classes.centerText}>
-            Source: <Link href="https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf"><a className={classes.underline} target="_blank">Shell Philippines, 2015</a></Link>
-            </Typography>
-          </Item>
-
-          <Item>
-            <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound} priority={true}/>
-            <div className={classes.dataColumn}>
-              <div className={classes.infoBlock}> 
-                Marikina has an estimated {<br />}
-                potential of having {<br />} 
-                <span className={classes.dataBlock}>
-                  {marikina_data['total_kwh']}
-                </span> kWh {<br />}
-                of solar energy
-              </div>
-            </div>
-          </Item>
-
-          <Item>
-           <Typography variant="h4" className={classes.centerText}>
-              When the sun&apos;s out high, so will the solar energy potential!
-            </Typography>
-          </Item>
-
-          <Item>
-            <Typography variant="p" className={classes.centerText}>
-              Solar enegy is a renewable energy resource that relies on the energy emmitted from the sun. This means that on brighter, sunnier days, your solar panel could potentially generate more energy! This also means that on hotter months, you could also generate more. Check out our calculated potential for the Marikina area! <sup>1</sup>
-            </Typography>
-          </Item>
-
-          <Typography sx={{fontSize: '12px'}}>
-            <sup>1</sup>Estimated potentials are only for proof of concept, please refer to limitations on the {' '} 
-              <span style={{textDecoration: 'underline'}}>
-                <Link href="/about">
-                  about us
                 </Link>
-              </span> 
-            {' '}page for more information.
-          </Typography>
+              </Button>
+            </Item>
+          </div>
 
-          <Item >
-            <LinePlot data={{properties:marikina_data}}
-                        type="hour"
-                        width={750}
-                        height={450}
-            />
-          </Item>
+          <div className={classes.whiteSection}>
+            <Item>
+              <Typography variant="h3" className={classes.centerText}>
+                Did You Know?
+              </Typography>
+            </Item>
+
+            <Item>
+              <Typography variant="h6" className={classes.centerText}>
+                Marikina City has a household energy consumption of 1,868 kWh/yr which is relatively high compared
+                compared to the Philippines&apos; average of 1,150 kWh/yr. With the growing demand for electricity,
+                solar panels can help reduce the demand of electricity and help households save money on electricity.
+              </Typography>
+              <Typography variant="p" className={classes.centerText}>
+                Source: <Link href="https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf"><a className={classes.underline} target="_blank">Shell Philippines, 2015</a></Link>
+              </Typography>
+            </Item>
+          </div>
+
+          <div className={classes.greySection}>
+            <Item>
+              <Image src="/marikina_bounds.png" alt="Sinagpala Logo" width={550} height={550} className={classes.imgBound} priority={true} />
+              <div className={classes.dataColumn}>
+                <div className={classes.infoBlock}>
+                  Marikina has an estimated {<br />}
+                  potential of having {<br />}
+                  <span className={classes.dataBlock}>
+                    {marikina_data['total_kwh']}
+                  </span> kWh {<br />}
+                  of solar energy
+                </div>
+              </div>
+            </Item>
+          </div>
+
+          <div className={classes.whiteSection}>
+            <Item>
+              <Typography variant="h4" className={classes.centerText}>
+                When the sun&apos;s out high, so will the solar energy potential!
+              </Typography>
+            </Item>
+
+            <Item>
+              <Typography variant="h6" className={classes.centerText}>
+                Solar enegy is a renewable energy resource that relies on the energy emmitted from the sun. This means that on brighter, sunnier days, your solar panel could potentially generate more energy! This also means that on hotter months, you could also generate more. Check out our calculated potential for the Marikina area! <sup>1</sup>
+              </Typography>
+            </Item>
+
+            <Item>
+              <Typography sx={{ fontSize: '12px' }}>
+                <sup>1</sup>Estimated potentials are only for proof of concept, please refer to limitations on the {' '}
+                <span style={{ textDecoration: 'underline' }}>
+                  <Link href="/about">
+                    about us
+                  </Link>
+                </span>
+                {' '}page for more information.
+              </Typography>
+            </Item>
+
+            <Item >
+              <LinePlot data={{ properties: marikina_data }}
+                type="hour"
+                width={750}
+                height={450}
+              />
+            </Item>
+
+            <Item>
+              <LinePlot data={{ properties: marikina_data }}
+                type="month"
+                width={750}
+                height={450}
+              />
+            </Item>
+          </div>
 
           <Item>
-            <LinePlot data={{properties:marikina_data}}
-                        type="month"
-                        width={750}
-                        height={450}
-            />
-          </Item>
-
-          <Item>
-            <Typography variant="h3" className={classes.centerText}>
-              Interested in solar? 
+            <Typography variant="h3">
+              Interested in solar?
             </Typography>
           </Item>
-          
+
           <Item>
             <Typography variant="h6" className={classes.centerText}>
               See <Link href="https://residential.meralco.com.ph/products-services-and-programs/solar-net-metering"><a className={classes.underline} target="_blank">solar net metering </a></Link> {' '}
-               on how you can apply for a solar installation today. Note that the estimations displayed in the application
+              on how you can apply for a solar installation today. Note that the estimations displayed in the application
               are merely estimates given area-wide data. For a more accurate evaluation, consult with solar experts.
             </Typography>
           </Item>
@@ -219,9 +244,9 @@ export default function Home({ data }) {
           <Item>
             <Button variant="contained">
               <Link href="/explore">
-                  <a>
-                      <p>Explore Marikina Area</p>
-                  </a>
+                <a>
+                  <p>Explore Marikina Area</p>
+                </a>
               </Link>
             </Button>
           </Item>
@@ -233,7 +258,7 @@ export default function Home({ data }) {
   )
 }
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   return {
     props: {
       data: data.features[0],

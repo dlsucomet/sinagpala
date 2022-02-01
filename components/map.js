@@ -9,6 +9,7 @@
  *
  *    @prop { Function }   onDataChange  - function call to parent to update building data state
  *
+ *    @prop { Number }      resetZoom - number which updates from parent to trigger zoom level reset
  * USED IN:
  * explore.js
  *
@@ -16,7 +17,7 @@
  */
 
 import * as React from 'react'
-import { useState, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import ReactMapGL, { Source, Layer, FlyToInterpolator } from "react-map-gl"
 import Search from './search'
 import PropTypes from 'prop-types'
@@ -38,11 +39,11 @@ export default function Map(props) {
         height: "100%",
         latitude: 14.6335708,
         longitude: 121.0981465,
-        zoom: 18,
-        minZoom: 18,
+        zoom: 16,
+        minZoom: 16,
         maxZoom: 20,
     });
-    
+
     const onViewportChange = viewport => {
         // console.log(viewport.longitude, viewport.latitude)
         if (viewport.longitude < maxBounds.south) {
@@ -62,10 +63,10 @@ export default function Map(props) {
 
     const onClick = useCallback(event => {
         const {
-          features,
-          srcEvent: {offsetX, offsetY},
+            features,
+            srcEvent: { offsetX, offsetY },
         } = event;
-        
+
         var buildingData = null;
 
         //Find feature with building properties
@@ -79,8 +80,8 @@ export default function Map(props) {
         if (buildingData !== null) {
             const polygonBounds = buildingData.geometry.coordinates[0];
 
-            var [maxX, maxY]  = polygonBounds[0];
-            var [minX, minY]  = polygonBounds[0];
+            var [maxX, maxY] = polygonBounds[0];
+            var [minX, minY] = polygonBounds[0];
 
             polygonBounds.forEach((coordinate) => {
                 if (coordinate[0] > maxX) {
@@ -124,6 +125,18 @@ export default function Map(props) {
         props.onDataChange(buildingData);
     }, [props, viewport]);
 
+    useEffect(() => {
+        if (props.resetZoom >= 1) {
+            console.log("done")
+            setViewport({
+                ...viewport,
+                zoom: 16,
+                transitionDuration: 500,
+                transitionInterpolator: new FlyToInterpolator(),
+            });
+        }
+    }, [props.resetZoom]);
+
     const layerStyle = {
         id: 'building_data',
         type: 'fill',
@@ -136,16 +149,16 @@ export default function Map(props) {
             // },
             'fill-outline-color': '#f65026',
             'fill-color': {
-              property: 'total_kwh',
-              stops: [
-                [1, '#fafa6e'],
-                [13.25, '#fed445'],
-                [25.5, '#ffac28'],
-                [37.75, '#fd811e'],
-                [50, '#f65026'],
-              ],
+                property: 'total_kwh',
+                stops: [
+                    [1, '#fafa6e'],
+                    [13.25, '#fed445'],
+                    [25.5, '#ffac28'],
+                    [37.75, '#fd811e'],
+                    [50, '#f65026'],
+                ],
             },
-          },
+        },
     };
 
     const buildingStyle = {
@@ -169,27 +182,27 @@ export default function Map(props) {
                 mapRef={mapRef}
                 markerRef={markerRef}
                 onClick={e => e.stopPropagation()}
-                setViewport={setViewport}/>
+                setViewport={setViewport} />
             <ReactMapGL
-                    ref={mapRef}
-                    mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
-                    mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
-                    {...viewport}
-                    width='100%'
-                    height='100%'
-                    onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
-                    onClick={onClick}
-                    >
-                        <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
-                            <Layer {...layerStyle} />
-                        </Source>
-                        <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
-                            <Layer {...buildingStyle} />
-                        </Source>
+                ref={mapRef}
+                mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
+                mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
+                {...viewport}
+                width='100%'
+                height='100%'
+                onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
+                onClick={onClick}
+            >
+                <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
+                    <Layer {...layerStyle} />
+                </Source>
+                <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
+                    <Layer {...buildingStyle} />
+                </Source>
             </ReactMapGL>
         </React.Fragment>
-    ) 
-    
+    )
+
     return (
         <>
             {refMap}
@@ -198,5 +211,6 @@ export default function Map(props) {
 }
 
 Map.propTypes = {
-    onDataChange: PropTypes.func
+    onDataChange: PropTypes.func,
+    resetZoom: PropTypes.number
 }

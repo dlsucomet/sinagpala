@@ -40,10 +40,13 @@ const useStyles = makeStyles(theme => ({
   centerText: {
     textAlign: 'center',
   },
+  descriptionTitle: {
+    fontSize: '2rem'
+  },
   description: {
     // margin: '4rem 0',
     // lineHeight: 1.5,
-    // fontSize: '1.5rem',
+    fontSize: '1.5rem',
     maxWidth: '550px',
     textAlign: 'justify',
     textJustify: 'inter-word',
@@ -53,6 +56,9 @@ const useStyles = makeStyles(theme => ({
   },
   tableContainer: {
     width: '350px'
+  },
+  tableContent: {
+    fontSize: '1.2rem'
   }
 }));
 
@@ -61,46 +67,46 @@ export default function About() {
 
   return (
     <NoSsr>
-      <div className={classes.container}>
-        <Head>
-          <title>Sinagpala: About us</title>
-          <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
-          <link rel="icon" type="image/png" 
+      <Head>
+        <title>Sinagpala: About us</title>
+        <meta name="description" content="Explore the solar potential of Marikina City today with Sinagpala" />
+        <link rel="icon" type="image/png"
           href="/logo.svg" />
-          
-          <link
-              rel="preload"
-              href="/fonts/Ropa_Sans/RopaSans-Regular.ttf"
-              as="font"
-              crossOrigin=""
-            />
-        </Head>
 
-        <Header />
+        <link
+          rel="preload"
+          href="/fonts/Ropa_Sans/RopaSans-Regular.ttf"
+          as="font"
+          crossOrigin=""
+        />
+      </Head>
 
+      <Header />
+
+      <div className={classes.container}>
         <main className={classes.main}>
 
-          <h1 className={classes.centerText}>Sinagpala: About Us</h1>
-          
+          {/* <h1 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Sinagpala: About Us</h1> */}
+
           <div className={classes.infoBlock}>
-            <h2 className={classes.centerText}>What&apos;s Sinagpala？</h2>
+            <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>What&apos;s Sinagpala？</h2>
             <p className={classes.description}>
               Sinagpala is a project that aims to provide a solar energy potential assessment to Marikina Buildings. With the rising traction of shifting towards renewable energy, this website can help users visualize and digest the solar energy potential information of select Marikina buildings.
             </p>
           </div>
 
           <div className={classes.infoBlock}>
-            <h2 className={classes.centerText}>Check your rooftop now!</h2>
+            <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Check your rooftop now!</h2>
             <p className={classes.description}>
               Start checking our your Marikina rooftop by either looking for your address or by exploring our map. By selecting an available building, you will be able to see its solar energy potential along with other solar information.
             </p>
           </div>
 
           <div className={classes.infoBlock}>
-            <h2 className={classes.centerText}>Panel Specifications Used</h2>
+            <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Panel Specifications Used</h2>
             <TableContainer component={Paper} className={classes.tableContainer}>
               <Table aria-label="simple table">
-                <caption> 
+                <caption>
                   <a
                     href="https://sunroof.withgoogle.com/"
                     target="_blank"
@@ -112,22 +118,22 @@ export default function About() {
                 </caption>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Variable</TableCell>
-                    <TableCell>Assumed Value</TableCell>
+                    <TableCell className={classes.tableContent}>Variable</TableCell>
+                    <TableCell className={classes.tableContent}>Assumed Value</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                      <TableCell >Module efficiency</TableCell>
-                      <TableCell >15.5%</TableCell>
+                    <TableCell className={classes.tableContent}>Module efficiency</TableCell>
+                    <TableCell className={classes.tableContent}>15.5%</TableCell>
                   </TableRow>
                   <TableRow>
-                      <TableCell >Module dimensions</TableCell>
-                      <TableCell >1.650m x 0.992m </TableCell>
+                    <TableCell className={classes.tableContent}>Module dimensions</TableCell>
+                    <TableCell className={classes.tableContent}>1.650m x 0.992m </TableCell>
                   </TableRow>
                   <TableRow>
-                      <TableCell >Module power rating</TableCell>
-                      <TableCell >250w </TableCell>
+                    <TableCell className={classes.tableContent}>Module power rating</TableCell>
+                    <TableCell className={classes.tableContent}>250w </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -135,14 +141,13 @@ export default function About() {
           </div>
 
           <div className={classes.infoBlock}>
-            <h2 className={classes.centerText}>Limitation</h2>
+            <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Limitation</h2>
             <p className={classes.description}>
               This project is only to be used as a proof of concept. Several limitations such as limited open-sourced data and consideration to the electronics aspect, among others, can lead to biases with the assessments made by the application.
             </p>
           </div>
 
         </main>
-
         <Footer />
       </div>
     </NoSsr>

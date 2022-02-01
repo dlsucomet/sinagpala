@@ -169,81 +169,6 @@ export default function EnvironmentCard(props) {
                             </Tooltip>
                         </span>
                         </Typography>
-                    {/* //         <Box sx={{
-                    //             p: 0.5,
-                    //             m: 0.5,
-                    //         }}
-                    //         className={classes.dataRow}
-                    //     >
-                    //         <div className={classes.groupDataContainer}>
-                    //             <div className={classes.groupData}>
-                    //                 <div className={classes.labelData}>
-                    //                     <Image src="/CO2.svg" alt="CO2" width={25} height={25}/>
-                    //                 </div>
-                    //                 <div>
-                    //                     <Typography className={classes.infoLabel}>
-                    //                         Carbon Dioxide
-                    //                     </Typography>
-                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
-                    //                         {carbonEmissions} 
-                    //                     </Typography>
-                    //                     <Typography className={classes.infoLabel} sx={{fontWeight: 'light' }} gutterBottom>
-                    //                         metric tons
-                    //                     </Typography>
-                    //                 </div>
-                    //                 <Typography variant="h7" sx={{display: "flex",
-                    //                     flexDirection: "column",
-                    //                     justifyContent: "center"}}>
-                    //                     =
-                    //                 </Typography>
-                    //             </div>
-                    //         </div>
-                    //         <div className={classes.groupDataContainer}>
-                    //             <div className={classes.groupData}>
-                    //                 <div className={classes.labelData}>
-                    //                     <Image src="/Seedling.svg" alt="Seedling" width={25} height={25}/>
-                    //                 </div>
-                    //                 <div>
-                    //                     <Typography className={classes.infoLabel}>
-                    //                         Tree Seedlings
-                    //                     </Typography>
-                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
-                    //                         {treeSeedlings} 
-                    //                     </Typography>
-                    //                     <Typography className={classes.infoLabel}sx={{ fontWeight: 'light' }} gutterBottom>
-                    //                         grown for 10 years
-                    //                     </Typography>
-                    //                 </div>
-                    //                 <Typography variant="h7" sx={{display: "flex",
-                    //                     flexDirection: "column",
-                    //                     justifyContent: "center"}}>
-                    //                     =
-                    //                 </Typography>
-                    //             </div>
-                    //         </div>
-                    //         <div className={classes.groupDataContainer}>
-                    //             <div className={classes.groupData}>
-                    //                 <div className={classes.labelData}>
-                    //                     <Image src="/Car.svg" alt="Car" width={25} height={25}/>
-                    //                 </div>
-                    //                 <div>
-                    //                     <Typography className={classes.infoLabel}>
-                    //                         Miles driven
-                    //                     </Typography>
-                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'bold' }}>
-                    //                         {passengerCars}
-                    //                     </Typography>
-                    //                     <Typography className={classes.infoLabel} sx={{ fontWeight: 'light' }} gutterBottom>
-                    //                         by cars <span>
-                    //                             <Tooltip title="Average passenger car" arrow placement="bottom" sx={{ fontSize: 12, textAlign: 'center' }}>
-                    //                                 <HelpOutlineIcon />
-                    //                             </Tooltip>
-                    //                         </span>
-                    //                     </Typography>
-                    //                 </div>
-                    //             </div>
-                    //         </div>
-                    //     </ Box> */}
                     <TableContainer component={Paper} className={classes.tableContainer}>
                         <Table aria-label="simple table">
                             <TableBody>
@@ -265,11 +190,11 @@ export default function EnvironmentCard(props) {
                                     <TableCell>
                                         <Typography 
                                             variant='h7'
-                                            className={classes.envData}>
-                                                {carbonEmissions} {' '}
+                                            className={classes.envData}> 
+                                            {carbonEmissions}{' '}
                                         </Typography>
-                                        <Typography variant='h7' lassName={classes.infoLabel}> 
-                                            metric tons
+                                        <Typography variant='h7'> 
+                                        metric tons
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
@@ -291,10 +216,10 @@ export default function EnvironmentCard(props) {
                                     <TableCell>
                                         <Typography 
                                             variant='h7'
-                                            className={classes.envData}>
-                                                {treeSeedlings} {' '}
+                                            className={classes.envData}> 
+                                            {treeSeedlings}{' '}
                                         </Typography>
-                                        <Typography variant='h7' lassName={classes.infoLabel}> 
+                                        <Typography variant='h7'> 
                                             grown for 10 years
                                         </Typography>
                                     </TableCell>
