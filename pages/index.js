@@ -70,7 +70,8 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'underline'
   },
   centerText: {
-    width: '80%'
+    width: '80%',
+    maxWidth: '550px',
   },
   whiteSection: {
     backgroundColor: 'white',
@@ -82,11 +83,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     padding: '0 4rem'
   }, 
-  fillViewport: {
-    [theme.breakpoints.up('md')]: {
-      minHeight: "92vh"
-    },
-  }
+  // fillViewport: {
+  //   [theme.breakpoints.up('md')]: {
+  //     minHeight: "92vh"
+  //   },
+  // }
 }));
 
 function Item(props) {
@@ -125,7 +126,7 @@ export default function Home({ data }) {
         <Header />
 
         <main className={classes.main}>
-          <div className={classes.fillViewport}>
+          <div>
             <Item>
               <Typography variant="h1" className={classes.title} >
                 <Image src="/Logo.svg" alt="Sinagpala Logo" width={150} height={150} className={classes.logo} priority={true} />
@@ -163,8 +164,10 @@ export default function Home({ data }) {
                 compared to the Philippines&apos; average of 1,150 kWh/yr. With the growing demand for electricity,
                 solar panels can help reduce the demand of electricity and help households save money on electricity.
               </Typography>
+            </Item>
+            <Item>
               <Typography variant="p" className={classes.centerText}>
-                Source: <Link href="https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf"><a className={classes.underline} target="_blank">Shell Philippines, 2015</a></Link>
+                  Source: <Link href="https://www.shell.com/energy-and-innovation/the-energy-future/scenarios/new-lenses-on-future-cities/_jcr_content/par/tabbedcontent/tab_912648081/textimage.stream/1519803359679/eb0a0d02c968c9b0589d0539a9d447a956cf8848/city-resilience-study-marikina-city.pdf"><a className={classes.underline} target="_blank">Shell Philippines, 2015</a></Link>
               </Typography>
             </Item>
           </div>
