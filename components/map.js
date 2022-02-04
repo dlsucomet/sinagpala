@@ -127,7 +127,10 @@ export default function Map(props) {
 
     useEffect(() => {
         if (props.resetZoom >= 1) {
-            console.log("done")
+            // Remove previous marker 
+            if (markerRef.current != null)
+                markerRef.current.remove()
+
             setViewport({
                 ...viewport,
                 zoom: 16,
@@ -185,7 +188,8 @@ export default function Map(props) {
                 setViewport={setViewport} />
             <ReactMapGL
                 ref={mapRef}
-                mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
+                // mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
+                mapStyle="mapbox://styles/mapbox/light-v10"
                 mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                 {...viewport}
                 width='100%'
@@ -196,9 +200,9 @@ export default function Map(props) {
                 <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
                     <Layer {...layerStyle} />
                 </Source>
-                <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
+                {/* <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
                     <Layer {...buildingStyle} />
-                </Source>
+                </Source> */}
             </ReactMapGL>
         </React.Fragment>
     )
