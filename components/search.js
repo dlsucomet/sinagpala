@@ -76,7 +76,6 @@ export default function Search(props) {
       axios.get(searchEndpoint(query))
         .then(response => {
             setActive(true)
-            // console.log(response.data)
             setResults(response.data)
         })
     } else {
@@ -87,7 +86,6 @@ export default function Search(props) {
   // Display clicked option
   const onClick = useCallback((event) => {
     let center = event.target.getAttribute('center').split(",")
-    // console.log(center)
 
     if (center[0] != 0 && center[1] != [1]) {
         // Transition to new center
