@@ -60,10 +60,14 @@ export default function LinePlot(props) {
 
         if (total_kwh !== -999) {
             if (props.type == "month") {
-                Object.keys(props.data.properties).forEach((key) => {
-                    if (key.startsWith("avg_month")) {
-                        data.push(props.data.properties[key]);
-                    }
+                var month_keys = [];
+
+                for (let i = 1; i < 13; i++) {
+                    month_keys.push(`avg_month_${i}`);
+                }
+
+                month_keys.forEach((key) => {
+                    data.push(props.data.properties[key]);
                 });
 
                 dataX = [...Array(12).keys()];
@@ -71,10 +75,14 @@ export default function LinePlot(props) {
 
             }
             else if (props.type == "hour") {
-                Object.keys(props.data.properties).forEach((key) => {
-                    if (key.startsWith("avg_hour")) {
-                        data.push(props.data.properties[key]);
-                    }
+                var hour_keys = [];
+
+                for (let i = 0; i < 24; i++) {
+                    hour_keys.push(`avg_hour_${i}`);
+                }
+
+                hour_keys.forEach((key) => {
+                    data.push(props.data.properties[key]);
                 });
 
                 dataX = [...Array(24).keys()];
