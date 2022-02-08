@@ -65,19 +65,19 @@ export default function Explore(){
     const [resetZoom, setResetZoom] = useState(0);
 
     const onDataChange = data => {
-        //TODO Temporary checker for no data (no rooftops were predicted for that building polygon)
-        const emptyDataChance = Math.random();
-        console.log("Chance ", emptyDataChance)
-        // If 1, set first data to -999 (but irl, all of the data should be -999)
-        // (0.6 < chance <= 1)
-        if (buildingData != null && emptyDataChance > 0.6 && emptyDataChance <= 1 && data != null) {
-            data.properties['total_kwh'] = -999;
-        // Chance to be set to zero for all values (0.3 < chance <= 0.6)
-        } else if (buildingData != null && emptyDataChance > 0.3 && emptyDataChance <= 0.6 && data != null) {
-            Object.keys(data.properties).forEach((key) => {
-                data.properties[key] = 0;
-            });
-        }
+        // //TODO Temporary checker for no data (no rooftops were predicted for that building polygon)
+        // const emptyDataChance = Math.random();
+        // console.log("Chance ", emptyDataChance)
+        // // If 1, set first data to -999 (but irl, all of the data should be -999)
+        // // (0.6 < chance <= 1)
+        // if (buildingData != null && emptyDataChance > 0.6 && emptyDataChance <= 1 && data != null) {
+        //     data.properties['total_kwh'] = -999;
+        // // Chance to be set to zero for all values (0.3 < chance <= 0.6)
+        // } else if (buildingData != null && emptyDataChance > 0.3 && emptyDataChance <= 0.6 && data != null) {
+        //     Object.keys(data.properties).forEach((key) => {
+        //         data.properties[key] = 0;
+        //     });
+        // }
 
         setBuildingData(data);
         setShowCard(true);
@@ -106,7 +106,7 @@ export default function Explore(){
             <Header />
 
             <div className={classes.mapContainer}>
-                <Map resetZoom={resetZoom} onDataChange={onDataChange}/>
+                <Map resetZoom={resetZoom} onDataChange={onDataChange} hideCard={hideCard}/>
                 {
                     buildingData != null ?
                     <>

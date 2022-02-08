@@ -147,6 +147,8 @@ export default function SummaryCard(props) {
         props.hideCard();
     }
 
+    const total_mwh = total_kwh / 1000;
+
     const card = (
         <React.Fragment>
             <CardContentNoPadding>
@@ -191,9 +193,9 @@ export default function SummaryCard(props) {
                                             <Typography variant="h6" className={classes.numData}>
                                                 <span className={classes.highlightData}> 
                                                     <Typography variant="h5" className={classes.numData}>
-                                                        {total_kwh}
+                                                        {total_mwh.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                                     </Typography>
-                                                </span>kWh
+                                                </span>MWh
                                             </Typography>
                                         </div>
                                         <Typography sx={{ fontSize: 12, textAlign: 'center' }} className={classes.labelData} gutterBottom>
@@ -238,7 +240,7 @@ export default function SummaryCard(props) {
                                             <Typography variant="h6" className={classes.numData}>
                                                 <span className={classes.highlightData}> 
                                                     <Typography variant="h5" className={classes.numData}>
-                                                        {panel_area}
+                                                        {panel_area.toFixed(2)}
                                                     </Typography>
                                                 </span> m<sup style={{
                                                                         fontSize:'small'
