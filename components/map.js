@@ -143,7 +143,8 @@ export default function Map(props) {
     const layerStyle = {
         id: 'building_data',
         type: 'fill',
-        'source-layer': 'WebApp_Dummy_Data_1-4gxvgk',
+        'source-layer': 'solar_potential_flatsouth_1-3ij0kc',
+        // 'source-layer': 'WebApp_Dummy_Data_1-4gxvgk',
         paint: {
             'fill-opacity': 0.6,
             // 'fill-opacity-transition': {
@@ -154,11 +155,13 @@ export default function Map(props) {
             'fill-color': {
                 property: 'total_kwh',
                 stops: [
+                    [0, '#808080'],
                     [1, '#fafa6e'],
-                    [13.25, '#fed445'],
-                    [25.5, '#ffac28'],
-                    [37.75, '#fd811e'],
-                    [50, '#f65026'],
+                    [2762, '#fafa6e'],
+                    [5525, '#fed445'],
+                    [8287, '#ffac28'],
+                    [11049, '#fd811e'],
+                    [13811, '#f65026'],
                 ],
             },
         },
@@ -197,7 +200,10 @@ export default function Map(props) {
                 onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                 onClick={onClick}
             >
-                <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
+                {/* <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
+                    <Layer {...layerStyle} />
+                </Source> */}
+                <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.dya2kga1'}>
                     <Layer {...layerStyle} />
                 </Source>
                 {/* <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>

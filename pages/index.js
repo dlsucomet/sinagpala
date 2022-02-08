@@ -83,11 +83,6 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     padding: '0 4rem'
   }, 
-  // fillViewport: {
-  //   [theme.breakpoints.up('md')]: {
-  //     minHeight: "92vh"
-  //   },
-  // }
 }));
 
 function Item(props) {
@@ -107,6 +102,7 @@ function Item(props) {
 export default function Home({ data }) {
   const classes = useStyles();
   const marikina_data = data.properties;
+  const total_marikina_output = marikina_data['total_kwh'] / 1000000;
 
   return (
     <NoSsr>
@@ -180,8 +176,8 @@ export default function Home({ data }) {
                   Marikina has an estimated {<br />}
                   potential of having {<br />}
                   <span className={classes.dataBlock}>
-                    {marikina_data['total_kwh']}
-                  </span> kWh {<br />}
+                    {total_marikina_output.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </span> GWh {<br />}
                   of solar energy
                 </div>
               </div>

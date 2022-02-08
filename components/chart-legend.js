@@ -86,7 +86,7 @@ export default function ChartLegend(props) {
         <React.Fragment>
             <CardContentNoPadding>
                 <>
-                    <Typography variant='h8'>Total Energy (kWh)</Typography>
+                    <Typography variant='h8'>Total Energy (MWh)</Typography>
                     <Box
                         sx={{
                             p: 0.5,
@@ -107,11 +107,11 @@ export default function ChartLegend(props) {
                             sx={{ flexGrow: 1 }}
                             className={classes.dataColumn}
                         >
-                            <Typography variant='h8'>40 - 50</Typography>
-                            <Typography variant='h8'>30 - 40</Typography>
-                            <Typography variant='h8'>20 - 30</Typography>
-                            <Typography variant='h8'>10 - 20</Typography>
-                            <Typography variant='h8'>1 - 10</Typography>
+                            <Typography variant='h8'>11 +</Typography>
+                            <Typography variant='h8'>8 - 11</Typography>
+                            <Typography variant='h8'>5 - 8</Typography>
+                            <Typography variant='h8'>2 - 5</Typography>
+                            <Typography variant='h8'>0 - 2</Typography>
                         </Box>   
                     </ Box>
                 </>

@@ -152,9 +152,9 @@ export default function LinePlot(props) {
                                     },
                                     automargin: true,
                                     fixedrange: true,
-                                    tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
-                                    tick0: 0,
-                                    dtick: 2,
+                                    // tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
+                                    // tick0: 0,
+                                    // dtick: 2,
                                     tickfont: {
                                         size: 8,
                                         color: 'black'
