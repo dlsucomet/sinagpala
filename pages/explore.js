@@ -106,7 +106,7 @@ export default function Explore(){
             <Header />
 
             <div className={classes.mapContainer}>
-                <Map resetZoom={resetZoom} onDataChange={onDataChange}/>
+                <Map resetZoom={resetZoom} onDataChange={onDataChange} hideCard={hideCard}/>
                 {
                     buildingData != null ?
                     <>

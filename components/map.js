@@ -8,8 +8,11 @@
  *      <Map     onDataChange />
  *
  *    @prop { Function }   onDataChange  - function call to parent to update building data state
+ * 
+ *    @prop { Function }   hideCard  - function call to hide summary card when search is clicked
  *
  *    @prop { Number }      resetZoom - number which updates from parent to trigger zoom level reset
+ * 
  * USED IN:
  * explore.js
  *
@@ -120,6 +123,18 @@ export default function Map(props) {
 
             // Add a marker to location
             markerRef.current = new mapboxgl.Marker().setLngLat([centerX, centerY]).addTo(mapRef.current.getMap())
+        } else {
+            // If no building polygon was clicked, zoom out and remove marker
+            // Remove previous marker 
+            if (markerRef.current != null)
+                markerRef.current.remove()
+
+            setViewport({
+                ...viewport,
+                zoom: 16,
+                transitionDuration: 500,
+                transitionInterpolator: new FlyToInterpolator(),
+            });
         }
 
         props.onDataChange(buildingData);
@@ -188,6 +203,7 @@ export default function Map(props) {
                 mapRef={mapRef}
                 markerRef={markerRef}
                 onClick={e => e.stopPropagation()}
+                hideCard={props.hideCard}
                 setViewport={setViewport} />
             <ReactMapGL
                 ref={mapRef}
@@ -222,5 +238,6 @@ export default function Map(props) {
 
 Map.propTypes = {
     onDataChange: PropTypes.func,
-    resetZoom: PropTypes.number
+    hideCard: PropTypes.func,
+    resetZoom: PropTypes.number,
 }

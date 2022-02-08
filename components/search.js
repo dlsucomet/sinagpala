@@ -9,6 +9,7 @@
  *
  *     @prop { Object }     mapRef       - object referencing the parent map object
  *     @prop { Function }   setViewport  - function call to update parent map's current viewport
+ *     @prop { Function }   hideCard     - Hides the summary card 
  *
  * USED IN:
  * map.js
@@ -86,7 +87,7 @@ export default function Search(props) {
   // Display clicked option
   const onClick = useCallback((event) => {
     let center = event.target.getAttribute('center').split(",")
-    console.log(center)
+    // console.log(center)
 
     if (center[0] != 0 && center[1] != [1]) {
         // Transition to new center
@@ -126,6 +127,7 @@ export default function Search(props) {
       <input
         className={classes.search}
         onChange={onChange}
+        onFocus={props.hideCard}
         placeholder='Search addresses'
         type='text'
         value={query}
@@ -151,5 +153,6 @@ export default function Search(props) {
 
 Search.propTypes = {
   mapRef: PropTypes.object,
-  setViewport: PropTypes.func
+  setViewport: PropTypes.func,
+  hideCard: PropTypes.func,
 }
