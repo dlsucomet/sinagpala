@@ -76,7 +76,6 @@ export default function Search(props) {
       axios.get(searchEndpoint(query))
         .then(response => {
             setActive(true)
-            // console.log(response.data)
             setResults(response.data)
         })
     } else {
