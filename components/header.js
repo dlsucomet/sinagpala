@@ -18,6 +18,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useState, useEffect } from "react"
 import { makeStyles } from '@mui/styles'
 import { useRouter } from 'next/router'
 import Typography from '@mui/material/Typography'
@@ -27,8 +28,10 @@ import Typography from '@mui/material/Typography'
 const useStyles = props => makeStyles(theme => ({
     header: {
         display: 'flex',
-        padding: props.pathname == '/explore' ? '0 2rem' : '0',
-        justifyContent: props.pathname == '/' ? 'right' : 'space-between',
+        padding: '0 2rem',
+        justifyContent: 'space-between',
+        // padding: props.pathname == '/explore' ? '0 2rem' : '0',
+        // justifyContent: props.pathname == '/' ? 'right' : 'space-between',
         alignItems: 'center',
         height: '8vh',
         // marginLeft: '-2rem',
@@ -58,7 +61,7 @@ const useStyles = props => makeStyles(theme => ({
         display: 'flex',
     },
     headerText: {
-        color: 'white'
+        color: props.pathname == '/' ? 'black' : 'white',
     },
     logoHeaderLink: {
         marginLeft: '15px',
@@ -68,35 +71,64 @@ const useStyles = props => makeStyles(theme => ({
         letterSpacing: '4px',
         textAlign: 'center',
         alignItems: 'center',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        opacity: '1',
+        transition: 'opacity 0.5s ease-in-out',
     },
+    hideIcon: {
+        // visibility: 'hidden',
+        opacity: '0'
+    }
 }));
 
 export default function Header() {
     const router = useRouter();
     const classes = useStyles({ 'pathname': router.pathname })();
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+      })
+    
+    const handleScroll = () => {
+        console.log('scroll event', window.scrollY)
+        setScrollY(window.scrollY)
+    }
 
     return (
         router.pathname == '/' ?
             <header className={[classes.header, classes.headerYellow].join(" ")}>
-                <Link href="/explore">
-                    <a
-                        className={classes.headerLink}
-                    >
-                        <Typography variant="h6">
-                            Explore
-                        </Typography>
-                    </a>
-                </Link>
-                <Link href="/about">
-                    <a
-                        className={classes.headerLink}
-                    >
-                        <Typography variant="h6">
-                            About Us
-                        </Typography>
-                    </a>
-                </Link>
+                <div className={[classes.logoHeaderLink, scrollY < 10 ? classes.hideIcon : ""].join(" ")}>
+                    <Image src="/Logo.svg" alt="Sinagpala Logo" width={36} height={36} />
+                    <Link href="/">
+                        <a>
+                            <Typography className={classes.headerText} variant="h6">
+                                Sinagpala
+                            </Typography>
+                        </a>
+                    </Link>
+                </div>
+                <div className={classes.headerLinks}>
+                    <Link href="/explore">
+                        <a
+                            className={classes.headerLink}
+                        >
+                            <Typography variant="h6">
+                                Explore
+                            </Typography>
+                        </a>
+                    </Link>
+                    <Link href="/about">
+                        <a
+                            className={classes.headerLink}
+                        >
+                            <Typography variant="h6">
+                                About Us
+                            </Typography>
+                        </a>
+                    </Link>
+                </div>
             </header>
             :
             <header className={[classes.header, classes.headerBrown].join(" ")}>
