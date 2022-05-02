@@ -135,6 +135,7 @@ export default function LinePlot(props) {
                                         },
                                         standoff: 20
                                     },
+                                    hoverformat: '.2f',
                                     automargin: true,
                                     fixedrange: true,
                                     tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
@@ -158,6 +159,7 @@ export default function LinePlot(props) {
                                         },
                                         standoff: 20
                                     },
+                                    hoverformat: '.2f',
                                     automargin: true,
                                     fixedrange: true,
                                     // tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
