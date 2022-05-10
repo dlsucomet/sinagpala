@@ -27,7 +27,7 @@ export default function handler(req, res) {
         }
             
         else {
-            let formattedResponse = response.data.results.map((item) => {
+            let formattedResponse = filteredResponse.map((item) => {
                 let formattedItem = {}
                 formattedItem['place_name'] = item.formatted_address
                 formattedItem["place_type"] = ['park']
