@@ -158,7 +158,7 @@ export default function Map(props) {
     const layerStyle = {
         id: 'building_data',
         type: 'fill',
-        'source-layer': 'solar_potential_flatsouth_1-3ij0kc',
+        'source-layer': 'solar_potential_flatsouth-4ijaz4',
         // 'source-layer': 'WebApp_Dummy_Data_1-4gxvgk',
         paint: {
             'fill-opacity': 0.6,
@@ -219,7 +219,7 @@ export default function Map(props) {
                 {/* <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
                     <Layer {...layerStyle} />
                 </Source> */}
-                <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.dya2kga1'}>
+                <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.c0c7ho0n'}>
                     <Layer {...layerStyle} />
                 </Source>
                 {/* <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
