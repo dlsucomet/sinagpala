@@ -178,7 +178,10 @@ export default function Home({ data }) {
                   <span className={classes.dataBlock}>
                     {total_marikina_output.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </span> GWh {<br />}
-                  of solar energy
+                  of solar energy<sup>1</sup>
+                  <Typography sx={{ fontSize: '12px' }}>
+                    <sup>1</sup> The annual total energy is a representation of the total buildings that the built methdology was able to predict and calculate. This does not account for all buildings of Marikina City.
+                  </Typography>
                 </div>
               </div>
             </Item>
@@ -193,13 +196,13 @@ export default function Home({ data }) {
 
             <Item>
               <Typography variant="h6" className={classes.centerText}>
-                Solar enegy is a renewable energy resource that relies on the energy emmitted from the sun. This means that on brighter, sunnier days, your solar panel could potentially generate more energy! This also means that on hotter months, you could also generate more. Check out our calculated potential for the Marikina area! <sup>1</sup>
+                Solar enegy is a renewable energy resource that relies on the energy emmitted from the sun. This means that on brighter, sunnier days, your solar panel could potentially generate more energy! This also means that on hotter months, you could also generate more. Check out our calculated potential for the Marikina area! <sup>2</sup>
               </Typography>
             </Item>
 
             <Item>
               <Typography sx={{ fontSize: '12px' }}>
-                <sup>1</sup>Estimated potentials are only for proof of concept, please refer to limitations on the {' '}
+                <sup>2</sup>Estimated potentials are only for proof of concept, please refer to limitations on the {' '}
                 <span style={{ textDecoration: 'underline' }}>
                   <Link href="/about">
                     about us

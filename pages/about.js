@@ -10,6 +10,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -98,9 +99,15 @@ export default function About() {
           <div className={classes.infoBlock}>
             <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Check your rooftop now!</h2>
             <p className={classes.description}>
-              Start checking our your Marikina rooftop by either looking for your address or by exploring our map. By selecting an available building, you will be able to see its solar energy potential along with other solar information.
+              Start checking our your Marikina rooftop by either looking for your address or by exploring our map. By selecting an available building<sup>1</sup>, you will be able to see its solar energy potential along with other solar information.
             </p>
           </div>
+
+          <p className={classes.description}> 
+              <Typography sx={{ fontSize: '12px' }}>
+                  <sup>1</sup>The building polygons visualized in the application are the OpenStreetMap building polygons whose attributes are assigned based on the aggregated model rooftop segment predictions matched using building assignment.
+              </Typography>
+          </p>
 
           <div className={classes.infoBlock}>
             <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Panel Specifications Used</h2>
