@@ -152,6 +152,9 @@ export default function About() {
             <p className={classes.description}>
               This project is only to be used as a proof of concept. Several limitations such as limited open-sourced data and consideration to the electronics aspect, among others, can lead to biases with the assessments made by the application.
             </p>
+            <p className={classes.description}>
+              Additionally, the estimations provided have been reduced by 30%  as to account for shading effects. Further validation for this rate must be done for the local setting. 
+            </p>
           </div>
 
         </main>
