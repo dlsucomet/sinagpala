@@ -180,7 +180,7 @@ export default function Home({ data }) {
                   </span> GWh {<br />}
                   of solar energy<sup>1</sup>
                   <Typography sx={{ fontSize: '12px' }}>
-                    <sup>1</sup> The annual total energy is a representation of the total buildings that the built methdology was able to predict and calculate. This does not account for all buildings of Marikina City.
+                    <sup>1</sup> The annual total energy is a representation of the total buildings {<br />} that the built methodology was able to predict and calculate. {<br />} This does not account for all buildings of Marikina City.
                   </Typography>
                 </div>
               </div>

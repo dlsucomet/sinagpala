@@ -5,7 +5,7 @@
  *                                  
  *
  * #HOW TO CALL:
- *      <Map     onDataChange />
+ *      <Map     onDataChange hideCard resetZoom/>
  *
  *    @prop { Function }   onDataChange  - function call to parent to update building data state
  * 
@@ -159,13 +159,8 @@ export default function Map(props) {
         id: 'building_data',
         type: 'fill',
         'source-layer': 'solar_potential_flatsouth_1-dd6ixg',
-        // 'source-layer': 'WebApp_Dummy_Data_1-4gxvgk',
         paint: {
             'fill-opacity': 0.6,
-            // 'fill-opacity-transition': {
-            //   duration: 800,
-            //   delay: 0,
-            // },
             'fill-outline-color': '#f65026',
             'fill-color': {
                 property: 'total_kwh',
@@ -182,21 +177,6 @@ export default function Map(props) {
         },
     };
 
-    const buildingStyle = {
-        id: 'mapbox_building',
-        type: 'symbol',
-        'source-layer': 'poi_label',
-        paint: {
-            'text-color': '#374140',
-        },
-        layout: {
-            'text-field': '{name}',
-            // 'text-letter-spacing': 0.05,
-            // 'text-offset': [0, 1.5],
-            'text-size': 12,
-        },
-    };
-
     const refMap = (
         <React.Fragment>
             <Search
@@ -207,7 +187,6 @@ export default function Map(props) {
                 setViewport={setViewport} />
             <ReactMapGL
                 ref={mapRef}
-                // mapStyle="mapbox://styles/neillua/ckyaxoahl6g4y14o9izyuozem"
                 mapStyle="mapbox://styles/mapbox/light-v10"
                 mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_KEY}
                 {...viewport}
@@ -216,15 +195,9 @@ export default function Map(props) {
                 onViewportChange={nextViewPort => onViewportChange(nextViewPort)}
                 onClick={onClick}
             >
-                {/* <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.cy1ekvl9'}>
-                    <Layer {...layerStyle} />
-                </Source> */}
                 <Source id="marikina_buildings" type="vector" url={'mapbox://neillua.6qw763dr'}>
                     <Layer {...layerStyle} />
                 </Source>
-                {/* <Source id="mapbox_buildings" type="vector" url={'mapbox://mapbox.mapbox-streets-v8?optimize=true'}>
-                    <Layer {...buildingStyle} />
-                </Source> */}
             </ReactMapGL>
         </React.Fragment>
     )

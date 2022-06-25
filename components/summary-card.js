@@ -5,9 +5,9 @@
  *                                  
  *
  * #HOW TO CALL:
- *      <SumaryCard     data showCard hideCard />
+ *      <SummaryCard     data showCard hideCard />
  *
- *    @prop { Object }   data  - object data with the statitics information
+ *    @prop { Object }    data  - object data with the statitics information
  *    @prop { Boolean }   showCard  - boolean data that shows the summary card
  *    @prop { Function }  hideCard   - fucntion to close the summary card
  *

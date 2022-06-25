@@ -45,8 +45,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem'
   },
   description: {
-    // margin: '4rem 0',
-    // lineHeight: 1.5,
     fontSize: '1.5rem',
     maxWidth: '550px',
     textAlign: 'justify',
@@ -86,8 +84,6 @@ export default function About() {
 
       <div className={classes.container}>
         <main className={classes.main}>
-
-          {/* <h1 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Sinagpala: About Us</h1> */}
 
           <div className={classes.infoBlock}>
             <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>What&apos;s Sinagpala？</h2>
@@ -151,6 +147,9 @@ export default function About() {
             <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Limitation</h2>
             <p className={classes.description}>
               This project is only to be used as a proof of concept. Several limitations such as limited open-sourced data and consideration to the electronics aspect, among others, can lead to biases with the assessments made by the application.
+            </p>
+            <p className={classes.description}>
+              Additionally, the estimations provided have been reduced by 30%  as to account for shading effects. Further validation for this rate must be done for the local setting. 
             </p>
           </div>
 

@@ -5,7 +5,7 @@
  *                                  
  *
  * #HOW TO CALL:
- *      <Search     mapRef setViewPort />
+ *      <Search     mapRef setViewPort hideCard/>
  *
  *     @prop { Object }     mapRef       - object referencing the parent map object
  *     @prop { Function }   setViewport  - function call to update parent map's current viewport

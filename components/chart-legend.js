@@ -1,7 +1,7 @@
 /**
  * ------------------------------------------------------------------------------------------
  * [COMPONENT]
- * @function ChartLegend   -   Choropleth Chart Legend
+ * @function ChartLegend   -   Choropleth Chart Legend (Static)
  *                                  
  *
  * #HOW TO CALL:
