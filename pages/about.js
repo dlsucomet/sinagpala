@@ -45,8 +45,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem'
   },
   description: {
-    // margin: '4rem 0',
-    // lineHeight: 1.5,
     fontSize: '1.5rem',
     maxWidth: '550px',
     textAlign: 'justify',
@@ -86,8 +84,6 @@ export default function About() {
 
       <div className={classes.container}>
         <main className={classes.main}>
-
-          {/* <h1 className={[classes.centerText, classes.descriptionTitle].join(" ")}>Sinagpala: About Us</h1> */}
 
           <div className={classes.infoBlock}>
             <h2 className={[classes.centerText, classes.descriptionTitle].join(" ")}>What&apos;s Sinagpala？</h2>

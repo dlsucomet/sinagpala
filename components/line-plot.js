@@ -5,10 +5,12 @@
  *                                  
  *
  * #HOW TO CALL:
- *      <SumaryCard     data type />
+ *      <LinePlot     data type />
  *
  *    @prop { Object }   data  - object data with the statitics information
  *    @prop { String }   type  - type of information to display (Monthly Average or Hourly Average)
+ *    @prop { Number }   width  - width of plot
+ *    @prop { Number }   height - height of plot
  *
  * USED IN:
  * explore.js
