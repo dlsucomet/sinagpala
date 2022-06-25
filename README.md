@@ -1,3 +1,15 @@
+## Sinagpala
+This is a developed web application that supplements our research as a medium to display the estimated solar energy potential calculated from our built model. More information on our research can be found [here](https://github.com/dlsucomet/sinagpala-notebooks)
+
+### Proponents
+- Evangelista, Jason T.
+- Lua, Neil Matthew N.
+- Reyes, Robin Jerome D.
+- Tanting, Kurt Bradley D.
+- Chua, Unisse C. (Adviser)
+
+## Built Web Application
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -26,9 +38,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
