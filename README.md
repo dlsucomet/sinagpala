@@ -1,40 +1,60 @@
 ## Sinagpala
 This is a developed web application that supplements our research as a medium to display the estimated solar energy potential calculated from our built model. More information on our research can be found [here](https://github.com/dlsucomet/sinagpala-notebooks)
 
-### Proponents
-- Evangelista, Jason T.
-- Lua, Neil Matthew N.
-- Reyes, Robin Jerome D.
-- Tanting, Kurt Bradley D.
-- Chua, Unisse C. (Adviser)
+# Sinagpala Site
 
-## Built Web Application
+Hosted on: https://sinagpala-two.vercel.app/
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Contributors
 
-## Getting Started
+Mr. Jason T. Evangelista\
+Software Technology Department\
+College of Computer Studies \
+De La Salle University-Manila\
+jase_evangelista@dlsu.edu.ph
 
-First, run the development server:
+Mr. Neil Matthew N. Lua\
+Software Technology Department\
+College of Computer Studies \
+De La Salle University-Manila\
+neil_lua@dlsu.edu.ph\
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Mr. Robin Jerome D. Reyes\
+Software Technology Department\
+College of Computer Studies\
+De La Salle University-Manila\
+robin_jerome_reyes@dlsu.edu.ph
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mr. Kurt Bradley D. Tanting\
+Software Technology Department\
+College of Computer Studies\
+De La Salle University-Manila\
+kurt_bradley_tanting@dlsu.edu.ph
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Ms. Unisse C. Chua\
+Adviser\
+College of Computer Studies\
+De La Salle University\
+unisse.chua@dlsu.edu.ph
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Pre-requisites
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Node.js
 
-## Learn More
+## Installation
+Open the Sinagpala site folder and run the following commands:
 
-To learn more about Next.js, take a look at the following resources:
+1.  **Running locally in development mode**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```shell
+    npm i
+    npm run dev
+    ```
+    The server will run on localhost:3000
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2.  **Building and deploying in production**
+    ```shell
+    npm i
+    npm run build
+    npm run start
+    ```
