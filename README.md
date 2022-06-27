@@ -17,7 +17,7 @@ Mr. Neil Matthew N. Lua\
 Software Technology Department\
 College of Computer Studies \
 De La Salle University-Manila\
-neil_lua@dlsu.edu.ph\
+neil_lua@dlsu.edu.ph
 
 Mr. Robin Jerome D. Reyes\
 Software Technology Department\
